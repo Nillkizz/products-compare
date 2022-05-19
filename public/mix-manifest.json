@@ -1,14 +1,14 @@
 {
-    "/js/laravel.app.js": "/js/laravel.app.js",
-    "/js/dashmix.app.js": "/js/dashmix.app.js",
-    "/js/pages/tables_datatables.js": "/js/pages/tables_datatables.js",
-    "/css/themes/xsmooth.css": "/css/themes/xsmooth.css",
-    "/css/themes/xmodern.css": "/css/themes/xmodern.css",
-    "/css/themes/xinspire.css": "/css/themes/xinspire.css",
-    "/css/themes/xeco.css": "/css/themes/xeco.css",
-    "/css/dashmix.css": "/css/dashmix.css",
-    "/css/themes/xplay.css": "/css/themes/xplay.css",
-    "/css/themes/xpro.css": "/css/themes/xpro.css",
-    "/css/themes/xdream.css": "/css/themes/xdream.css",
-    "/css/themes/xwork.css": "/css/themes/xwork.css"
+    "/static/admin/js/dashmix.core.js": "/static/admin/js/dashmix.core.js",
+    "/static/admin/js/app.js": "/static/admin/js/app.js",
+    "/static/admin/js/pages/tables_datatables.js": "/static/admin/js/pages/tables_datatables.js",
+    "/static/admin/css/themes/xsmooth.css": "/static/admin/css/themes/xsmooth.css",
+    "/static/admin/css/themes/xmodern.css": "/static/admin/css/themes/xmodern.css",
+    "/static/admin/css/themes/xinspire.css": "/static/admin/css/themes/xinspire.css",
+    "/static/admin/css/themes/xeco.css": "/static/admin/css/themes/xeco.css",
+    "/static/admin/css/app.css": "/static/admin/css/app.css",
+    "/static/admin/css/themes/xplay.css": "/static/admin/css/themes/xplay.css",
+    "/static/admin/css/themes/xpro.css": "/static/admin/css/themes/xpro.css",
+    "/static/admin/css/themes/xdream.css": "/static/admin/css/themes/xdream.css",
+    "/static/admin/css/themes/xwork.css": "/static/admin/css/themes/xwork.css"
 }

@@ -13,11 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Example Routes
-Route::view('/', 'landing');
-Route::match(['get', 'post'], '/dashboard', function () {
-  return view('admin.dashboard');
-});
+Route::get('/', function () {
+  return view('home');
+})->name('home');
+
+
+
 Route::view('/pages/slick', 'admin.pages.slick');
 Route::view('/pages/datatables', 'admin.pages.datatables');
 Route::view('/pages/blank', 'admin.pages.blank');
+
+
+require __DIR__ . '/auth.php';
+
+Route::prefix('admin')->name('admin.')->group(function () {
+  Route::match(['get', 'post'], '/dashboard', function () {
+    return view('admin.pages.dashboard');
+  })->middleware(['auth'])->name('dashboard');
+});

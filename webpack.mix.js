@@ -12,7 +12,7 @@ const public_mix = require('laravel-mix');
  |
  */
 
-const productionSourceMaps = false;
+const productionSourceMaps = true;
 
 const admin = 'resources/static/admin/'
 const admin_dist = 'public/static/admin/'

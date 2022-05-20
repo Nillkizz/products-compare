@@ -4203,63 +4203,55 @@ var App = /*#__PURE__*/function (_Template) {
    *
    */
   function App() {
+    var _this;
+
     _classCallCheck(this, App);
 
-    return _super.call(this);
+    _this = _super.call(this);
+
+    _this._init();
+
+    return _this;
   }
 
   _createClass(App, [{
     key: "_uiApiLayout",
     value: function _uiApiLayout() {
       var mode = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'init';
+      var nostate = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
       _get(_getPrototypeOf(App.prototype), "_uiApiLayout", this).call(this, mode);
+      /* Save state */
+
+
+      if (nostate) return;
 
       switch (mode) {
         case 'sidebar_toggle':
-          var sidebarIsOpen = document.getElementById('page-container').classList.contains('sidebar-o');
-          localStorage.setItem('sidebarIsOpen', sidebarIsOpen);
+          localStorage.setItem('sidebarIsOpen', this.sidebarIsOpen);
           break;
       }
     }
-    /*
-     *  Here you can override or extend any function you want from Template class
-     *  if you would like to change/extend/remove the default functionality.
-     *
-     *  This way it will be easier for you to update the module files if a new update
-     *  is released since all your changes will be in here overriding the original ones.
-     *
-     *  Let's have a look at the _uiInit() function, the one that runs the first time
-     *  we create an instance of Template class or App class which extends it. This function
-     *  inits all vital functionality but you can change it to fit your own needs.
-     *
-     */
+  }, {
+    key: "_init",
+    value: function _init() {
+      var _this2 = this;
 
-    /*
-     * EXAMPLE #1 - Removing default functionality by making it empty
-     *
-     */
-    //  _uiInit() {}
+      if (localStorage.getItem('sidebarIsOpen') == 'false') {
+        this._lSidebar.classList.add('prevent-transitions');
 
-    /*
-     * EXAMPLE #2 - Extending default functionality with additional code
-     *
-     */
-    //  _uiInit() {
-    //      // Call original function
-    //      super._uiInit();
-    //
-    //      // Your extra JS code afterwards
-    //  }
+        this._uiApiLayout('sidebar_toggle', true);
 
-    /*
-     * EXAMPLE #3 - Replacing default functionality by writing your own code
-     *
-     */
-    //  _uiInit() {
-    //      // Your own JS code without ever calling the original function's code
-    //  }
-
+        requestAnimationFrame(function () {
+          _this2._lSidebar.classList.remove('prevent-transitions');
+        });
+      }
+    }
+  }, {
+    key: "sidebarIsOpen",
+    get: function get() {
+      return document.getElementById('page-container').classList.contains('sidebar-o');
+    }
   }]);
 
   return App;

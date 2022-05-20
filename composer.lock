@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4ef925300e371576eb9dee7e507198d4",
+    "content-hash": "118979c39cae61074782d63190d794df",
     "packages": [
         {
             "name": "brick/math",
@@ -1996,6 +1996,73 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v4.13.2"
             },
             "time": "2021-11-30T19:35:32+00:00"
+        },
+        {
+            "name": "nillkizz/laravel-helpers",
+            "version": "v3.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Nillkizz/laravel-helpers.git",
+                "reference": "983815cbb05cce26eb0ad9177d4f7f02e87cca34"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Nillkizz/laravel-helpers/zipball/983815cbb05cce26eb0ad9177d4f7f02e87cca34",
+                "reference": "983815cbb05cce26eb0ad9177d4f7f02e87cca34",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^6.0|^7.0|^8.0|^9.0",
+                "illuminate/contracts": "^6.0|^7.0|^8.0|^9.0",
+                "illuminate/support": "^6.0|^7.0|^8.0|^9.0",
+                "php": "^7.2|^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0|^9.5.10",
+                "scrutinizer/ocular": "~1.1",
+                "squizlabs/php_codesniffer": "~2.3|^3.6"
+            },
+            "suggest": {
+                "moneyphp/money": "Money value object."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "nillkizz\\helpers\\HelperServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "nillkizz\\helpers\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Smith",
+                    "email": "alx.n.smith@ya.ru",
+                    "role": "Developer"
+                }
+            ],
+            "description": "generic helpers",
+            "homepage": "https://github.com/Nillkizz/laravel-helpers/",
+            "keywords": [
+                "Nillkizz",
+                "helpers",
+                "laravel"
+            ],
+            "support": {
+                "source": "https://github.com/Nillkizz/laravel-helpers/tree/v3.5.0"
+            },
+            "time": "2022-05-20T14:02:05+00:00"
         },
         {
             "name": "phpoption/phpoption",

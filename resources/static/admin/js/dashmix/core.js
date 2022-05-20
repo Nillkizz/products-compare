@@ -16,18 +16,30 @@ export default class App extends Template {
    */
   constructor() {
     super();
+    this._init();
   }
-  _uiApiLayout(mode = 'init') {
+  _uiApiLayout(mode = 'init', nostate = false) {
     super._uiApiLayout(mode);
 
+
+    /* Save state */
+    if (nostate) return;
     switch (mode) {
       case 'sidebar_toggle':
-        const sidebarIsOpen = document.getElementById('page-container').classList.contains('sidebar-o');
-        localStorage.setItem('sidebarIsOpen', sidebarIsOpen);
+        localStorage.setItem('sidebarIsOpen', this.sidebarIsOpen);
         break
     }
   }
 
+  _init() {
+    if (localStorage.getItem('sidebarIsOpen') == 'false') {
+      this._lSidebar.classList.add('prevent-transitions');
+      this._uiApiLayout('sidebar_toggle', true);
+      requestAnimationFrame(() => { this._lSidebar.classList.remove('prevent-transitions'); })
+    }
+  }
+
+  get sidebarIsOpen() { return document.getElementById('page-container').classList.contains('sidebar-o') };
   /*
    *  Here you can override or extend any function you want from Template class
    *  if you would like to change/extend/remove the default functionality.

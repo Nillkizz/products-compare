@@ -10,6 +10,8 @@
   width: 100%;
   min-width: 320px;
   min-height: 100vh;
+
+  transition: padding-left 0.45s cubic-bezier(0.2, 0.61, 0.42, 0.97);
 }
 
 #page-overlay {
@@ -61,10 +63,14 @@
   }
 
   @include media-breakpoint-up(xl) {
-    &.content-narrow { width: $space-narrow !important; }
+    &.content-narrow {
+      width: $space-narrow  !important;
+    }
   }
 
-  &.content-boxed { max-width: $space-boxed !important; }
+  &.content-boxed {
+    max-width: $space-boxed  !important;
+  }
 
   &.content-top {
     padding-top: $header-height + $space-mobile;

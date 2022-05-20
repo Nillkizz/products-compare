@@ -27,6 +27,10 @@ Route::view('/pages/blank', 'admin.pages.blank');
 require __DIR__ . '/auth.php';
 
 Route::prefix('admin')->name('admin.')->group(function () {
+  Route::get('/', function () {
+    return redirect()->route('login', ['next' => route('admin.dashboard', null, false)]);
+  })->name('');
+
   Route::match(['get', 'post'], '/dashboard', function () {
     return view('admin.pages.dashboard');
   })->middleware(['auth'])->name('dashboard');

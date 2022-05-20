@@ -1,3 +1,83 @@
+@php
+/*  Recursive nav generator  */
+
+// NavItem may be just a string, submenu or link. As $route => $navItem, or $strin if it is heading.
+
+// Example of fullitem:
+/*
+    [
+        'title' => 'Login',
+        'type' => 'submenu',
+        'icon' => 'fa fa-key',
+        'submenu' => [
+            'admin.dashboard' => [
+                'title' => 'Dashboard',
+                'icon' => 'fa fa-location-arrow',
+            ],
+        ],
+    ],
+*/
+$sidebarNav = [
+    'admin.dashboard' => [
+        'title' => 'Dashboard',
+        'icon' => 'fa fa-location-arrow',
+    ],
+];
+
+if (!class_exists('NavBarWalker')) {
+    class NavBarWalker
+    {
+        function __construct()
+        {
+            $this->hasActive = false;
+            $this->level = 0;
+        }
+        function prepare($navItems)
+        {
+            $this->level++;
+            $hasActive = false;
+            foreach ($navItems as $route => &$navItem) {
+                switch ($this->getNavItemType($navItem)) {
+                    case 'link':
+                        $navItem['type'] = 'link';
+                        if (!$hasActive && !$this->hasActive && request()->routeIs($route)) {
+                            $this->hasActive = $hasActive = $navItem['active'] = true;
+                        } else {
+                            $navItem['active'] = false;
+                        }
+                        break;
+                    case 'submenu':
+                        $navItem['type'] = 'submenu';
+                        $preparedNavItems = $this->prepare($navItem['submenu']);
+                        $navItem['submenu'] = $preparedNavItems['navItems'];
+                        $hasActive = $navItem['open'] = $preparedNavItems['hasActive'];
+                        break;
+                    case 'heading':
+                        $navItem = ['type' => 'heading', 'title' => $navItem];
+                    default:
+                        $navItem['norender'] = true;
+                        break;
+                }
+            }
+            $this->level--;
+            if ($this->level > 0) {
+                return compact('hasActive', 'navItems');
+            } else {
+                return $navItems;
+            }
+        }
+        function getNavItemType($navItem)
+        {
+            return is_string($navItem) ? 'heading' : Arr::get($navItem, 'type', 'link');
+        }
+    }
+}
+
+$walker = new NavBarWalker($sidebarNav);
+$sidebarNav = $walker->prepare($sidebarNav);
+
+@endphp
+
 <nav id="sidebar" aria-label="Main Navigation">
   <!-- Side Header -->
   <div class="bg-header-dark">
@@ -28,46 +108,11 @@
     <!-- Side Navigation -->
     <div class="content-side content-side-full">
       <ul class="nav-main">
-        <li class="nav-main-item">
-          <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="/dashboard">
-            <i class="nav-main-link-icon fa fa-location-arrow"></i>
-            <span class="nav-main-link-name">Dashboard</span>
-            {{-- <span class="nav-main-link-badge badge rounded-pill bg-primary">5</span> --}}
-          </a>
-        </li>
-        <li class="nav-main-heading">Products</li>
-        <li class="nav-main-item{{ request()->is('admin/products/*') ? ' open' : '' }}">
-          <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true"
-            href="#">
-            <i class="nav-main-link-icon fa fa-lightbulb"></i>
-            <span class="nav-main-link-name">Examples</span>
-          </a>
-          <ul class="nav-main-submenu">
-            <li class="nav-main-item">
-              <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}"
-                href="/pages/datatables">
-                <span class="nav-main-link-name">DataTables</span>
-              </a>
-            </li>
-            <li class="nav-main-item">
-              <a class="nav-main-link{{ request()->is('pages/slick') ? ' active' : '' }}" href="/pages/slick">
-                <span class="nav-main-link-name">Slick Slider</span>
-              </a>
-            </li>
-            <li class="nav-main-item">
-              <a class="nav-main-link{{ request()->is('pages/blank') ? ' active' : '' }}" href="/pages/blank">
-                <span class="nav-main-link-name">Blank</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-main-heading">More</li>
-        <li class="nav-main-item">
-          <a class="nav-main-link" href="/">
-            <i class="nav-main-link-icon fa fa-globe"></i>
-            <span class="nav-main-link-name">Landing</span>
-          </a>
-        </li>
+
+        @foreach ($sidebarNav as $route => $navItem)
+          <x-admin.sidebar.nav-item :navItem="$navItem" :route="$route" />
+        @endforeach
+
       </ul>
     </div>
     <!-- END Side Navigation -->

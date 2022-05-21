@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Pages\Admin;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\AdminPageController;
 use App\Models\Merchant;
 use App\Models\Product;
 use Illuminate\Http\Request;

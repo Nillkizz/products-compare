@@ -1,7 +1,8 @@
 @props(['title', 'route', 'iconClass', 'badge', 'isActive' => false])
 
 <li class="nav-main-item">
-  <a class="nav-main-link{{ $isActive ? ' active' : '' }}" href="{{ route($route) }}">
+  <a class="nav-main-link{{ $isActive ? ' active' : '' }}"
+    @if (Route::has($route)) href="{{ route($route) }}"@else disabled @endif>
     @isset($iconClass)
       <i @class(['nav-main-link-icon', $iconClass])></i>
     @endisset

@@ -67,7 +67,9 @@ if (!class_exists('Helpers\NavBarWalker')) {
     }
     function getNavItemType($navItem)
     {
-      return is_string($navItem) ? 'heading' : Arr::get($navItem, 'type', 'link');
+      if (is_string($navItem)) return 'heading';
+      if (Arr::has($navItem, 'submenu')) return 'submenu';
+      return Arr::get($navItem, 'type', 'link');
     }
   }
 }

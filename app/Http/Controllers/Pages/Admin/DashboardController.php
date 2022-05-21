@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers\Pages\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminPageController;
 use App\Models\Merchant;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class DashboardController extends AdminPageController
 {
   public function show()
   {
+    meta()
+      ->set('title', 'Admin Dashboard');
+
     $data = [
       'card-counters' => [
         [

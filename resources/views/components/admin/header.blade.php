@@ -17,6 +17,7 @@
                 <i class="fa fa-fw opacity-50 fa-search"></i> <span class="ms-1 d-none d-sm-inline-block">Search</span>
             </button> --}}
       <!-- END Open Search Section -->
+      <h1 class="d-inline-block fs-base ms-3 m-0 align-middle">{{ meta()->get('title') }}</h1>
     </div>
     <!-- END Left Section -->
 

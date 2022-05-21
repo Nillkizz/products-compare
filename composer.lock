@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "22e01ba72a30cd287b871af394c0c41b",
+    "content-hash": "7c22458715d96f4f8e836a2c1be51a99",
     "packages": [
         {
             "name": "brick/math",
@@ -436,6 +436,78 @@
                 }
             ],
             "time": "2021-10-11T09:18:27+00:00"
+        },
+        {
+            "name": "f9webltd/laravel-meta",
+            "version": "1.7.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/f9webltd/laravel-meta.git",
+                "reference": "c411b8490fb16169c46481de95bd38494e291bb5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/f9webltd/laravel-meta/zipball/c411b8490fb16169c46481de95bd38494e291bb5",
+                "reference": "c411b8490fb16169c46481de95bd38494e291bb5",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "5.8.* || ^6.0 || ^7.0 || ^8.0 || ^9.0",
+                "illuminate/support": "5.8.* || ^6.0 || ^7.0 || ^8.0 || ^9.0",
+                "php": "^7.2 | ^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": ">=3.3",
+                "phpunit/phpunit": "^7.0|^8.0|^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "F9Web\\Meta\\MetaServiceProvider"
+                    ],
+                    "aliases": {
+                        "Meta": "F9Web\\Meta\\MetaFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "F9Web\\Meta\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rob Allport",
+                    "email": "rob@f9web.co.uk",
+                    "homepage": "https://www.f9web.co.uk",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Render meta tags in your Laravel application",
+            "homepage": "https://github.com/f9webltd/laravel-meta",
+            "keywords": [
+                "laravel",
+                "laravel header meta tags",
+                "laravel meta",
+                "laravel meta tags",
+                "laravel open graph tags",
+                "laravel seo",
+                "meta",
+                "meta tags"
+            ],
+            "support": {
+                "issues": "https://github.com/f9webltd/laravel-meta/issues",
+                "source": "https://github.com/f9webltd/laravel-meta/tree/1.7.5"
+            },
+            "time": "2022-02-28T08:54:27+00:00"
         },
         {
             "name": "fruitcake/php-cors",

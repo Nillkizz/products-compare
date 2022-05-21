@@ -1,16 +1,3 @@
-@php
-$sidebarNav = [
-    'admin.dashboard' => [
-        'title' => 'Dashboard',
-        'icon' => 'fa fa-location-arrow',
-    ],
-];
-
-$walker = new \Helpers\NavBarWalker($sidebarNav);
-$sidebarNav = $walker->prepare($sidebarNav);
-
-@endphp
-
 <nav id="sidebar" aria-label="Main Navigation">
   <!-- Side Header -->
   <div class="bg-header-dark">
@@ -42,7 +29,7 @@ $sidebarNav = $walker->prepare($sidebarNav);
     <div class="content-side content-side-full">
       <ul class="nav-main">
 
-        @foreach ($sidebarNav as $route => $navItem)
+        @foreach ($items as $route => $navItem)
           <x-admin.sidebar.nav-item :navItem="$navItem" :route="$route" />
         @endforeach
 

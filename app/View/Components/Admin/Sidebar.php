@@ -16,13 +16,13 @@ class Sidebar extends Component
       'title' => 'Store',
       'icon' => 'fa fa-store',
       'submenu' => [
-        [
+        'admin.merchants' => [
           'title' => 'Merchants',
         ],
-        [
+        'admin.products' => [
           'title' => 'Products',
         ],
-        [
+        'admin.categories' => [
           'title' => 'Categories',
         ],
       ]

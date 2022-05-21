@@ -11,10 +11,31 @@ class Sidebar extends Component
       'title' => 'Dashboard',
       'icon' => 'fa fa-window-maximize',
     ],
+
     [
-      'title' => 'Merchants',
+      'title' => 'Store',
       'icon' => 'fa fa-store',
+      'submenu' => [
+        [
+          'title' => 'Merchants',
+        ],
+        [
+          'title' => 'Products',
+        ],
+        [
+          'title' => 'Categories',
+        ],
+      ]
     ],
+    [
+      'title' => 'Settings',
+      'icon' => 'fa fa-screwdriver-wrench',
+      'submenu' => [
+        [
+          'title' => 'General',
+        ],
+      ]
+    ]
   ];
 
   /**

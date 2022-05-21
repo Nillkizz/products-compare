@@ -20,7 +20,7 @@ return new class extends Migration
       $table->timestamps();
       $table->foreignIdFor(Merchant::class);
       $table->foreignIdFor(ContactType::class);
-      $table->string('value', 150);
+      $table->string('value');
     });
   }
 

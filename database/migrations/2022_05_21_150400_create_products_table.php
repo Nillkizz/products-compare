@@ -18,7 +18,8 @@ return new class extends Migration
       $table->id();
       $table->timestamps();
       $table->foreignIdFor(Merchant::class);
-      $table->string('name', 150);
+      $table->string('name');
+      $table->string('slug')->unique();
     });
   }
 

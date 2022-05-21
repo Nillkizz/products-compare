@@ -16,8 +16,9 @@ return new class extends Migration
     Schema::create('merchants', function (Blueprint $table) {
       $table->id();
       $table->timestamps();
-      $table->string('name', 100);
-      $table->string('fetch_url', 350);
+      $table->string('name');
+      $table->string('slug')->unique();
+      $table->string('fetch_url');
     });
   }
 

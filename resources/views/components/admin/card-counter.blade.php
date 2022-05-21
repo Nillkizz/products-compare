@@ -1,6 +1,12 @@
-@props(['icon', 'title', 'value', 'percent', 'link', 'url'])
-
-<x-admin.card {{ $attributes->class('text-center') }}>
+@props(['icon', 'title', 'value', 'percent', 'link', 'url', 'props'])
+@php
+$class = 'text-center ';
+if (isset($props)) {
+    extract($props, EXTR_SKIP);
+    $class .= Arr::get($props, 'class', '');
+}
+@endphp
+<x-admin.card {{ $attributes->class($class) }}>
   @isset($icon)
     <div class="item rounded-3 bg-body mx-auto my-3">
       <i class="fa fa-lg text-primary {{ $icon }}"></i>

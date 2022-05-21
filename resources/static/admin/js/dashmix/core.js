@@ -33,9 +33,15 @@ export default class App extends Template {
 
   _init() {
     if (localStorage.getItem('sidebarIsOpen') == 'false') {
-      this._lSidebar.classList.add('prevent-transitions');
+      const toggleTransitions = () => {
+        this._lSidebar.classList.toggle('prevent-transitions');
+        document.getElementById('page-container').classList.toggle('prevent-transitions');
+        document.getElementById('page-header').classList.toggle('prevent-transitions');
+      }
+
+      toggleTransitions();
       this._uiApiLayout('sidebar_toggle', true);
-      requestAnimationFrame(() => { this._lSidebar.classList.remove('prevent-transitions'); })
+      requestAnimationFrame(toggleTransitions);
     }
   }
 

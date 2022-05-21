@@ -1,4 +1,4 @@
-<x-admin.layouts.admin title="Admin Dashboard">
+<x-admin.layouts.admin>
   <!-- Page Content -->
   <div class="content">
     <div class="row items-push">

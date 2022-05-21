@@ -20,17 +20,10 @@
   <div class="content">
     <div class="row items-push">
 
-      <x-admin.card-counter class="col-3" icon="fa-box" title="Products" value="213" link="Go to products"
-        url="/products" />
+      @foreach (Arr::get($data, 'card-counters') as $cardCounter)
+        <x-admin.card-counter :props="$cardCounter" />
+      @endforeach
 
-      <x-admin.card class="col-md-6 col-xl-4">
-        <x-slot name="header">
-          Block Title
-        </x-slot>
-        <p>
-          ...
-        </p>
-      </x-admin.card>
     </div>
   </div>
 

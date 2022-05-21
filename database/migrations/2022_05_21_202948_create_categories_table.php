@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Category;
-use App\Models\Merchant;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,13 +13,14 @@ return new class extends Migration
    */
   public function up()
   {
-    Schema::create('products', function (Blueprint $table) {
+    Schema::create('categories', function (Blueprint $table) {
       $table->id();
-      $table->timestamps();
-      $table->foreignIdFor(Merchant::class);
-      $table->foreignIdFor(Category::class);
       $table->string('name');
       $table->string('slug')->unique();
+      $table->text('description')->nullable();
+      $table->unsignedInteger('parent_id')->default(1)->nullable();
+      $table->boolean('featured')->default(0);
+      $table->timestamps();
     });
   }
 
@@ -32,6 +31,6 @@ return new class extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('products');
+    Schema::dropIfExists('categories');
   }
 };

@@ -11,6 +11,10 @@ class Product extends Model implements HasMedia
 {
   use HasFactory, InteractsWithMedia;
 
+  public function categories()
+  {
+    return $this->belongsTo(Category::class);
+  }
 
   public function registerMediaCollections(): void
   {

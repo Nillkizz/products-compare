@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Pages\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Merchant;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use League\CommonMark\Extension\Attributes\Node\Attributes;
 
 class DashboardController extends Controller
 {
@@ -15,10 +15,18 @@ class DashboardController extends Controller
       'card-counters' => [
         [
           'title' => 'Products',
-          'class' => 'col-3',
+          'class' => 'col-6 col-sm-3',
           'icon' => 'fa-box',
           'value' => Product::count(),
           'link' => 'Go to products',
+          'url' => '#'
+        ],
+        [
+          'title' => 'Merchants',
+          'class' => 'col-6 col-sm-3',
+          'icon' => 'fa-store',
+          'value' => Merchant::count(),
+          'link' => 'Go to merchants',
           'url' => '#'
         ]
       ]

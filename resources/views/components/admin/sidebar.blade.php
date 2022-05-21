@@ -16,8 +16,8 @@ $sidebarNav = $walker->prepare($sidebarNav);
   <div class="bg-header-dark">
     <div class="content-header bg-white-5">
       <!-- Logo -->
-      <a class="fw-semibold tracking-wide text-white" href="/">
-        PCM<span class="opacity-75">pare</span>
+      <a class="fw-semibold tracking-wide" href="{{ route('home') }}">
+        <x-admin.logo class1="text-white" class2="text-white opacity-75" />
       </a>
       <!-- END Logo -->
 

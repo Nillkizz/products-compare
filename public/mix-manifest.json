@@ -10,5 +10,8 @@
     "/static/admin/css/themes/xplay.css": "/static/admin/css/themes/xplay.css",
     "/static/admin/css/themes/xpro.css": "/static/admin/css/themes/xpro.css",
     "/static/admin/css/themes/xdream.css": "/static/admin/css/themes/xdream.css",
-    "/static/admin/css/themes/xwork.css": "/static/admin/css/themes/xwork.css"
+    "/static/admin/css/themes/xwork.css": "/static/admin/css/themes/xwork.css",
+    "/static/images/avatar.jpg": "/static/images/avatar.jpg",
+    "/static/images/photo16@2x.jpg": "/static/images/photo16@2x.jpg",
+    "/static/images/photo19@2x.jpg": "/static/images/photo19@2x.jpg"
 }

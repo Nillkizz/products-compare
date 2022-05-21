@@ -18,7 +18,7 @@ $fields = [
     ],
 ];
 @endphp
-<x-admin.layouts.box-form :bgImage="asset('/media/photos/photo19@2x.jpg')" title="Sign In" action="" :fields="$fields">
+<x-admin.layouts.box-form :bgImage="asset('static/images/photo19@2x.jpg')" title="Sign In" action="" :fields="$fields">
   <div class="d-sm-flex justify-content-sm-between align-items-sm-center text-sm-start mb-4 text-center">
     <div class="form-check">
       <input type="checkbox" class="form-check-input" id="login-remember-me" name="remember" checked>

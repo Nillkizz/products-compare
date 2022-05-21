@@ -1,3 +1,4 @@
+const mix = require('laravel-mix');
 const admin_mix = require('laravel-mix');
 const public_mix = require('laravel-mix');
 
@@ -14,32 +15,41 @@ const public_mix = require('laravel-mix');
 
 const productionSourceMaps = true;
 
-const admin = 'resources/static/admin/'
-const admin_dist = 'public/static/admin/'
-const public = 'resources/static/public/'
-const public_dist = 'public/static/public/'
+const path = {
+  r: 'resources/',
+  rs: 'resources/static/',
+  rsa: 'resources/static/admin/',
+  rsp: 'resources/static/public/',
+  p: 'public/',
+  ps: 'public/static/',
+  psa: 'public/static/admin/',
+  psp: 'public/static/public/',
+};
 
+
+mix
+  .copy(path.rs + 'images/', path.ps + 'images/')
 
 /* Admin */
 admin_mix
-  .copy(admin + '/fonts', admin_dist + 'fonts/')
+  .copy(path.rsa + 'fonts/', path.psa + 'fonts/')
   /* SASS */
-  .sass(admin + 'sass/app.sass', admin_dist + 'css/app.css')
-  .sass(admin + 'sass/dashmix/themes/xeco.scss', admin_dist + 'css/themes/')
-  .sass(admin + 'sass/dashmix/themes/xinspire.scss', admin_dist + 'css/themes/')
-  .sass(admin + 'sass/dashmix/themes/xmodern.scss', admin_dist + 'css/themes/')
-  .sass(admin + 'sass/dashmix/themes/xsmooth.scss', admin_dist + 'css/themes/')
-  .sass(admin + 'sass/dashmix/themes/xwork.scss', admin_dist + 'css/themes/')
-  .sass(admin + 'sass/dashmix/themes/xdream.scss', admin_dist + 'css/themes/')
-  .sass(admin + 'sass/dashmix/themes/xpro.scss', admin_dist + 'css/themes/')
-  .sass(admin + 'sass/dashmix/themes/xplay.scss', admin_dist + 'css/themes/')
+  .sass(path.rsa + 'sass/app.sass', path.psa + 'css/app.css')
+  .sass(path.rsa + 'sass/dashmix/themes/xeco.scss', path.psa + 'css/themes/')
+  .sass(path.rsa + 'sass/dashmix/themes/xinspire.scss', path.psa + 'css/themes/')
+  .sass(path.rsa + 'sass/dashmix/themes/xmodern.scss', path.psa + 'css/themes/')
+  .sass(path.rsa + 'sass/dashmix/themes/xsmooth.scss', path.psa + 'css/themes/')
+  .sass(path.rsa + 'sass/dashmix/themes/xwork.scss', path.psa + 'css/themes/')
+  .sass(path.rsa + 'sass/dashmix/themes/xdream.scss', path.psa + 'css/themes/')
+  .sass(path.rsa + 'sass/dashmix/themes/xpro.scss', path.psa + 'css/themes/')
+  .sass(path.rsa + 'sass/dashmix/themes/xplay.scss', path.psa + 'css/themes/')
 
   /* JavaScript */
-  .js(admin + 'js/dashmix/core.js', admin_dist + 'js/dashmix.core.js')
-  .js(admin + 'js/app.js', admin_dist + 'js/')
+  .js(path.rsa + 'js/dashmix/core.js', path.psa + 'js/dashmix.core.js')
+  .js(path.rsa + 'js/app.js', path.psa + 'js/')
 
   /* Page JS */
-  .js(admin + 'js/pages/tables_datatables.js', admin_dist + 'js/pages/')
+  .js(path.rsa + 'js/pages/tables_datatables.js', path.psa + 'js/pages/')
 
   /* Tools */
   .disableNotifications()
@@ -62,7 +72,7 @@ admin_mix
 //   .sass(public + 'sass/app.sass', 'public/css/app.css')
 
 //   /* JavaScript */
-//   .js(public + 'js/app.js', admin_dist + 'js')
+//   .js(public + 'js/app.js', path.psa+ 'js')
 
 //   /* Page JS */
 

@@ -18,7 +18,7 @@ return new class extends Migration
       $table->timestamps();
       $table->string('name');
       $table->string('slug')->unique();
-      $table->string('fetch_url');
+      $table->string('fetch_url')->unique();
     });
   }
 

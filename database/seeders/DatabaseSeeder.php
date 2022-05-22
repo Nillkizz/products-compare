@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
   public function run()
   {
     $this->call([
-      FixtureSeeder::class
+      FixtureSeeder::class,
+      CategorySeeder::class
     ]);
   }
 }

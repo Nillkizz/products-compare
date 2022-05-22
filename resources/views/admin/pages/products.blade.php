@@ -1,7 +1,7 @@
 <x-admin.layouts.admin>
   <!-- Page Content -->
   <div class="content">
-    {{ $products }}
+    {{ dump($products) }}
   </div>
 
 </x-admin.layouts.admin>

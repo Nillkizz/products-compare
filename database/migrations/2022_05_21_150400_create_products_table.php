@@ -22,6 +22,7 @@ return new class extends Migration
       $table->foreignIdFor(Category::class);
       $table->string('name');
       $table->string('slug')->unique();
+      $table->boolean('is_active')->default(true);
     });
   }
 

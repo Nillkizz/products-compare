@@ -16,6 +16,10 @@ class Merchant extends Model implements HasMedia
     return $this->hasMany(MerchantContact::class);
   }
 
+  public function products()
+  {
+    return $this->hasMany(Product::class);
+  }
 
   public function registerMediaCollections(): void
   {

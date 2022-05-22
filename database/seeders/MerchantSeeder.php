@@ -15,6 +15,6 @@ class MerchantSeeder extends Seeder
    */
   public function run()
   {
-    Merchant::factory(10)->create();
+    Merchant::factory(10)->hasProducts(rand(0, 50))->create();
   }
 }

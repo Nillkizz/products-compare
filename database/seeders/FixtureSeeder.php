@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class FixtureSeeder extends Seeder
 {
@@ -20,7 +19,7 @@ class FixtureSeeder extends Seeder
       ->state([
         'name' => 'Administrator',
         'email' => 'admin@example.com',
-        'password' => Hash::make('password')
+        'password' => bcrypt('password')
       ])
       ->create();
 

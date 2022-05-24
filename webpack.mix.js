@@ -19,37 +19,57 @@ const path = {
   r: 'resources/',
   rs: 'resources/static/',
   rsa: 'resources/static/admin/',
+  rsc: 'resources/static/core/',
   rsp: 'resources/static/public/',
   p: 'public/',
   ps: 'public/static/',
   psa: 'public/static/admin/',
+  psc: 'public/static/core/',
   psp: 'public/static/public/',
 };
 
 
+
+/* Core */
 mix
   .copy(path.rs + 'images/', path.ps + 'images/')
 
-/* Admin */
-admin_mix
-  .copy(path.rsa + 'fonts/', path.psa + 'fonts/')
+  .copy(path.rsc + 'fonts/', path.psc + 'fonts/')
   /* SASS */
-  .sass(path.rsa + 'sass/app.sass', path.psa + 'css/app.css')
-  .sass(path.rsa + 'sass/dashmix/themes/xeco.scss', path.psa + 'css/themes/')
-  .sass(path.rsa + 'sass/dashmix/themes/xinspire.scss', path.psa + 'css/themes/')
-  .sass(path.rsa + 'sass/dashmix/themes/xmodern.scss', path.psa + 'css/themes/')
-  .sass(path.rsa + 'sass/dashmix/themes/xsmooth.scss', path.psa + 'css/themes/')
-  .sass(path.rsa + 'sass/dashmix/themes/xwork.scss', path.psa + 'css/themes/')
-  .sass(path.rsa + 'sass/dashmix/themes/xdream.scss', path.psa + 'css/themes/')
-  .sass(path.rsa + 'sass/dashmix/themes/xpro.scss', path.psa + 'css/themes/')
-  .sass(path.rsa + 'sass/dashmix/themes/xplay.scss', path.psa + 'css/themes/')
+  .sass(path.rsc + 'sass/app.sass', path.psc + 'css/')
+  .sass(path.rsc + 'sass/dashmix/themes/xeco.scss', path.psc + 'css/themes/')
+  .sass(path.rsc + 'sass/dashmix/themes/xinspire.scss', path.psc + 'css/themes/')
+  .sass(path.rsc + 'sass/dashmix/themes/xmodern.scss', path.psc + 'css/themes/')
+  .sass(path.rsc + 'sass/dashmix/themes/xsmooth.scss', path.psc + 'css/themes/')
+  .sass(path.rsc + 'sass/dashmix/themes/xwork.scss', path.psc + 'css/themes/')
+  .sass(path.rsc + 'sass/dashmix/themes/xdream.scss', path.psc + 'css/themes/')
+  .sass(path.rsc + 'sass/dashmix/themes/xpro.scss', path.psc + 'css/themes/')
+  .sass(path.rsc + 'sass/dashmix/themes/xplay.scss', path.psc + 'css/themes/')
 
   /* JavaScript */
-  .js(path.rsa + 'js/dashmix/core.js', path.psa + 'js/dashmix.core.js')
+  .js(path.rsc + 'js/dashmix/core.js', path.psc + 'js/dashmix.core.js')
+  .js(path.rsc + 'js/app.js', path.psc + 'js/')
+
+  /* Tools */
+  .disableNotifications()
+
+  /* Options */
+  .options({
+    processCssUrls: false,
+    postCss: [
+      require('postcss-import'),
+      require('autoprefixer'),
+    ]
+  })
+  .sourceMaps(productionSourceMaps, 'source-map')
+
+
+
+/* Admin */
+admin_mix
   .js(path.rsa + 'js/app.js', path.psa + 'js/')
 
-  /* Page JS */
-  .js(path.rsa + 'js/pages/tables_datatables.js', path.psa + 'js/pages/')
+  .sass(path.rsa + 'sass/app.sass', path.psa + 'css/')
 
   /* Tools */
   .disableNotifications()
@@ -66,26 +86,25 @@ admin_mix
 
 
 /* Public */
-// public_mix
-//   .copy(public + '/fonts', 'public/fonts/')
-//   /* SASS */
-//   .sass(public + 'sass/app.sass', 'public/css/app.css')
+public_mix
+  .copy(path.rsp + 'fonts', path.psp + 'fonts/')
+  /* SASS */
+  .sass(path.rsp + 'sass/app.sass', path.psp + 'css/app.css')
 
-//   /* JavaScript */
-//   .js(public + 'js/app.js', path.psa+ 'js')
+  /* JavaScript */
+  .js(path.rsp + 'js/app.js', path.psp + 'js')
 
-//   /* Page JS */
+  /* Page JS */
 
-//   /* Tools */
-//   .disableNotifications()
+  /* Tools */
+  .disableNotifications()
 
-//   /* Options */
-//   .options({
-//     processCssUrls: false,
-//     postCss: [
-//       require('postcss-import'),
-//       require('tailwindcss'),
-//       require('autoprefixer'),
-//     ]
-//   })
-//   .sourceMaps(productionSourceMaps, 'source-map')
+  /* Options */
+  .options({
+    processCssUrls: false,
+    postCss: [
+      require('postcss-import'),
+      require('autoprefixer'),
+    ]
+  })
+  .sourceMaps(productionSourceMaps, 'source-map')

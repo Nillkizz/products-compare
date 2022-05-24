@@ -19,9 +19,23 @@ class MerchantContactFactory extends Factory
   public function definition()
   {
     return [
-      'value' => $this->faker->word(),
-      'contact_type_id' => ContactType::get()->random()->id,
-      'merchant_id' => Merchant::get()->random()->id
+      'merchant_id' => Merchant::get()->random()->id,
+      'contact_type_id' => ($contactType = ContactType::get()->random())->id,
+      'value' => $this->get_value_by_type($contactType),
     ];
+  }
+
+  public function get_value_by_type($type)
+  {
+    switch ($type->name) {
+      case 'Email':
+        return $this->faker->companyEmail();
+      case 'Phone':
+        return $this->faker->phoneNumber();
+      case 'Address':
+        return $this->faker->address();
+      default:
+        return $this->faker->word();
+    }
   }
 }

@@ -9,6 +9,8 @@ class ContactType extends Model
 {
   use HasFactory;
 
+  public $timestamps = false;
+
   public function contacts()
   {
     return $this->hasMany(MerchantContact::class);

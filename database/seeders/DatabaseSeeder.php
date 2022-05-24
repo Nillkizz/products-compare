@@ -17,8 +17,11 @@ class DatabaseSeeder extends Seeder
       FixtureSeeder::class,
 
       CategorySeeder::class,
-      MerchantSeeder::class,
 
+      MerchantSeeder::class,
+      MerchantContactSeeder::class,
+
+      ProductSeeder::class
     ]);
   }
 }

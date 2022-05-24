@@ -3,11 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Merchant;
+use App\Models\MerchantContact;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Product;
 
-class MerchantSeeder extends Seeder
+class MerchantContactSeeder extends Seeder
 {
   /**
    * Run the database seeds.
@@ -16,6 +16,8 @@ class MerchantSeeder extends Seeder
    */
   public function run()
   {
-    Merchant::factory(10)->create();
+    foreach (Merchant::all() as $merchant) {
+      MerchantContact::factory(rand(0, 3))->for($merchant)->create();
+    };
   }
 }

@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use App\Models\ContactType;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;
@@ -22,13 +21,6 @@ class FixtureSeeder extends Seeder
         'name' => 'Administrator',
         'email' => 'admin@example.com',
         'password' => bcrypt('password')
-      ])
-      ->create();
-
-    Category::factory()
-      ->state([
-        'name' => 'Uncategorized',
-        'slug' => 'uncategorized'
       ])
       ->create();
 

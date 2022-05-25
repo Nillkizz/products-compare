@@ -22,9 +22,6 @@ class Nav extends Component
         'admin.products' => [
           'title' => 'Products',
         ],
-        'admin.categories' => [
-          'title' => 'Categories',
-        ],
       ]
     ],
     [

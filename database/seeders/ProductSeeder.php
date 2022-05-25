@@ -17,6 +17,11 @@ class ProductSeeder extends Seeder
   public function run()
   {
     foreach (Merchant::all() as $merchant) {
+      Product::factory(rand(10, 30))
+        ->for($merchant)
+        ->state(['is_featured' => 1])
+        ->create();
+
       Product::factory(rand(0, 50))->for($merchant)->create();
     };
   }

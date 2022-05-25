@@ -17,12 +17,14 @@ return new class extends Migration
   {
     Schema::create('products', function (Blueprint $table) {
       $table->id();
-      $table->timestamps();
-      $table->foreignIdFor(Merchant::class);
-      $table->foreignIdFor(Category::class);
       $table->string('name');
+      $table->double('price');
       $table->string('slug')->unique();
       $table->boolean('is_active')->default(true);
+      $table->boolean('is_featured')->default(false);
+      $table->foreignIdFor(Merchant::class);
+      $table->foreignIdFor(Category::class);
+      $table->timestamps();
     });
   }
 

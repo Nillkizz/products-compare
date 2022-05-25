@@ -22,6 +22,7 @@ class ProductFactory extends Factory
       'merchant_id' => 1,
       'category_id' => Category::get()->random()->id,
       'name' => $this->faker->words(2, true),
+      'price' => $this->faker->randomNumber(4),
       'slug' => $this->faker->unique()->slug()
     ];
   }

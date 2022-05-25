@@ -26,7 +26,8 @@ export default class App extends Template {
     if (nostate) return;
     switch (mode) {
       case 'sidebar_toggle':
-        localStorage.setItem('adminSidebarIsOpen', this.sidebarIsOpen);
+        if (this.isAdmin && this.hasSidebar)
+          localStorage.setItem('adminSidebarIsOpen', this.sidebarIsOpen);
         break
     }
   }

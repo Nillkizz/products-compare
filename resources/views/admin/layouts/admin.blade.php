@@ -32,6 +32,7 @@
     class="sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed main-content-narrow">
 
 
+    {{-- <x-admin.sidebar /> --}}
     <x-admin.sidebar />
     <x-admin.header />
 

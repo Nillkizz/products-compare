@@ -2,7 +2,7 @@
 
 @switch($navItem['type'])
   @case('link')
-    <x-admin.sidebar.link :title="$navItem['title'] ?? null" :route="$route" :iconClass="$navItem['icon'] ?? null" :badge="$navItem['badge'] ?? null" :isActive="$navItem['active']" />
+    <x-nav.link :title="$navItem['title'] ?? null" :route="$route" :iconClass="$navItem['icon'] ?? null" :badge="$navItem['badge'] ?? null" :isActive="$navItem['active']" />
   @break
 
   @case('submenu')
@@ -17,7 +17,7 @@
       @isset($navItem['submenu'])
         <ul class="nav-main-submenu">
           @foreach ($navItem['submenu'] as $route => $navItem)
-            <x-admin.sidebar.nav-item :navItem="$navItem" :route="$route" />
+            <x-nav.item :navItem="$navItem" :route="$route" />
           @endforeach
         </ul>
       @endisset

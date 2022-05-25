@@ -19,7 +19,7 @@
         <div class="d-flex align-items-center">
           <!-- Menu -->
           <div class="d-none d-lg-block">
-            <x-public.nav />
+            <x-public.nav class="nav-main-horizontal nav-main-hover" />
           </div>
           <!-- END Menu -->
           <!-- Toggle Sidebar -->
@@ -78,12 +78,7 @@
     <div class="content-header bg-white-5">
       <!-- Logo -->
       <a class="fw-semibold tracking-wide text-white" href="index.php">
-        <span class="smini-visible">
-          D<span class="opacity-75">x</span>
-        </span>
-        <span class="smini-hidden">
-          Dash<span class="opacity-75">mix</span>
-        </span>
+        <x-logo type="light" />
       </a>
       <!-- END Logo -->
 

@@ -4,7 +4,7 @@
     <div class="content-header bg-white-5">
       <!-- Logo -->
       <a class="fw-semibold tracking-wide" href="{{ route('home') }}">
-        <x-logo class1="text-white" class2="text-white opacity-75" />
+        <x-logo type="light" />
       </a>
       <!-- END Logo -->
 
@@ -28,11 +28,7 @@
     <!-- Side Navigation -->
     <div class="content-side content-side-full">
       <ul class="nav-main">
-
-        @foreach ($items as $route => $navItem)
-          <x-admin.sidebar.nav-item :navItem="$navItem" :route="$route" />
-        @endforeach
-
+        <x-admin.nav />
       </ul>
     </div>
     <!-- END Side Navigation -->

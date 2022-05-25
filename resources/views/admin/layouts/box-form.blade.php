@@ -16,7 +16,7 @@ $bgStyle = $bgImage ? "background-image: url('$bgImage');" : '';
             <!-- Header -->
             <div class="mb-2 text-center">
               <a class="link-fx fw-bold fs-1" href="{{ route('home') }}">
-                <x-admin.logo />
+                <x-logo />
               </a>
               <p class="text-uppercase fw-bold fs-sm text-muted">{{ $title }}</p>
             </div>

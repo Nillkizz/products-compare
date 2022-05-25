@@ -4,7 +4,7 @@
     <div class="content-header bg-white-5">
       <!-- Logo -->
       <a class="fw-semibold tracking-wide" href="{{ route('home') }}">
-        <x-admin.logo class1="text-white" class2="text-white opacity-75" />
+        <x-logo class1="text-white" class2="text-white opacity-75" />
       </a>
       <!-- END Logo -->
 

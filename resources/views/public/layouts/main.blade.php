@@ -1,6 +1,5 @@
 @props(['css_before', 'css_after', 'js_after'])
 
-
 <!doctype html>
 <html lang="{{ config('app.locale') }}">
 
@@ -20,44 +19,27 @@
   <link rel="stylesheet" id="css-core" href="{{ mix('static/core/css/app.css') }}">
   {{ $css_after ?? '' }}
 
-  <!-- Scripts -->
+  <!-- Scriptsphp -->
   <script>
     window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
   </script>
 </head>
 
-<body {{ $attributes->class(['admin', 'sidebar']) }}>
+<body>
   <!-- Page Container -->
-  <div id="page-container"
-    class="sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed main-content-narrow">
+  <div id="page-container" class="main-content-boxed bg-white">
 
 
-    <x-admin.sidebar />
-    <x-admin.header />
+    {{-- <x-admin.sidebar />
+    <x-admin.header /> --}}
+    <x-public.header />
 
     <!-- Main Container -->
     <main id="main-container">
       {{ $slot }}
     </main>
     <!-- END Main Container -->
-
-    <!-- Footer -->
-    <footer id="page-footer" class="bg-body-light">
-      <div class="content py-0">
-        <div class="row fs-sm">
-          <div class="col-sm-6 order-sm-2 mb-sm-0 text-sm-end mb-1 text-center">
-            Crafted with <i class="fa fa-heart text-danger"></i> by <a class="fw-semibold"
-              href="https://1.envato.market/ydb" target="_blank">pixelcave</a>
-          </div>
-          <div class="col-sm-6 order-sm-1 text-sm-start text-center">
-            <a class="fw-semibold" href="{{ route('home') }}" target="_blank">PCMpare</a>
-            &copy;
-            <span data-toggle="year-copy"></span>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!-- END Footer -->
+    <x-public.footer />
   </div>
   <!-- END Page Container -->
 

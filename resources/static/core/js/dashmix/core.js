@@ -26,13 +26,13 @@ export default class App extends Template {
     if (nostate) return;
     switch (mode) {
       case 'sidebar_toggle':
-        localStorage.setItem('sidebarIsOpen', this.sidebarIsOpen);
+        localStorage.setItem('adminSidebarIsOpen', this.sidebarIsOpen);
         break
     }
   }
 
   _init() {
-    if (localStorage.getItem('sidebarIsOpen') == 'false') {
+    if (this.isAdmin && this.hasSidebar && localStorage.getItem('adminSidebarIsOpen') == 'false') {
       const toggleTransitions = () => {
         this._lSidebar.classList.toggle('prevent-transitions');
         document.getElementById('page-container').classList.toggle('prevent-transitions');
@@ -46,6 +46,8 @@ export default class App extends Template {
   }
 
   get sidebarIsOpen() { return document.getElementById('page-container').classList.contains('sidebar-o') };
+  get isAdmin() { return document.body.classList.contains('admin') }
+  get hasSidebar() { return document.body.classList.contains('sidebar') }
   /*
    *  Here you can override or extend any function you want from Template class
    *  if you would like to change/extend/remove the default functionality.

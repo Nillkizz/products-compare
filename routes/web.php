@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Public\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,15 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-  return view('home');
-})->name('home');
+Route::get('/', [HomeController::class, 'show'])->name('home');
 
 
 
-Route::view('/pages/slick', 'admin.pages.slick');
-Route::view('/pages/datatables', 'admin.pages.datatables');
-Route::view('/pages/blank', 'admin.pages.blank');
 
 
 require __DIR__ . '/auth.php';

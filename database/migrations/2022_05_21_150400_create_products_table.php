@@ -34,7 +34,7 @@ return new class extends Migration
       $table->boolean('adult')->default(false);
       $table->boolean('over_the_counter_medicine')->default(false);
       $table->boolean('is_active')->default(true);
-      $table->boolean('is_featured')->default(false);
+      $table->boolean('featured')->default(false);
 
       $table->foreignIdFor(Merchant::class);
       $table->timestamps();

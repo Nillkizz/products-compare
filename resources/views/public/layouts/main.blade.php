@@ -47,9 +47,12 @@
   <script src="{{ mix('static/core/js/core.js') }}"></script>
 
   <!-- Laravel Original JS -->
-  <script src="{{ mix('static/admin/js/app.js') }}"></script>
+  <script src="{{ mix('static/public/js/app.js') }}"></script>
 
   {{ $js_after ?? '' }}
+
+
+  <script src="{{ mix('static/core/js/alpine.js') }}"></script>
 </body>
 
 </html>

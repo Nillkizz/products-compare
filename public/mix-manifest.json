@@ -1,5 +1,6 @@
 {
     "/static/core/js/core.js": "/static/core/js/core.js",
+    "/static/core/js/alpine.js": "/static/core/js/alpine.js",
     "/static/admin/js/app.js": "/static/admin/js/app.js",
     "/static/public/js/app.js": "/static/public/js/app.js",
     "/static/core/css/themes/xsmooth.css": "/static/core/css/themes/xsmooth.css",

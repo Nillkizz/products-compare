@@ -48,6 +48,7 @@ mix
 
   /* JavaScript */
   .js(path.rsc + 'js/app.js', path.psc + 'js/core.js')
+  .js(path.rsc + 'js/alpine.js', path.psc + 'js/alpine.js')
 
   /* Tools */
   .disableNotifications()

@@ -1,19 +1,18 @@
 import './bootstrap';
 
-// import Alpine from 'alpinejs';
-
-// window.Alpine = Alpine;
-
-// Alpine.start();
+window.goto = (url, nofollow = false) => {
+  const $a = document.createElement('a')
+  $a.href = url;
+  if (nofollow) $a.setAttribute('nofollow', '')
+  $a.click();
+}
 
 (($) => {
   $(document.body).on('click', e => {
     const $hl = $(e.target).closest('[data-hl]');
     if (0 == $hl.length) return;
     const url = atob($hl.data('hl'));
-    const $a = document.createElement('a')
-    $a.href = url;
-    $a.click();
+    goto(url, true);
   })
 })(jQuery)
 

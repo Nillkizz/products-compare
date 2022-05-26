@@ -1,6 +1,7 @@
 import 'bootstrap-notify';
 window.jQuery = require('jquery');
 
+import './helpers';
 import './dashmix/core';
 window._ = require('lodash');
 

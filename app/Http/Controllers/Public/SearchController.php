@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Public;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class SearchController extends PublicPageController
@@ -22,9 +23,14 @@ class SearchController extends PublicPageController
 
   public function get_products()
   {
-    return QueryBuilder::for(Product::search(request('s')))
+    $products = Product::search(request('s'));
+
+    return QueryBuilder::for($products)
       ->defaultSort('name')
       ->allowedSorts('price', 'name')
+      ->allowedFilters([
+        AllowedFilter::scope('price_limit')
+      ])
       ->paginate();
   }
 }

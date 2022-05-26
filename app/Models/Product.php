@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -21,10 +22,13 @@ class Product extends Model implements HasMedia
     $this->addMediaCollection('photo')->singleFile();
   }
 
-
-
   static function search($s)
   {
     return static::query()->where('search_string', 'LIKE', "%$s%");
+  }
+
+  public function scopePriceLimit(Builder $query, $price): Builder
+  {
+    return $query->where('price', '<=', $price);
   }
 }

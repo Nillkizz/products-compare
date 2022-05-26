@@ -10,9 +10,6 @@
         <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
         <input type="text" class="form-control border-0" placeholder="Search or hit ESC.." id="page-header-search-input"
           name="s" value="{{ request('s') }}">
-        @unless(null == request('price_limit'))
-          <input type="text" name="price_limit" value="{{ request('price_limit') }}" hidden>
-        @endunless
         <button type="submit" class="btn btn-alt-primary">
           <i class="fa fa-fw fa-search"></i>
         </button>

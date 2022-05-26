@@ -12,24 +12,25 @@
         </h3> --}}
       </div>
       <div class="row">
-        <div class="dropdown">
-          <button type="button" class="btn btn-outline-info dropdown-toggle" id="dropdown-price-limit"
-            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Price limit {{ request('price_limit') }}
-          </button>
-          <div class="dropdown-menu shadow" aria-labelledby="dropdown-price-limit">
-            <form action="{{ route('search') }}">
+        <form action="{{ route('search') }}">
+          <div class="dropdown">
+            <button type="button" class="btn btn-outline-info dropdown-toggle" id="dropdown-price-limit"
+              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Price limit {{ request('filter.price_limit') }}
+            </button>
+            <div class="dropdown-menu shadow" aria-labelledby="dropdown-price-limit">
               <div class="input-group">
                 @unless(null == request('s'))
                   <input type="text" name="s" value="{{ request('s') }}" hidden>
                 @endunless
                 <input type="number" class="form-control" placeholder="Price limit" aria-describedby="btnGroupAddon"
-                  name="price_limit" value="{{ request('price_limit') }}">
+                  name="filter[price_limit]" value="{{ request('filter.price_limit') }}">
                 <button class="bnt" type="submit"><i class="fa fa-check"></i></button>
               </div>
-            </form>
+            </div>
           </div>
-        </div>
+
+        </form>
       </div>
       @if (0 < $products->count())
         <div class="row g-2 rounded-3 mb-3 p-3 shadow-sm" style="min-height: 300px">

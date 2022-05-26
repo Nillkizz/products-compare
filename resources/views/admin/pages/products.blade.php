@@ -36,7 +36,7 @@
         </a>
       </div> --}}
       <div class="col-6 col-lg-3">
-        <a class="block-rounded block-link-shadow h-100 mb-0 block text-center" href="javascript:void(0)">
+        <a class="block-rounded block-link-shadow h-100 mb-0 block text-center" href="?">
           <div class="block-content py-5">
             <div class="fs-3 fw-semibold text-dark mb-1">{{ $allProductsCount }}</div>
             <p class="fw-semibold fs-sm text-muted text-uppercase mb-0">

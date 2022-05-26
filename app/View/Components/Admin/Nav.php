@@ -28,8 +28,8 @@ class Nav extends Component
       'title' => 'Settings',
       'icon' => 'fa fa-screwdriver-wrench',
       'submenu' => [
-        [
-          'title' => 'General',
+        'admin.settigns.siteoptions' => [
+          'title' => 'Site options',
         ],
       ]
     ]

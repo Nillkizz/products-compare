@@ -7,12 +7,20 @@ use Illuminate\Http\Request;
 
 class MerchantController extends AdminPageController
 {
-  public function list()
+  public function list(Request $request)
   {
     meta()->set('title', 'Store Merchants');
 
-    $merchants = Merchant::all();
+    $data = [
+      'merchants' => $this->get_products(),
+      'allMerchantsCount' => Merchant::count()
+    ];
 
-    return view('admin.pages.merchants', compact('merchants'));
+    return view('admin.pages.merchants', $data);
+  }
+
+  public function get_products()
+  {
+    return Merchant::search(request('s'))->paginate();
   }
 }

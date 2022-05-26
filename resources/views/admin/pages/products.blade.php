@@ -108,9 +108,7 @@
                 @foreach ($products as $product)
                   <tr>
                     <td class="fs-sm text-center">
-                      <a class="fw-semibold" href="be_pages_ecom_product_edit.php">
-                        <strong>{{ $product->id }}</strong>
-                      </a>
+                      <strong>{{ $product->id }}</strong>
                     </td>
                     <td class="d-none d-sm-table-cell fs-sm text-center">
                       {{ datetime($product->created_at, 'd-m-Y') }}</td>

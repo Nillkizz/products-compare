@@ -25,4 +25,9 @@ class Merchant extends Model implements HasMedia
   {
     $this->addMediaCollection('logo')->singleFile();
   }
+
+  static function search($s)
+  {
+    return static::query()->where('name', 'LIKE', "%$s%");
+  }
 }

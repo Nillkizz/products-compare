@@ -15,10 +15,11 @@ return new class extends Migration
   {
     Schema::create('merchants', function (Blueprint $table) {
       $table->id();
-      $table->timestamps();
       $table->string('name');
       $table->string('slug')->unique();
+      $table->string('site_url')->unique();
       $table->string('fetch_url')->unique();
+      $table->timestamps();
     });
   }
 

@@ -11,7 +11,7 @@
         @isset($featuredCategories)
           @foreach ($featuredCategories as $cat)
             <div class="col-6 col-sm-4">
-              <a href="">
+              <a href="{{ route('search', ['s' => $cat]) }}">
                 <div class="card p-3">{{ $cat }}</div>
               </a>
             </div>

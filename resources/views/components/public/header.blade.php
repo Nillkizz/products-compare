@@ -2,7 +2,22 @@
   <!-- Header Content -->
   <div class="content-header">
     <!-- Left Section -->
-    <x-logo class="fs-3" />
+    <a href="{{ route('home') }}">
+      <x-logo class="fs-3" />
+    </a>
+    <form class="col-sm-8 me-auto ms-3" action="{{ route('search') }}" method="get">
+      <div class="input-group rounded border">
+        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+        <input type="text" class="form-control border-0" placeholder="Search or hit ESC.." id="page-header-search-input"
+          name="s" value="{{ request('s') }}">
+        @unless(null == request('price_limit'))
+          <input type="text" name="price_limit" value="{{ request('price_limit') }}" hidden>
+        @endunless
+        <button type="submit" class="btn btn-alt-primary">
+          <i class="fa fa-fw fa-search"></i>
+        </button>
+      </div>
+    </form>
     <!-- END Left Section -->
 
     <!-- Right Section -->
@@ -10,11 +25,6 @@
 
 
       <div class="d-flex flex-sm-row-reverse">
-        <!-- Open Search Section -->
-        <button type="button" class="btn btn-alt-secondary mx-1" data-toggle="layout" data-action="header_search_on">
-          <i class="fa fa-fw fa-search opacity-50"></i> <span class="ms-1 d-none d-sm-inline-block">Search</span>
-        </button>
-        <!-- END Open Search Section -->
 
         <div class="d-flex align-items-center">
           <!-- Menu -->
@@ -24,10 +34,10 @@
           <!-- END Menu -->
           <!-- Toggle Sidebar -->
           <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-          <button type="button" class="btn btn-alt-secondary d-lg-none" data-toggle="layout"
+          {{-- <button type="button" class="btn btn-alt-secondary d-lg-none" data-toggle="layout"
             data-action="sidebar_toggle">
             <i class="fa fa-fw fa-bars"></i>
-          </button>
+          </button> --}}
           <!-- END Toggle Sidebar -->
         </div>
 
@@ -37,25 +47,6 @@
     <!-- END Right Section -->
   </div>
   <!-- END Header Content -->
-
-  <!-- Header Search -->
-  <div id="page-header-search" class="overlay-header bg-header-dark">
-    <div class="bg-white-10">
-      <div class="content-header">
-        <form class="w-100" action="be_pages_generic_search.php" method="POST">
-          <div class="input-group">
-            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-            <button type="button" class="btn btn-alt-primary" data-toggle="layout" data-action="header_search_off">
-              <i class="fa fa-fw fa-times-circle"></i>
-            </button>
-            <input type="text" class="form-control border-0" placeholder="Search or hit ESC.."
-              id="page-header-search-input" name="page-header-search-input">
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <!-- END Header Search -->
 
   <!-- Header Loader -->
   <!-- Please check out the Loaders page under Components category to see examples of showing/hiding it -->
@@ -84,16 +75,6 @@
 
       <!-- Options -->
       <div>
-        <!-- Toggle Sidebar Style -->
-        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-        <!-- Class Toggle, functionality initialized in Helpers.dmToggleClass() -->
-        <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="class-toggle"
-          data-target="#sidebar-style-toggler" data-class="fa-toggle-off fa-toggle-on"
-          onclick="Dashmix.layout('sidebar_style_toggle');">
-          <i class="fa fa-toggle-off" id="sidebar-style-toggler"></i>
-        </button>
-        <!-- END Toggle Sidebar Style -->
-
         <!-- Close Sidebar, Visible only on mobile screens -->
         <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
         <button type="button" class="btn btn-sm btn-alt-secondary d-lg-none" data-toggle="layout"
@@ -127,13 +108,6 @@
           </div>
         </div>
       </div>
-      <div class="simplebar-placeholder" style="width: auto; height: 274px;"></div>
-    </div>
-    <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
-      <div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
-    </div>
-    <div class="simplebar-track simplebar-vertical" style="visibility: hidden;">
-      <div class="simplebar-scrollbar" style="height: 0px; display: none;"></div>
     </div>
   </div>
   <!-- END Sidebar Scrolling -->

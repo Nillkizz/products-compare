@@ -6,6 +6,16 @@ import './bootstrap';
 
 // Alpine.start();
 
+(($) => {
+  $(document.body).on('click', e => {
+    const $hl = $(e.target).closest('[data-hl]');
+    if (0 == $hl.length) return;
+    const url = atob($hl.data('hl'));
+    const $a = document.createElement('a')
+    $a.href = url;
+    $a.click();
+  })
+})(jQuery)
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 document.addEventListener('DOMContentLoaded', function () {

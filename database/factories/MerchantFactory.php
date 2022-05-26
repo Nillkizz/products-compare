@@ -20,7 +20,7 @@ class MerchantFactory extends Factory
     return [
       'name' => $name = Str::ucfirst($this->faker->unique()->word()),
       'slug' => Str::slug($name),
-      'site_url' => $this->faker->unique()->url(),
+      'site_url' => $this->faker->unique()->domainName(),
       'fetch_url' => $this->faker->unique()->url(),
     ];
   }

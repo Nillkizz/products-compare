@@ -3,12 +3,14 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MerchantController;
 use App\Http\Controllers\Admin\ProductController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
 
 Route::prefix('admin')->group(function () {
   Route::get('/', function () {
+    if (auth()->user()) return redirect()->route('admin.dashboard');
     return redirect()->route('login', ['next' => route('admin.dashboard', null, false)]);
   })->name('admin');
 

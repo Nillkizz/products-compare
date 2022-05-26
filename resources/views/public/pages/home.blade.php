@@ -7,10 +7,16 @@
           Subtitle
         </h3> --}}
       </div>
-      <div>
-        {{-- @foreach ($featuredCategories as $cat)
-          <div class="card">{{ $cat['name'] }}</div>
-        @endforeach --}}
+      <div class="row g-2">
+        @isset($featuredCategories)
+          @foreach ($featuredCategories as $cat)
+            <div class="col-6 col-sm-4">
+              <a href="">
+                <div class="card p-3">{{ $cat }}</div>
+              </a>
+            </div>
+          @endforeach
+        @endisset
       </div>
     </div>
   </div>

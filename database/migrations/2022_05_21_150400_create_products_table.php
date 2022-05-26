@@ -38,6 +38,10 @@ return new class extends Migration
 
       $table->foreignIdFor(Merchant::class);
       $table->timestamps();
+
+      $table->longText('search_string')->virtualAs(
+        "CONCAT_WS(' ', name, IFNULL(category_full, ''), IFNULL(brand, ''), IFNULL(model, ''), IFNULL(color, ''), IFNULL(mpn, ''), IFNULL(gtin, ''))"
+      );
     });
   }
 

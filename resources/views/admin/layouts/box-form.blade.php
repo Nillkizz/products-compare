@@ -2,7 +2,6 @@
 
 @php
 $bgStyle = $bgImage ? "background-image: url('$bgImage');" : '';
-
 @endphp
 
 <x-admin.layouts.canvas :title="$title">
@@ -55,4 +54,4 @@ $bgStyle = $bgImage ? "background-image: url('$bgImage');" : '';
   </div>
   <!-- END Page Content -->
 
-  </x-admin.layouts.admin>
+</x-admin.layouts.canvas>

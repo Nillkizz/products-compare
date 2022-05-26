@@ -1,11 +1,10 @@
-require('./dashmix/bootstrap');
+import './bootstrap';
 
 // import Alpine from 'alpinejs';
 
 // window.Alpine = Alpine;
 
 // Alpine.start();
-
 
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields

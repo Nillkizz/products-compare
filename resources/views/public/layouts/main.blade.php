@@ -44,7 +44,7 @@
   <!-- END Page Container -->
 
   <!-- Dashmix Core JS -->
-  <script src="{{ mix('static/core/js/dashmix.core.js') }}"></script>
+  <script src="{{ mix('static/core/js/core.js') }}"></script>
 
   <!-- Laravel Original JS -->
   <script src="{{ mix('static/admin/js/app.js') }}"></script>

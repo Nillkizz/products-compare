@@ -20,4 +20,11 @@ class Product extends Model implements HasMedia
   {
     $this->addMediaCollection('photo')->singleFile();
   }
+
+
+
+  static function search($s)
+  {
+    return static::query()->where('search_string', 'LIKE', "%$s%");
+  }
 }

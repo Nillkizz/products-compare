@@ -47,8 +47,7 @@ mix
   .sass(path.rsc + 'sass/dashmix/themes/xplay.scss', path.psc + 'css/themes/')
 
   /* JavaScript */
-  .js(path.rsc + 'js/dashmix/core.js', path.psc + 'js/dashmix.core.js')
-  .js(path.rsc + 'js/app.js', path.psc + 'js/')
+  .js(path.rsc + 'js/app.js', path.psc + 'js/core.js')
 
   /* Tools */
   .disableNotifications()

@@ -35,7 +35,7 @@
       @if (0 < $products->count())
         <div class="row g-2 rounded-3 mb-3 p-3 shadow-sm" style="min-height: 300px">
           @foreach ($products as $product)
-            <div class="col-6 col-lg-4">
+            <div class="col-12 col-sm-6 col-lg-4">
               <div class="card p-3">
                 <a href="javascript:void(0)" data-hl="{{ base64_encode($product->link) }}">
                   <div class="merchant row">
@@ -49,7 +49,7 @@
                 <a href="javascript:void(0)" data-hl="{{ base64_encode($product->link) }}">
                   <div class="card-body">
                     <div class="photo mt-2 mb-4">
-                      <img src="https://plchldr.co/i/300x250?&bg=eee&fc=333">
+                      <img class="w-100 my-auto" src="https://plchldr.co/i/300x250?&bg=eee&fc=333">
                     </div>
                     <div class="name fs-4">{{ $product->name }}</div>
                     <div class="full_category">{{ $product->full_category }}</div>

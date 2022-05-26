@@ -10,11 +10,11 @@
       <div class="row g-2">
         @isset($featuredCategories)
           @foreach ($featuredCategories as $cat)
-            <div class="col-6 col-sm-4">
+            <div class="col-12 col-sm-6 col-md-4">
               <a href="{{ route('search', ['s' => $cat]) }}">
                 <div class="card">
                   <div class="d-flex">
-                    <img class="" src="https://plchldr.co/i/80x80?&bg=eee&fc=333">
+                    <img src="https://plchldr.co/i/80x80?&bg=eee&fc=333">
                     <span class="ms-3 text w-100 my-auto">
                       {{ $cat }}
                     </span>

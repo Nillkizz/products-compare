@@ -1,4 +1,4 @@
-@props(['title' => 'Admin Canvas'])
+@props(['bodyClass' => '', 'pageClass' => ''])
 <!doctype html>
 <html lang="{{ config('app.locale') }}">
 
@@ -24,13 +24,11 @@
   </script>
 </head>
 
-<body>
+<body @class('admin ' . $bodyClass)>
   <!-- Page Container -->
-  <div id="page-container">
+  <div id="page-container" @class($pageClass)>
     <!-- Main Container -->
-    <main id="main-container">
-      {{ $slot }}
-    </main>
+    {{ $slot }}
     <!-- END Main Container -->
   </div>
   <!-- END Page Container -->
@@ -42,6 +40,7 @@
   <script src="{{ mix('static/admin/js/app.js') }}"></script>
 
   {{ $js_after ?? '' }}
+  <script src="{{ mix('static/core/js/alpine.js') }}"></script>
 </body>
 
 </html>

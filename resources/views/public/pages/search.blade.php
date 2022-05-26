@@ -47,7 +47,9 @@
                 </a>
                 <a href="javascript:void(0)" data-hl="{{ base64_encode($product->link) }}">
                   <div class="card-body">
-                    <div class="photo"></div>
+                    <div class="photo mt-2 mb-4">
+                      <img src="https://plchldr.co/i/300x250?&bg=eee&fc=333">
+                    </div>
                     <div class="name fs-4">{{ $product->name }}</div>
                     <div class="full_category">{{ $product->full_category }}</div>
                     <div class="price">Price: <abbr title="EUR">€</abbr><span>{{ $product->price }}</span>

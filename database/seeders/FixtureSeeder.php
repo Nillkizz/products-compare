@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\ContactType;
+use App\Models\SiteOption;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
@@ -30,6 +31,11 @@ class FixtureSeeder extends Seeder
         ['name' => 'Phone'],
         ['name' => 'Address']
       ))
+      ->create();
+
+
+    SiteOption::factory(1)
+      ->state(['name' => 'featured_categories', 'value' => serialize([])])
       ->create();
   }
 }

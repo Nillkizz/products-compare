@@ -18,8 +18,9 @@ class SiteOptionSeeder extends Seeder
   {
     $count = rand(10, 20);
     $featuredProductsId = Product::all()->random($count)->map(fn ($product) => $product->name)->toArray();
-    SiteOption::factory(1)
-      ->state(['name' => 'featured_categories', 'value' => serialize($featuredProductsId)])
-      ->create();
+    SiteOption::updateOrCreate(
+      ['name' => 'featured_categories'],
+      ['value' => serialize($featuredProductsId)]
+    );
   }
 }

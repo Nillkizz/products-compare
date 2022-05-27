@@ -18,7 +18,7 @@ class FixtureSeeder extends Seeder
    */
   public function run()
   {
-    File::cleanDirectory(storage_path('media'));
+    File::cleanDirectory(storage_path('app/public/media'));
 
     User::factory()
       ->state([

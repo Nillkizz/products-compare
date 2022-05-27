@@ -16,7 +16,7 @@ return new class extends Migration
     Schema::create('site_options', function (Blueprint $table) {
       $table->id();
       $table->string('name');
-      $table->longText('value');
+      $table->json('value');
       $table->timestamps();
     });
   }

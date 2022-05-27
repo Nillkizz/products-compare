@@ -35,7 +35,7 @@
 
   <!-- Dashmix Core JS -->
   <script src="{{ mix('static/core/js/core.js') }}"></script>
-
+  <x-notification />
   <!-- Laravel Original JS -->
   <script src="{{ mix('static/admin/js/app.js') }}"></script>
 

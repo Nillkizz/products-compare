@@ -1,12 +1,5 @@
 import './bootstrap';
 
-window.goto = (url, nofollow = false) => {
-  const $a = document.createElement('a')
-  $a.href = url;
-  if (nofollow) $a.setAttribute('nofollow', '')
-  $a.click();
-}
-
 (($) => {
   $(document.body).on('click', e => {
     const $hl = $(e.target).closest('[data-hl]');

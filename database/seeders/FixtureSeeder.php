@@ -35,7 +35,7 @@ class FixtureSeeder extends Seeder
 
 
     SiteOption::factory(1)
-      ->state(['name' => 'featured_categories', 'value' => serialize([])])
+      ->state(['name' => 'featured_categories', 'value' => json_encode([])])
       ->create();
   }
 }

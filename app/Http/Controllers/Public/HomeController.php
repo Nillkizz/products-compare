@@ -9,12 +9,10 @@ class HomeController extends PublicPageController
 {
   public function show()
   {
-    meta()
-      ->set('title', 'Home');
+    meta()->set('title', 'Home');
 
-    $featuredCategories = SiteOption::where('name', 'featured_categories')->get();
     $data = [
-      'featuredCategories' => ($featuredCategories->count() > 0) ? unserialize($featuredCategories->first()->value) : null,
+      'featuredCategories' =>  SiteOption::get('featured_categories'),
     ];
     return view('public.pages.home', $data);
   }

@@ -74,6 +74,9 @@ admin_mix
   /* Tools */
   .disableNotifications()
 
+  /* Pages */
+  .js(path.rsa + 'js/pages/*', path.psa + 'js/pages')
+
   /* Options */
   .options({
     processCssUrls: false,

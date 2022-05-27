@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  if (trim(window.location.pathname, '/') !== 'search') return;
+  if (window.location.pathname.strip('/') !== 'search') return;
 
   const $filters = document.getElementById('filters');
   const $sortInput = $filters.elements['sort'];

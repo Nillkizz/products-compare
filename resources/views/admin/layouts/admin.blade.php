@@ -1,5 +1,11 @@
 @props(['bodyClass' => '', 'pageClass' => ''])
 <x-admin.layouts.canvas :pageClass="'sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed main-content-narrow ' . $pageClass" :bodyClass="'sidebar ' . $bodyClass">
+  <x-slot name="css_before">
+    {{ $css_before ?? '' }}
+  </x-slot>
+  <x-slot name="css_after">
+    {{ $css_after ?? '' }}
+  </x-slot>
 
   {{-- <x-admin.sidebar /> --}}
   <x-admin.sidebar />
@@ -25,4 +31,8 @@
     </div>
   </footer>
   <!-- END Footer -->
+
+  <x-slot name="js_after">
+    {{ $js_after ?? '' }}
+  </x-slot>
 </x-admin.layouts.canvas>

@@ -18,15 +18,3 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
   return $request->user();
 });
-
-Route::prefix('admin')->group(function () {
-  Route::name('admin.')->middleware(['auth'])->group(function () {
-    Route::prefix('settings')->group(function () {
-      Route::name('settigns.')->middleware(['auth'])->group(function () {
-        Route::resources([
-          'options' => SiteOptionController::class,
-        ]);
-      });
-    });
-  });
-});

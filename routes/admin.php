@@ -21,8 +21,11 @@ Route::prefix('admin')->group(function () {
     Route::get('/products', [ProductController::class, 'list'])->name('products');
 
     Route::prefix('settings')->group(function () {
-      Route::name('settigns.')->middleware(['auth'])->group(function () {
-        Route::get('/options', [SiteOptionController::class, 'list'])->name('siteoptions');
+      Route::name('settings.')->group(function () {
+        Route::resource('/options', SiteOptionController::class)->only(['index', 'update'])->names([
+          'index' => 'siteoptions',
+          'update' => 'update_siteoption'
+        ]);
       });
     });
   });

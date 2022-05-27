@@ -5,16 +5,8 @@
     <a href="{{ route('home') }}">
       <x-logo class="fs-3" />
     </a>
-    <form class="col-sm-8 me-auto ms-3" action="{{ route('search') }}" method="get">
-      <div class="input-group rounded border">
-        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-        <input type="text" class="form-control border-0" placeholder="Search or hit ESC.." id="page-header-search-input"
-          name="s" value="{{ request('s') }}">
-        <button type="submit" class="btn btn-alt-primary">
-          <i class="fa fa-fw fa-search"></i>
-        </button>
-      </div>
-    </form>
+    <x-public.search-form class="col-sm-7 me-auto ms-3 d-none d-sm-block" />
+    <a href="{{ route('search') }}" class="btn btn-outline-info ms-auto">Catalog</a>
     <!-- END Left Section -->
 
     <!-- Right Section -->
@@ -109,3 +101,6 @@
   </div>
   <!-- END Sidebar Scrolling -->
 </nav>
+<div class="subheader">
+  <x-public.search-form class="d-sm-none d-block mx-3" />
+</div>

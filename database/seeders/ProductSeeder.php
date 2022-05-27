@@ -24,7 +24,7 @@ class ProductSeeder extends Seeder
         ->create()
         ->each(function ($product) {
           $product
-            ->addMediaFromUrl('http://placekitten.com/250/250')
+            ->addMediaFromUrl('http://placekitten.com/' . rand(200, 500) . '/' . rand(200, 500))
             ->toMediaCollection('preview');
         });
     };

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Product extends Model implements HasMedia
 {
@@ -19,7 +20,12 @@ class Product extends Model implements HasMedia
 
   public function registerMediaCollections(): void
   {
-    $this->addMediaCollection('photo')->singleFile();
+    $this->addMediaCollection('preview')->singleFile();
+  }
+
+  public function registerMediaConversions(Media $media = null): void
+  {
+    $this->addMediaConversion('cropped')->crop('crop-center', 300, 250);
   }
 
   static function search($s)

@@ -7,6 +7,7 @@ use App\Models\SiteOption;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 
 class FixtureSeeder extends Seeder
 {
@@ -17,6 +18,8 @@ class FixtureSeeder extends Seeder
    */
   public function run()
   {
+    File::cleanDirectory(storage_path('media'));
+
     User::factory()
       ->state([
         'name' => 'Administrator',

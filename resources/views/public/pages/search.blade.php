@@ -74,7 +74,8 @@
                 <a href="javascript:void(0)" data-hl="{{ base64_encode($product->link) }}">
                   <div class="card-body">
                     <div class="photo mt-2 mb-4">
-                      <img class="w-100 my-auto" src="https://plchldr.co/i/300x250?&bg=eee&fc=333">
+                      <img class="w-100 my-auto" src="{{ $product->getFirstMedia('preview')->getUrl('cropped') }}">
+
                     </div>
                     <div class="name fs-5">{{ $product->name }}</div>
                     <div class="category_full fs-7 text-success">{{ $product->category_full }}</div>

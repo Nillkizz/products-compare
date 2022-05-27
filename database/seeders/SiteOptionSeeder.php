@@ -20,7 +20,7 @@ class SiteOptionSeeder extends Seeder
     $featuredProductsId = Product::all()->random($count)->map(fn ($product) => $product->name)->toArray();
     SiteOption::updateOrCreate(
       ['name' => 'featured_categories'],
-      ['value' => json_encode($featuredProductsId)]
+      ['value' => $featuredProductsId]
     );
   }
 }

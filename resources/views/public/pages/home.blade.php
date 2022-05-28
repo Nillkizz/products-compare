@@ -12,9 +12,9 @@
           @foreach ($featuredCategories as $cat)
             <div class="col-12 col-sm-6 col-md-4">
               <a href="{{ route('search', ['s' => $cat['value']]) }}">
-                <div class="card">
+                <div class="card overflow-hidden">
                   <div class="d-flex">
-                    <img src="{{ $cat['preview'] }}" width="80" height="80">
+                    <img src="{{ $cat['preview'] }}" width="80" height="80" alt="{{ $cat['value'] }}">
                     <span class="ms-3 text w-100 my-auto">
                       {{ $cat['value'] }}
                     </span>

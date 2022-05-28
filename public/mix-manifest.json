@@ -18,5 +18,6 @@
     "/static/images/avatar.jpg": "/static/images/avatar.jpg",
     "/static/images/photo16@2x.jpg": "/static/images/photo16@2x.jpg",
     "/static/images/photo19@2x.jpg": "/static/images/photo19@2x.jpg",
+    "/static/images/placeholder.png": "/static/images/placeholder.png",
     "/static/public/fonts/.gitkeep": "/static/public/fonts/.gitkeep"
 }

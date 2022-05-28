@@ -1,4 +1,4 @@
-@props(['css_before', 'css_after', 'js_after'])
+@props(['css_before', 'css_after', 'js_after', 'body_class' => '', 'main_class' => ''])
 
 <!doctype html>
 <html lang="{{ config('app.locale') }}">
@@ -25,7 +25,7 @@
   </script>
 </head>
 
-<body>
+<body @class('public ' . $body_class)>
   <!-- Page Container -->
   <div id="page-container" class="main-content-boxed bg-white">
 
@@ -35,7 +35,7 @@
     <x-public.header />
 
     <!-- Main Container -->
-    <main id="main-container">
+    <main id="main-container" @class($main_class)>
       {{ $slot }}
     </main>
     <!-- END Main Container -->

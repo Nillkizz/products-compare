@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Public;
 
 use App\Models\Product;
 use App\Models\Search;
+use App\Models\SiteOption;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -12,26 +13,38 @@ class SearchController extends PublicPageController
 {
   public function show(Request $request)
   {
+    $data = [
+      'hasProducts' => false
+    ];
     $search = request('s');
-    $isFirstQueryForSession = !in_array($search, session('search_history', []));
+    $data['hasSearch'] = $hasSearch = !empty($search);
 
 
-    $title = empty($search) ? 'Catalog' : "Search " . '"' . request($search) . '"';
-    meta()->set('title', $title);
-
-    if (!empty($search) && $isFirstQueryForSession) {
-      session()->push('search_history', $search);
-      Search::incrementByQS($search);
+    if ($hasSearch) {
+      $title = "Search " . '"' . $search . '"';
+      $isFirstQueryForSession = !in_array($search, session('search_history', []));
+      if (!empty($search) && $isFirstQueryForSession) {
+        session()->push('search_history', $search);
+        Search::incrementByQS($search);
+      }
+      $data['products'] = $products = $this->get_products();
+      $data['hasProducts'] = $products->count() > 0;
+    } else {
+      $title = 'Catalog';
     }
 
-    $data = [
-      'products' => $this->get_products(),
-    ];
+    if (!$data['hasProducts']) {
+      $queries = Search::get_popular_queries(6);
+      if (empty($queries)) $queries = SiteOption::get('featured_categories');
+      $data['popular_queries'] = $queries;
+    }
 
+    meta()->set('title', $title);
     return view('public.pages.search', $data);
   }
 
-  public function get_products()
+
+  private function get_products()
   {
     $products = Product::search(request('s'));
 

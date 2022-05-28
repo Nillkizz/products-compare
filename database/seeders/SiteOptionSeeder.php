@@ -17,10 +17,10 @@ class SiteOptionSeeder extends Seeder
   public function run()
   {
     $count = rand(10, 20);
-    $featuredProductsId = Product::all()->random($count)->map(fn ($product) => $product->name)->toArray();
+    $featuredProductNames = Product::inRandomOrder()->limit($count)->pluck('name')->toArray();
     SiteOption::updateOrCreate(
       ['name' => 'featured_categories'],
-      ['value' => $featuredProductsId]
+      ['value' => $featuredProductNames]
     );
   }
 }

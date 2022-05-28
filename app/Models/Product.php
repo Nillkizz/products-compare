@@ -21,10 +21,9 @@ class Product extends Model implements HasMedia
   public function previewUrl($conversion = null)
   {
     $media = $this->getFirstMedia('preview');
-    // dd($media);
     if ($conversion == null) return $media->getUrl();
-    $preview = $media->hasGeneratedConversion($conversion) ? $media->getUrl($conversion) : '';
-    return $preview;
+    if ($media->hasGeneratedConversion($conversion)) return $media->getUrl($conversion);
+    return env('FALLBACK_IMAGE_URL');
   }
 
   public function registerMediaCollections(): void
@@ -44,6 +43,7 @@ class Product extends Model implements HasMedia
   {
     return static::query()->where('search_string', 'LIKE', "%$s%");
   }
+
   public function scopePriceLimit(Builder $query, $price): Builder
   {
     return $query->where('price', '<=', $price);

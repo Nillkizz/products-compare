@@ -1,4 +1,4 @@
-@props(['action', 'bgImage' => '', 'bgClass' => 'bg-primary-dark-op', 'title' => 'Box Form', 'method' => 'POST', 'fields' => []])
+@props(['action', 'bgImage' => '', 'bgClass' => 'bg-primary-dark-op', 'title' => 'Box Form', 'method' => 'POST', 'fields' => [], 'hasBackButton' => false])
 
 @php
 $bgStyle = $bgImage ? "background-image: url('$bgImage');" : '';
@@ -10,7 +10,11 @@ $bgStyle = $bgImage ? "background-image: url('$bgImage');" : '';
     <div @class('row g-0 justify-content-center ' . $bgClass)>
       <div class="hero-static col-sm-8 col-md-6 col-xl-4 d-flex align-items-center px-sm-0 p-2">
         <!-- Sign In Block -->
-        <div class="block-transparent block-rounded w-100 mb-0 block overflow-hidden">
+        <div class="block-transparent block-rounded w-100 position-relative mb-0 block overflow-hidden">
+          @if ($hasBackButton)
+            <a href="{{ url()->previous() }}"
+              class="btn btn-outline-info position-absolute start-0 ms-4 top-0 mt-4 px-4">Back</a>
+          @endif
           <div class="block-content block-content-full px-lg-5 px-xl-6 py-md-5 py-lg-6 bg-body-extra-light py-4">
             <!-- Header -->
             <div class="mb-2 text-center">

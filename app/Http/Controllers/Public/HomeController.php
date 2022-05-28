@@ -23,7 +23,7 @@ class HomeController extends PublicPageController
   {
     $product = Product::search($s);
     $preview = null;
-    if ($product->count() > 0) $preview = $product->first()->previewUrl('80x80_cropped');
+    if ($product->count() > 0) $preview = $product->first()->previewUrl('small_thumb');
     return ['value' => $s, 'preview' => $preview];
   }
 }

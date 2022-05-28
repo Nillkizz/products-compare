@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -20,6 +21,7 @@ class Product extends Model implements HasMedia
   public function previewUrl($conversion = null)
   {
     $media = $this->getFirstMedia('preview');
+    // dd($media);
     if ($conversion == null) return $media->getUrl();
     $preview = $media->hasGeneratedConversion($conversion) ? $media->getUrl($conversion) : '';
     return $preview;
@@ -32,8 +34,10 @@ class Product extends Model implements HasMedia
 
   public function registerMediaConversions(Media $media = null): void
   {
-    $this->addMediaConversion('300x250_cropped')->crop('crop-center', 300, 250);
-    $this->addMediaConversion('80x80_cropped')->crop('crop-center', 80, 80);
+    $this->addMediaConversion('thumb')
+      ->fit(Manipulations::FIT_CROP, 350, 300);
+    $this->addMediaConversion('small_thumb')
+      ->fit(Manipulations::FIT_CROP, 80, 80);
   }
 
   static function search($s)

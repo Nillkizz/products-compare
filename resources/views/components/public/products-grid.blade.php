@@ -4,7 +4,7 @@
   <div class="row g-2 rounded-3 mb-3 bg-white p-3 shadow-sm" style="min-height: 300px">
     @foreach ($products as $product)
       <div class="col-12 col-sm-6 col-lg-4">
-        <div class="card h-100 rounded-1 p-3 pb-2">
+        <div class="position-relative card h-100 rounded-1 p-3 pb-2">
           <a href="javascript:void(0)" data-hl="{{ base64_encode($product->link) }}">
             <div class="merchant row">
               <div class="left col-6">
@@ -15,7 +15,7 @@
             </div>
           </a>
           <a href="javascript:void(0)" data-hl="{{ base64_encode($product->link) }}">
-            <div class="card-body">
+            <div @class('card-body pb-0')>
               <div class="photo mt-2 mb-4">
                 <img class="w-100 rounded-3 h-auto" src="{{ $product->previewUrl('thumb') }}" width="300" height="250"
                   alt="{{ $product->name }}">
@@ -28,7 +28,9 @@
             </div>
           </a>
           @isset($product->in_stock)
-            <div class="fs-7 text-end opacity-50">In Stock: {{ $product->in_stock }}</div>
+            <div class="position-absolute fs-7 end-0 me-3 bottom-0 mb-2 opacity-50">In Stock:
+              {{ $product->in_stock }}
+            </div>
           @endisset
         </div>
       </div>

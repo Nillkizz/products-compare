@@ -17,11 +17,10 @@ class ProductSeeder extends Seeder
    */
   public function run()
   {
-
-    foreach (Merchant::all() as $merchant) {
-      Product::factory(rand(0, 50))
-        ->for($merchant)
-        ->create();
+    foreach (Product::all() as $product) {
+      $product
+        ->addMediaFromUrl('http://placekitten.com/' . rand(200, 500) . '/' . rand(200, 500))
+        ->toMediaCollection('preview');
     };
   }
 }

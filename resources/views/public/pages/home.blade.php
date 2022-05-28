@@ -14,7 +14,7 @@
               <a href="{{ route('search', ['s' => $cat['value']]) }}">
                 <div class="card">
                   <div class="d-flex">
-                    <img src="{{ $cat['preview'] }}">
+                    <img src="{{ $cat['preview'] }}" width="80" height="80">
                     <span class="ms-3 text w-100 my-auto">
                       {{ $cat['value'] }}
                     </span>

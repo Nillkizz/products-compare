@@ -18,12 +18,12 @@ return new class extends Migration
       $table->id();
 
       $table->string('name', 200);
-      $table->double('price');
+      $table->decimal('price')->indexed();
       $table->string('link', 500)->unique();
 
       $table->string('category_full', 200)->nullable();
       $table->string('category_link', 500)->nullable();
-      $table->double('in_stock')->nullable();
+      $table->decimal('in_stock')->nullable();
       $table->string('brand')->nullable();
       $table->string('model')->nullable();
       $table->string('color')->nullable();
@@ -41,7 +41,7 @@ return new class extends Migration
 
       $table->longText('search_string')->virtualAs(
         "CONCAT_WS(' ', name, IFNULL(category_full, ''), IFNULL(brand, ''), IFNULL(model, ''), IFNULL(color, ''), IFNULL(mpn, ''), IFNULL(gtin, ''))"
-      );
+      )->indexed();
     });
   }
 

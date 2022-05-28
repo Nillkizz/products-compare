@@ -31,10 +31,15 @@
             </div>
           </div>
           <div class="dropdown">
+            @php
+              $sortBy = '';
+              if (str_contains(request('sort'), 'price')) {
+                  $sortBy = request('sort') == 'price' ? 'price asc' : 'price desc';
+              }
+            @endphp
             <button type="button" @class($filterBtnCls . 'dropdown-toggle"') id="dropdown-price-limit" data-bs-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
-              Sort by {{ request('sort') == 'sort' ? 'price asc' : 'price desc' }}
-
+              Sort by {{ $sortBy }}
             </button>
             <div class="dropdown-menu shadow" aria-labelledby="dropdown-price-limit">
               <button class="btn btn-info w-100"

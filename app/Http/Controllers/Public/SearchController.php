@@ -35,7 +35,7 @@ class SearchController extends PublicPageController
 
     if (!$data['hasProducts']) {
       $queries = Search::get_popular_queries(6);
-      if (empty($queries)) $queries = SiteOption::get('featured_categories');
+      if (empty($queries)) $queries = SiteOption::get('featured_categories', true);
       $data['popular_queries'] = $queries;
     }
 

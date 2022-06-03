@@ -23,10 +23,13 @@ class SiteOption extends Model
     return $date->format('Y-m-d');
   }
 
-  static function get($name)
+  static function get($name, $json = false)
   {
     $option =  static::where('name', $name);
-    if ($option->count() > 0) return $option->first()->value;
-    return null;
+    if ($option->count() == 0) return;
+    $val =  $option->first()->value;
+
+    if ($json) return json_decode($val);
+    else return $val;
   }
 }

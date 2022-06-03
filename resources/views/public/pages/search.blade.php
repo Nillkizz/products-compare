@@ -23,9 +23,12 @@
             </ul>
             {{-- <p>Additional suggestions in the Information section</p> --}}
           </div>
+        @elseif(count($popular_queries) > 0)
+          <h2 class="mb-3">Popular queries:</h2>
+          <x-public.queries-grid :queries="$popular_queries" />
+        @else
+          <h2>Nothing found</h2>
         @endif
-        <h2 class="mb-3">Popular queries:</h2>
-        <x-public.queries-grid :queries="$popular_queries" />
       @endif
     </div>
   </div>

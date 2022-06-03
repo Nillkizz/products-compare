@@ -8,14 +8,18 @@ use Illuminate\View\Component;
 
 class QueriesGrid extends Component
 {
+  public $queries = [];
+
+
   /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct($queries)
+  public function __construct($queries = [])
   {
-    $this->queries = array_map(fn ($s) => ['value' => $s, 'preview' => Search::getPreviewByQs($s)], $queries);
+    // dd($queries);
+    if ($queries) $this->queries = array_map(fn ($s) => ['value' => $s, 'preview' => Search::getPreviewByQs($s)], $queries);
   }
 
   /**

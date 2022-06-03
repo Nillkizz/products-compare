@@ -19,9 +19,9 @@ class DatabaseSeeder extends Seeder
       MerchantSeeder::class,
       MerchantContactSeeder::class,
 
-      ProductSeeder::class,
+      // ProductSeeder::class,
 
-      SiteOptionSeeder::class,
+      // SiteOptionSeeder::class,
     ]);
   }
 }

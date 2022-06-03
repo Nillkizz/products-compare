@@ -12,7 +12,7 @@ class HomeController extends PublicPageController
     meta()->set('title', 'Home');
 
     $data = [
-      'featuredCategories' => SiteOption::get('featured_categories'),
+      'featuredCategories' => SiteOption::get('featured_categories', true),
     ];
 
     return view('public.pages.home', $data);

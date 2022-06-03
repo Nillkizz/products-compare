@@ -35,4 +35,24 @@ class Merchant extends Model implements HasMedia
   {
     return static::query()->where('name', 'LIKE', "%$s%");
   }
+
+
+  public function recalculate_rate()
+  {
+    return $this->update(['rate' => $this->reviews->avg('stars')]);
+  }
+
+  public function incr_rate()
+  {
+    $this->increment('reviews_count');
+    $this->recalculate_rate();
+    return $this->reviews_count;
+  }
+
+  public function decr_rate()
+  {
+    $this->decrement('reviews_count');
+    $this->recalculate_rate();
+    return $this->reviews_count;
+  }
 }

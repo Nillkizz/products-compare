@@ -21,8 +21,8 @@ return new class extends Migration
       $table->string('fetch_url')->unique();
       $table->timestamps();
 
+      $table->float('rate')->default(5);
       $table->integer('reviews_count')->default(0);
-      $table->float('average_rate')->default(5);
     });
   }
 

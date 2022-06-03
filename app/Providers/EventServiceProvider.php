@@ -28,9 +28,9 @@ class EventServiceProvider extends ServiceProvider
    */
   public function boot()
   {
-    MerchantReview::created(fn (MerchantReview $review) => $review->merchant->increment('reviews_count'));
-    MerchantReview::saved(fn (MerchantReview $review) => $review->merchant->update(['average_rate' => $review->merchant->reviews->avg('stars')]));
-    MerchantReview::deleted(fn (MerchantReview $review) => $review->merchant->decrement('reviews_count'));
+    MerchantReview::created(fn (MerchantReview $review) => $review->merchant->incr_rate());
+    MerchantReview::saved(fn (MerchantReview $review) => $review->merchant->recalculate_rate());
+    MerchantReview::deleted(fn (MerchantReview $review) => $review->merchant->decr_rate());
   }
 
   /**

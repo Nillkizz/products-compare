@@ -23,7 +23,7 @@ return new class extends Migration
 
       $table->string('category_full', 200)->nullable();
       $table->string('category_link', 500)->nullable();
-      $table->number('in_stock')->nullable();
+      $table->integer('in_stock')->nullable();
       $table->string('brand')->nullable();
       $table->string('model')->nullable();
       $table->string('color')->nullable();
@@ -34,7 +34,6 @@ return new class extends Migration
       $table->boolean('adult')->default(false);
       $table->boolean('over_the_counter_medicine')->default(false);
       $table->boolean('is_active')->default(true);
-      $table->boolean('featured')->default(false);
 
       $table->foreignIdFor(Merchant::class);
       $table->timestamps();

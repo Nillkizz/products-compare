@@ -32,7 +32,6 @@ class ProductFactory extends Factory
       'gtin' => (30 > rand(0, 100)) ? null : $this->faker->lexify(),
       'used' => (10 > rand(0, 100)),
       'adult' => (10 > rand(0, 100)),
-      'featured' => (3 > rand(0, 100)),
       'over_the_counter_medicine' => (5 < rand(0, 100)),
     ];
   }

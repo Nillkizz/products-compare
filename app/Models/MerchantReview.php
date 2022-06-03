@@ -11,6 +11,6 @@ class MerchantReview extends Model
 
   public function merchant()
   {
-    return $this->hasOne(Merchant::class);
+    return $this->belongsTo(Merchant::class);
   }
 }

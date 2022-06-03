@@ -21,10 +21,9 @@ class Product extends Model implements HasMedia
   public function previewUrl($conversion = null)
   {
     $media = $this->getFirstMedia('preview');
-    if ($media == null) return;
+    if ($media == null) return env('FALLBACK_IMAGE_URL');
     if ($conversion == null) return $media->getUrl();
     if ($media->hasGeneratedConversion($conversion)) return $media->getUrl($conversion);
-    return env('FALLBACK_IMAGE_URL');
   }
 
   public function registerMediaCollections(): void

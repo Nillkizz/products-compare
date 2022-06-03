@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\ContactType;
 use App\Models\Merchant;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

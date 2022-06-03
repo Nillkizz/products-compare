@@ -8,10 +8,10 @@
           <a href="javascript:void(0)" data-hl="{{ base64_encode($product->link) }}">
             <div class="merchant row">
               <div class="left col-6">
-                <div class="site fs-7">{{ $product->merchant->site_url }}</div>
-                <div class="rating"></div>
+                <div class="site fs-7 mb-1">{{ $product->merchant->site_url }}</div>
+                <x-stars class="fs-7 me-auto" :count="$product->merchant->reviews_count" :rate="$product->merchant->rate" />
               </div>
-              <div class="logo col-6 text-end">{{ $product->merchant->name }}</div>
+              <div class="logo text-end col-6">{{ $product->merchant->name }}</div>
             </div>
           </a>
           <a href="javascript:void(0)" data-hl="{{ base64_encode($product->link) }}">

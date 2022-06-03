@@ -19,11 +19,11 @@ return new class extends Migration
       $table->id();
       $table->timestamps();
       $table->foreignIdFor(Merchant::class);
-      $table->number('stars');
+      $table->smallInteger('stars');
       $table->boolean('is_good_service');
       $table->boolean('is_good_delivery');
       $table->boolean('is_correspond_description');
-      $table->string('text');
+      $table->text('text');
     });
   }
 
@@ -34,6 +34,6 @@ return new class extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('merchant_contacts');
+    Schema::dropIfExists('merchant_reviews');
   }
 };

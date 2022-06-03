@@ -21,6 +21,11 @@ class Merchant extends Model implements HasMedia
     return $this->hasMany(Product::class);
   }
 
+  public function reviews()
+  {
+    return $this->hasMany(MerchantReview::class);
+  }
+
   public function registerMediaCollections(): void
   {
     $this->addMediaCollection('logo')->singleFile();

@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Merchant;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Product;
 
 class MerchantSeeder extends Seeder
 {
@@ -16,6 +15,9 @@ class MerchantSeeder extends Seeder
    */
   public function run()
   {
-    Merchant::factory(10)->create();
+    Merchant::factory()
+      ->count(8)
+      ->hasReviews(rand(0, 10))
+      ->create();
   }
 }

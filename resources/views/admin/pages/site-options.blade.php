@@ -17,7 +17,7 @@
               <tr id="o.name">
                 <td class="date fs-sm text-center" x-text="o.updated_at"></td>
                 <td class="name fs-sm text-center" x-text="o.name"></td>
-                <td class="value d-none d-sm-table-cell" x-text="maxLength(String(o.value), 110)"></td>
+                <td class="value d-none d-sm-table-cell" x-text="maxLength(String(o.json.value), 110)"></td>
                 <td class="fs-sm text-center">
                   <button class="btn btn-sm btn-outline-primary" @click="editOption(o)">
                     <i class="fa fa-fw fa-edit"></i>
@@ -38,13 +38,12 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
               <template x-if="change.type == 'multivalue'">
                 <div>
                   <div class="inputs">
-                    <template x-for="_, i in change.o.value">
+                    <template x-for="_, i in change.o.json.value">
                       <div class="input-group mb-2">
-                        <input type="text" class="form-control" x-model="change.o.value[i]">
+                        <input type="text" class="form-control" x-model="change.o.json.value[i]">
                         <button class="btn btn-outline-info fa fa-clock-rotate-left" title="Reset value"
                           @click="change.revert(i)"></button>
                         <button class="btn btn-outline-info fa fa-close" title="Remove"
@@ -58,7 +57,7 @@
 
               <template x-if="change.type == 'input'">
                 <div class="input-group">
-                  <input type="text" class="form-control" x-model="change.o.value">
+                  <input type="text" class="form-control" x-model="change.o.json.value">
                   <button class="btn btn-outline-info fa fa-clock-rotate-left" title="Reset value"
                     @click="change.addValue()"></button>
                 </div>
@@ -78,7 +77,7 @@
       <form :action="window.location.pathname + '/' + change.o.id" method="POST" x-ref="form" class="d-none">
         @method('PUT')
         @csrf
-        <input name="value" :value="JSON.stringify(change.o.value)">
+        <input name="json" :value="JSON.stringify(change.o.json)">
       </form>
     </template>
   </div>

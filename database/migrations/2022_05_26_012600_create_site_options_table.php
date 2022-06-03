@@ -15,8 +15,8 @@ return new class extends Migration
   {
     Schema::create('site_options', function (Blueprint $table) {
       $table->id();
-      $table->string('name');
-      $table->json('value');
+      $table->string('name')->default('');
+      $table->json('json');
       $table->timestamps();
     });
   }

@@ -19,11 +19,7 @@ class SiteOptionController extends AdminPageController
 
   public function update(Request $request, SiteOption $option)
   {
-    $option->update([
-      'value' => json_decode($request->value)
-    ]);
-
-    // auth()->user()->notify(new NewMessage(Booking::findOrFail($id)));
+    $option->update(['json' => $request->json]);
 
     // notification
     return redirect()->route('admin.settings.siteoptions')->with(['notify' => [

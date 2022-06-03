@@ -18,7 +18,7 @@ class SiteOptionFactory extends Factory
   {
     return [
       'name' => $this->faker->word(),
-      'value' => $this->faker->uuid()
+      'json' => '{ "value": "' . $this->faker->uuid() . '", "type": "string" }'
     ];
   }
 }

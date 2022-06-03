@@ -36,9 +36,8 @@ class FixtureSeeder extends Seeder
       ))
       ->create();
 
-
     SiteOption::factory(1)
-      ->state(['name' => 'featured_categories', 'value' => json_encode([])])
+      ->state(['name' => 'featured_categories', 'json' => '{ "value": [], "type": "multivalue" }'])
       ->create();
   }
 }

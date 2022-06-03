@@ -1,36 +1,34 @@
 document.addEventListener('alpine:init', () => {
   Alpine.data('app', () => ({
+    options: options.map(o => { o.json = JSON.parse(o.json); return o; }),
+
+
     init() {
+      console.log(this.options)
       this.modal = new bootstrap.Modal(this.$refs.modal);
       this.$refs.modal.addEventListener('hide.bs.modal', () => { this.change.revert() });
     },
 
-    options: options,
     change: {
       setOption(o) {
         this.o = o;
-        this.oldValue = JSON.parse(JSON.stringify(o.value));
+        this.oldValue = JSON.parse(JSON.stringify(o.json.value));
       },
 
       get type() {
         if (this.o == undefined) return null;
-        switch (this.o.name) {
-          case 'featured_categories':
-            return 'multivalue';
-          default:
-            return 'input';
-        }
+        return this.o.json.type || 'input';
       },
 
       revert(idx) {
-        if (this.type == 'multivalue' && idx != undefined) this.o.value[idx] = this.oldValue[idx];
-        else this.o.value = this.oldValue;
+        if (this.type == 'multivalue' && idx != undefined) this.o.json.value[idx] = this.oldValue[idx];
+        else this.o.json.value = this.oldValue;
       },
       dropValue(idx) {
-        return this.o.value = this.o.value.filter((_, i) => i != idx);
+        return this.o.json.value = this.o.json.value.filter((_, i) => i != idx);
       },
       addValue() {
-        return this.o.value.push('');
+        return this.o.json.value.push('');
       },
 
       get optionName() {

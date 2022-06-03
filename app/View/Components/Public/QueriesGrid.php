@@ -18,7 +18,6 @@ class QueriesGrid extends Component
    */
   public function __construct($queries = [])
   {
-    // dd($queries);
     if ($queries) $this->queries = array_map(fn ($s) => ['value' => $s, 'preview' => Search::getPreviewByQs($s)], $queries);
   }
 

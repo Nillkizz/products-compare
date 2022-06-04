@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Admin\UpdateMerchantFormRequest;
 use App\Models\Merchant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -29,29 +30,10 @@ class MerchantController extends AdminPageController
     return view('admin.pages.merchants.edit', $data);
   }
 
-  public function update(Request $request, Merchant $merchant)
+  public function update(UpdateMerchantFormRequest $request, Merchant $merchant)
   {
-    $validated = Validator::make($request->all(), [
-      'name' => 'required|max:255',
-      'slug' => [
-        'required', 'max:255',
-        Rule::unique('merchants')->ignore($merchant->id),
-        ''
-      ],
-      'site' => [
-        'required', 'max:255',
-        Rule::unique('merchants')->ignore($merchant->id),
-      ],
-      'xml_url' => [
-        'required', 'URL',
-        Rule::unique('merchants')->ignore($merchant->id),
-      ],
-    ])
-      ->validated();
-    $validated['published'] = $request->has('published');
-
+    $merchant->update($request->validated());
     if ($request->hasFile('logo')) $merchant->addMediaFromRequest('logo')->toMediaCollection('logo');
-    $merchant->update($validated);
 
     return redirect()->route('admin.merchants.edit', compact('merchant'))->with(['notify' => [
       'type' => 'success',

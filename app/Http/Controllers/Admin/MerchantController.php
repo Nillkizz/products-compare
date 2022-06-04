@@ -16,8 +16,28 @@ class MerchantController extends AdminPageController
       'allMerchantsCount' => Merchant::count()
     ];
 
-    return view('admin.pages.merchants', $data);
+    return view('admin.pages.merchants.index', $data);
   }
+
+  public function edit(Request $request, Merchant $merchant)
+  {
+    meta()->set('title', 'Edit merchant "' . $merchant->name . '"');
+    $data = ['merchant' => $merchant];
+
+    return view('admin.pages.merchants.edit', $data);
+  }
+
+  public function update(Request $request, Merchant $merchant)
+  {
+    $merchant->update($request->only('name', 'slug', 'site', 'xml_url'));
+
+    return redirect()->route('admin.merchants.edit', compact('merchant'))->with(['notify' => [
+      'type' => 'success',
+      'icon' => '',
+      'text' => 'Changes saved'
+    ]]);
+  }
+
 
   public function get_products()
   {

@@ -32,9 +32,10 @@ const path = {
 
 /* Core */
 mix
-  .copy(path.rs + 'images/', path.ps + 'images/')
+  .copyDirectory(path.rs + 'images', path.ps + 'images')
+  .copyDirectory(path.rsc + 'fonts', path.psc + 'fonts')
+  .copy(path.rsc + 'js/plugins/', path.psc + 'js/plugins/')
 
-  .copy(path.rsc + 'fonts/', path.psc + 'fonts/')
   /* SASS */
   .sass(path.rsc + 'sass/app.sass', path.psc + 'css/')
   .sass(path.rsc + 'sass/dashmix/themes/xeco.scss', path.psc + 'css/themes/')
@@ -45,6 +46,7 @@ mix
   .sass(path.rsc + 'sass/dashmix/themes/xdream.scss', path.psc + 'css/themes/')
   .sass(path.rsc + 'sass/dashmix/themes/xpro.scss', path.psc + 'css/themes/')
   .sass(path.rsc + 'sass/dashmix/themes/xplay.scss', path.psc + 'css/themes/')
+
 
   /* JavaScript */
   .js(path.rsc + 'js/app.js', path.psc + 'js/core.js')
@@ -57,7 +59,6 @@ mix
   .options({
     processCssUrls: false,
     postCss: [
-      require('postcss-import'),
       require('autoprefixer'),
     ]
   })
@@ -75,7 +76,8 @@ admin_mix
   .disableNotifications()
 
   /* Pages */
-  .js(path.rsa + 'js/pages/*', path.psa + 'js/pages')
+  .js(path.rsa + 'js/pages/*.js', path.psa + 'js/pages')
+  .js(path.rsa + 'js/pages/merchants/*.js', path.psa + 'js/pages/merchants')
 
   /* Options */
   .options({
@@ -90,7 +92,7 @@ admin_mix
 
 /* Public */
 public_mix
-  .copy(path.rsp + 'fonts', path.psp + 'fonts/')
+  .copyDirectory(path.rsp + 'fonts', path.psp + 'fonts')
   /* SASS */
   .sass(path.rsp + 'sass/app.sass', path.psp + 'css/app.css')
 

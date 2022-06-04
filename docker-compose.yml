@@ -100,7 +100,7 @@ networks:
 volumes:
     sail-mysql:
         driver: local
-    sail-redis:
-        driver: local
-    sail-meilisearch:
-        driver: local
+    # sail-redis:
+    #     driver: local
+    # sail-meilisearch:
+    #     driver: local

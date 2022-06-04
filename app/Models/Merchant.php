@@ -11,6 +11,8 @@ class Merchant extends Model implements HasMedia
 {
   use HasFactory, InteractsWithMedia;
 
+  protected $fillable = ['name', 'slug', 'site', 'xml_url'];
+
   public function contacts()
   {
     return $this->hasMany(MerchantContact::class);

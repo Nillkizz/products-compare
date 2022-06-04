@@ -32,6 +32,9 @@
   </footer>
   <!-- END Footer -->
 
+  <x-slot name="js_before">
+    {{ $js_before ?? '' }}
+  </x-slot>
   <x-slot name="js_after">
     {{ $js_after ?? '' }}
   </x-slot>

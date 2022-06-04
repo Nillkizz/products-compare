@@ -53,3 +53,28 @@ window.testPerformance = function (cb, times) {
   const testFunction = () => { for (let i = 0; i < times; i++) cb() };
   return performanceWrapper(testFunction);
 }
+
+
+window.InputHandlers = class {
+  constructor($input = null, config = {}) {
+    if ($input !== null) InputHandlers.listen($input);
+  }
+
+  init() {
+    Array.from(document.querySelectorAll('input[data-type]')).forEach(InputHandlers.listen);
+  }
+
+  static listen($input) {
+    switch ($input.dataset.type) {
+      case 'slug':
+        return $input.addEventListener('change', InputHandlers.slug);
+      default:
+        console.warn('Input type not found.')
+    }
+  }
+
+
+  static slug(e) {
+    return e.target.value = e.target.value.slug();
+  }
+}

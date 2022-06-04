@@ -3,6 +3,7 @@
     "/static/core/js/alpine.js": "/static/core/js/alpine.js",
     "/static/admin/js/app.js": "/static/admin/js/app.js",
     "/static/admin/js/pages/site_options.js": "/static/admin/js/pages/site_options.js",
+    "/static/admin/js/pages/merchants/edit.js": "/static/admin/js/pages/merchants/edit.js",
     "/static/public/js/app.js": "/static/public/js/app.js",
     "/static/core/css/themes/xsmooth.css": "/static/core/css/themes/xsmooth.css",
     "/static/core/css/themes/xmodern.css": "/static/core/css/themes/xmodern.css",

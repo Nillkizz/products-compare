@@ -34,6 +34,7 @@
   <!-- END Page Container -->
 
   <!-- Dashmix Core JS -->
+  {{ $js_before ?? '' }}
   <script src="{{ mix('static/core/js/core.js') }}"></script>
   <x-notification />
   <!-- Laravel Original JS -->

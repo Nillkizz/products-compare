@@ -50,6 +50,7 @@ class MerchantController extends AdminPageController
       ->validated();
     $validated['published'] = $request->has('published');
 
+    if ($request->hasFile('logo')) $merchant->addMediaFromRequest('logo')->toMediaCollection('logo');
     $merchant->update($validated);
 
     return redirect()->route('admin.merchants.edit', compact('merchant'))->with(['notify' => [
@@ -60,7 +61,7 @@ class MerchantController extends AdminPageController
   }
 
 
-  public function get_products()
+  private function get_products()
   {
     return Merchant::search(request('s'))->paginate();
   }

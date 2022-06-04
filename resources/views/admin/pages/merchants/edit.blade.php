@@ -60,7 +60,7 @@
         <div class="row justify-content-center">
           <div class="col-md-10 col-lg-8">
             <form class="row" action="{{ route('admin.merchants.update', compact('merchant')) }}"
-              method="POST">
+              method="POST" enctype="multipart/form-data">
               @method('PUT')
               @csrf
               <div class="col-3 mb-4">
@@ -83,6 +83,7 @@
                   value="{{ old('site', $merchant->site) }}">
               </div>
               <div class="mb-4">
+                {{-- TODO: Add button for manual import --}}
                 <label class="form-label" for="merchant-xml_url">XML Url</label>
                 <input type="text" class="form-control" id="merchant-xml_url" name="xml_url"
                   value="{{ old('xml_url', $merchant->xml_url) }}">
@@ -90,11 +91,11 @@
 
               <div class="row mx-0 mb-4 px-0">
                 <div class="col-2">
-                  <img src="assets/media/avatars/avatar10.jpg" alt="Logo">
+                  <img src="{{ $merchant->getFirstMediaUrl('logo', 'medium') }}" alt="Logo">
                 </div>
                 <div class="col-10">
-                  <label class="form-label" for="dm-profile-edit-avatar">Choose a new logo</label>
-                  <input class="form-control" type="file" id="dm-profile-edit-avatar">
+                  <label class="form-label" for="merchant-logo">Choose a new logo</label>
+                  <input class="form-control" type="file" id="merchant-logo" name="logo">
                 </div>
               </div>
 

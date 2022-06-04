@@ -35,7 +35,7 @@ return new class extends Migration
       $table->boolean('over_the_counter_medicine')->default(false);
       $table->boolean('is_active')->default(true);
 
-      $table->foreignIdFor(Merchant::class);
+      $table->foreignIdFor(Merchant::class)->constrained()->cascadeOnDelete();
       $table->timestamps();
 
       $table->longText('search_string')->storedAs(

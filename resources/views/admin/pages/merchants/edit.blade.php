@@ -146,9 +146,6 @@
 
   <x-slot name="js_after">
     <script src="{{ asset('static/core/js/plugins/select2/js/select2.full.min.js') }}"></script>
-    <script>
-      Dashmix.helpersOnLoad(['jq-select2']);
-    </script>
 
     <script src="{{ mix('static/admin/js/pages/merchants/edit.js') }}"></script>
   </x-slot>

@@ -42,6 +42,10 @@ class MerchantController extends AdminPageController
     ]]);
   }
 
+  public function destroy(Request $request, Merchant $merchant)
+  {
+    return $merchant->delete();
+  }
 
   private function get_products()
   {

@@ -1,3 +1,1 @@
-document.addEventListener("DOMContentLoaded", () => {
-  (new InputHandlers()).init();
-})
+Dashmix.helpersOnLoad(['jq-select2']);

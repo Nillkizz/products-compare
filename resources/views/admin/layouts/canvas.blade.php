@@ -36,6 +36,7 @@
   <!-- Dashmix Core JS -->
   {{ $js_before ?? '' }}
   <script src="{{ mix('static/core/js/core.js') }}"></script>
+  <script src="{{ asset('static/core/js/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
   <x-notification />
   <!-- Laravel Original JS -->
   <script src="{{ mix('static/admin/js/app.js') }}"></script>

@@ -18,7 +18,7 @@ return new class extends Migration
     Schema::create('merchant_contacts', function (Blueprint $table) {
       $table->id();
       $table->timestamps();
-      $table->foreignIdFor(Merchant::class);
+      $table->foreignIdFor(Merchant::class)->constrained()->cascadeOnDelete();
       $table->foreignIdFor(ContactType::class);
       $table->string('value');
     });

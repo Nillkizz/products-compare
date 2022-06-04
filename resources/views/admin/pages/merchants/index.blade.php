@@ -99,7 +99,7 @@
                   <th class="d-none d-sm-table-cell text-center" style="width: 120px">Added</th>
                   <th class="d-none d-sm-table-cell text-center" style="width: 200px">Rating</th>
                   <th>Merchant</th>
-                  <th class="text-center" style="width: 130px">Actions</th>
+                  <th class="text-center" style="width: 150px">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -123,9 +123,13 @@
                         <i class="fa fa-fw fa-pencil"></i>
                       </a>
                       {{-- TODO: --}}
-                      <button class="btn btn-sm btn-alt-secondary" data-clipboard-text="{{ $merchant->site_url }}"
-                        {!! BS::tooltip('Copy site link') !!}>
+                      <button class="btn btn-sm btn-alt-secondary" data-clipboard-text="{{ $merchant->site }}"
+                        {!! BS::tooltip('Copy site') !!}>
                         <i class="fa fa-fw fa-link"></i>
+                      </button>
+                      <button type="button" class="btn btn-sm btn-alt-secondary" data-swal-type="delete"
+                        data-swal-delete-url="{{ route('admin.merchants.destroy', compact('merchant')) }}">
+                        <i class="fa fa-fw fa-trash text-danger"></i>
                       </button>
                     </td>
                   </tr>
@@ -144,4 +148,7 @@
     </div>
     <!-- END All Products -->
   </div>
+
+  <x-slot name="js_before">
+  </x-slot>
 </x-admin.layouts.admin>

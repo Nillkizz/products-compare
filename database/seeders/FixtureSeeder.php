@@ -30,9 +30,9 @@ class FixtureSeeder extends Seeder
 
     ContactType::factory(3)
       ->state(new Sequence(
-        ['name' => 'Email'],
-        ['name' => 'Phone'],
-        ['name' => 'Address']
+        ['name' => 'Email', 'slug' => "email"],
+        ['name' => 'Phone', 'slug' => 'phone'],
+        ['name' => 'Address', 'slug' => 'address']
       ))
       ->create();
 

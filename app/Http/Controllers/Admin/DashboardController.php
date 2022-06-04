@@ -29,7 +29,7 @@ class DashboardController extends AdminPageController
           'icon' => 'fa-store',
           'value' => Merchant::count(),
           'link' => 'Go to merchants',
-          'url' => route('admin.merchants')
+          'url' => route('admin.merchants.index')
         ]
       ]
     ];

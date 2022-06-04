@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class MerchantController extends AdminPageController
 {
-  public function list(Request $request)
+  public function index(Request $request)
   {
     meta()->set('title', 'Store Merchants');
 

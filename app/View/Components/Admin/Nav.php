@@ -16,7 +16,7 @@ class Nav extends Component
       'title' => 'Store',
       'icon' => 'fa fa-store',
       'submenu' => [
-        'admin.merchants' => [
+        'admin.merchants.index' => [
           'title' => 'Merchants',
         ],
         'admin.products' => [
@@ -28,7 +28,7 @@ class Nav extends Component
       'title' => 'Settings',
       'icon' => 'fa fa-screwdriver-wrench',
       'submenu' => [
-        'admin.settings.siteoptions' => [
+        'admin.settings.options.index' => [
           'title' => 'Site options',
         ],
       ]

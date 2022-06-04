@@ -17,15 +17,12 @@ Route::prefix('admin')->group(function () {
 
   Route::name('admin.')->middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
-    Route::get('/merchants', [MerchantController::class, 'list'])->name('merchants');
+    Route::resource('/merchants', MerchantController::class);
     Route::get('/products', [ProductController::class, 'list'])->name('products');
 
     Route::prefix('settings')->group(function () {
       Route::name('settings.')->group(function () {
-        Route::resource('/options', SiteOptionController::class)->only(['index', 'update'])->names([
-          'index' => 'siteoptions',
-          'update' => 'update_siteoption'
-        ]);
+        Route::resource('/options', SiteOptionController::class)->only(['index', 'update']);
       });
     });
   });

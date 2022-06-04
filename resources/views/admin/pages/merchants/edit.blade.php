@@ -48,6 +48,15 @@
         <h3 class="block-title">Info</h3>
       </div>
       <div class="block-content">
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
         <div class="row justify-content-center">
           <div class="col-md-10 col-lg-8">
             <form class="row" action="{{ route('admin.merchants.update', compact('merchant')) }}"
@@ -61,22 +70,22 @@
               <div class="col-9 mb-4">
                 <label class="form-label" for="merchant-name">Name</label>
                 <input type="text" class="form-control" id="merchant-name" name="name"
-                  value="{{ $merchant->name }}">
+                  value="{{ old('name', $merchant->name) }}">
               </div>
               <div class="mb-4">
                 <label class="form-label" for="merchant-slug">Slug</label>
                 <input type="text" class="form-control" id="merchant-slug" name="slug" data-type="slug"
-                  value="{{ $merchant->slug }}">
+                  value="{{ old('slug', $merchant->slug) }}">
               </div>
               <div class="mb-4">
                 <label class="form-label" for="merchant-site">Site</label>
                 <input type="text" class="form-control" id="merchant-site" name="site"
-                  value="{{ $merchant->site }}">
+                  value="{{ old('site', $merchant->site) }}">
               </div>
               <div class="mb-4">
                 <label class="form-label" for="merchant-xml_url">XML Url</label>
                 <input type="text" class="form-control" id="merchant-xml_url" name="xml_url"
-                  value="{{ $merchant->xml_url }}">
+                  value="{{ old('xml_url', $merchant->xml_url) }}">
               </div>
 
               <div class="row mx-0 mb-4 px-0">
@@ -93,9 +102,9 @@
                 <div>
                   <label class="form-label">Published?</label>
                   <div class="form-check form-switch">
-                    <label class="form-check-label" for="dm-ecom-product-published"></label>
-                    <input class="form-check-input" type="checkbox" value="" id="dm-ecom-product-published"
-                      name="dm-ecom-product-published">
+                    <label class="form-check-label" for="merchant-published"></label>
+                    <input class="form-check-input" type="checkbox" value="1" id="merchant-published" name="published"
+                      @checked($merchant->published)>
                   </div>
                 </div>
                 <button type="submit" class="btn btn-alt-primary mt-auto">Update</button>

@@ -20,8 +20,7 @@ return new class extends Migration
       $table->string('site')->unique();
       $table->string('xml_url')->unique();
 
-      // TODO: Add published column
-      // $table->boolean('published');
+      $table->boolean('published');
 
       $table->timestamps();
 

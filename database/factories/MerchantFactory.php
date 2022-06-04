@@ -22,8 +22,7 @@ class MerchantFactory extends Factory
       'slug' => Str::slug($name),
       'site' => $this->faker->unique()->domainName(),
       'xml_url' => $this->faker->unique()->url(),
-      // TODO: Add published column
-      // 'published' => $this->faker->boolean(80),
+      'published' => $this->faker->boolean(80),
     ];
   }
 }

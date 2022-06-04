@@ -11,7 +11,10 @@ class Merchant extends Model implements HasMedia
 {
   use HasFactory, InteractsWithMedia;
 
-  protected $fillable = ['name', 'slug', 'site', 'xml_url'];
+  protected $fillable = ['name', 'slug', 'site', 'xml_url', 'published'];
+  protected $casts = [
+    'published' => 'boolean'
+  ];
 
   public function contacts()
   {

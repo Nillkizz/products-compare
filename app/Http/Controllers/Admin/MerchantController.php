@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Merchant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class MerchantController extends AdminPageController
 {
@@ -29,7 +31,26 @@ class MerchantController extends AdminPageController
 
   public function update(Request $request, Merchant $merchant)
   {
-    $merchant->update($request->only('name', 'slug', 'site', 'xml_url'));
+    $validated = Validator::make($request->all(), [
+      'name' => 'required|max:255',
+      'slug' => [
+        'required', 'max:255',
+        Rule::unique('merchants')->ignore($merchant->id),
+        ''
+      ],
+      'site' => [
+        'required', 'max:255',
+        Rule::unique('merchants')->ignore($merchant->id),
+      ],
+      'xml_url' => [
+        'required', 'URL',
+        Rule::unique('merchants')->ignore($merchant->id),
+      ],
+    ])
+      ->validated();
+    $validated['published'] = $request->has('published');
+
+    $merchant->update($validated);
 
     return redirect()->route('admin.merchants.edit', compact('merchant'))->with(['notify' => [
       'type' => 'success',

@@ -39,7 +39,9 @@ if (!class_exists('Helpers\NavBarWalker')) {
         switch ($this->getNavItemType($navItem)) {
           case 'link':
             $navItem['type'] = 'link';
-            if (!$hasActive && !$this->hasActive && request()->routeIs($route)) {
+            $is_active = str_starts_with(request()->getRequestUri(), route($route, [], false));
+
+            if (!$hasActive && !$this->hasActive && $is_active) {
               $this->hasActive = $hasActive = $navItem['active'] = true;
             } else {
               $navItem['active'] = false;

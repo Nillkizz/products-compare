@@ -87,7 +87,7 @@
         </form>
         <!-- END Search Form -->
       </div>
-      <div class="block-content">
+      <div>
         <!-- All Products Table -->
 
         @if ($merchants->count() > 0)
@@ -96,9 +96,10 @@
               <thead>
                 <tr>
                   <th class="text-center" style="width: 70px;">ID</th>
-                  <th class="d-none d-sm-table-cell text-center">Added</th>
+                  <th class="d-none d-sm-table-cell text-center" style="width: 120px">Added</th>
+                  <th class="d-none d-sm-table-cell text-center" style="width: 200px">Rating</th>
                   <th>Merchant</th>
-                  <th class="text-center">Actions</th>
+                  <th class="text-center" style="width: 130px">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -110,12 +111,11 @@
                     </td>
                     <td class="d-none d-sm-table-cell fs-sm text-center">
                       {{ datetime($merchant->created_at, 'd-m-Y') }}</td>
+                    <td class="d-none d-md-table-cell">
+                      <x-stars class="justify-content-center" :count="$merchant->reviews_count" :rate="$merchant->rate" />
+                    </td>
                     <td>
                       <a class="fw-semibold" href="{{ $merchant->link }}">{{ $merchant->name }}</a>
-                    </td>
-                    <td class="d-none d-md-table-cell">
-                      {{-- TODO: Change url to front merchant --}}
-                      <a href="{{ $merchant->site_url }}">{{ $merchant->name }}</a>
                     </td>
                     <td class="fs-sm text-center">
                       <button class="btn btn-sm btn-alt-secondary" data-clipboard-text="{{ $merchant->site_url }}">

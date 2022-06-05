@@ -28,14 +28,6 @@ class FixtureSeeder extends Seeder
       ])
       ->create();
 
-    ContactType::factory(3)
-      ->state(new Sequence(
-        ['name' => 'Email', 'slug' => "email"],
-        ['name' => 'Phone', 'slug' => 'phone'],
-        ['name' => 'Address', 'slug' => 'address']
-      ))
-      ->create();
-
     SiteOption::factory(1)
       ->state(['name' => 'featured_categories', 'json' => '{ "value": [], "type": "multivalue" }'])
       ->create();

@@ -99,6 +99,38 @@
                 </div>
               </div>
 
+
+              <div class="row contacts mx-0 mb-4 px-0" x-data="Laravel.editMerchant">
+                <script>
+                  Laravel.editMerchant = {
+                    contacts: {{ Js::from($merchant->contacts) }}
+                  };
+                </script>
+                <div class="form-label">Contacts</div>
+                <template x-for="c, idx in contacts">
+                  <div class="input-group with_btn mb-3">
+                    <input class="form-control" type="text" x-model="c.value" :name="`contacts[${idx}][value]`">
+
+                    <select class="form-select" id="example-select" :name="`contacts[${idx}][type]`"
+                      x-model="c.type">
+                      @foreach ($merchant::contactTypes as $ct)
+                        <option value="{{ $ct['value'] }}" :selected="'{{ $ct['value'] }}' == c.type">
+                          {{ $ct['verbose'] }}
+                        </option>
+                      @endforeach
+                    </select>
+                    <button class="btn btn-outline-danger" type="button"
+                      @@click="contacts = contacts.filter( (_, i) => idx != i )"><i
+                        class="fa fa-close"></i></button>
+                  </div>
+                </template>
+                <div class="contacts__bottom px-3">
+                  <button class="btn btn-outline-secondary w-100" type="button"
+                    @@click="contacts.push({value: '', contact_type_id: 1})">Add
+                    contact</button>
+                </div>
+              </div>
+
               <div class="d-flex justify-content-between mb-4">
                 <div>
                   <label class="form-label">Published?</label>
@@ -108,9 +140,10 @@
                       @checked($merchant->published)>
                   </div>
                 </div>
+
+
                 <button type="submit" class="btn btn-alt-primary mt-auto">Update</button>
               </div>
-
             </form>
           </div>
         </div>

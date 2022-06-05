@@ -18,6 +18,7 @@ class Product extends Model implements HasMedia
   {
     return $this->belongsTo(Merchant::class);
   }
+
   public function previewUrl($conversion = null)
   {
     $media = $this->getFirstMedia('preview');

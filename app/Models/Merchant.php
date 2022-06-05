@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -12,16 +13,17 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class Merchant extends Model implements HasMedia
 {
   use HasFactory, InteractsWithMedia;
-
-  protected $fillable = ['name', 'slug', 'site', 'xml_url', 'published'];
-  protected $casts = [
-    'published' => 'boolean'
+  const contactTypes = [
+    ['value' => 'phone', 'verbose' => 'Phone'],
+    ['value' => 'email', 'verbose' => 'Email'],
+    ['value' => 'address', 'verbose' => 'Address']
   ];
 
-  public function contacts()
-  {
-    return $this->hasMany(MerchantContact::class);
-  }
+  protected $fillable = ['name', 'slug', 'site', 'xml_url', 'published', 'contacts'];
+  protected $casts = [
+    'contacts' => 'array',
+    'published' => 'boolean',
+  ];
 
   public function products()
   {
@@ -36,6 +38,16 @@ class Merchant extends Model implements HasMedia
   public function registerMediaCollections(): void
   {
     $this->addMediaCollection('logo')->singleFile();
+  }
+
+  public function getContacts()
+  {
+    return $this->contacts->map(fn (MerchantContact $contact) => [
+      'id' => $contact->id,
+      'value' => $contact->value,
+      'type' => $contact->type->slug,
+      'verbose_type' => $contact->type->name
+    ]);
   }
 
   static function search($s)

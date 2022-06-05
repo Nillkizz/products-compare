@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\ContactType;
+use App\Models\Merchant;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
 
 class UpdateMerchantFormRequest extends FormRequest
@@ -42,6 +45,14 @@ class UpdateMerchantFormRequest extends FormRequest
         'required', 'URL',
         Rule::unique('merchants')->ignore($merchant_id),
       ],
+      'contacts' => 'array',
+
+      'contacts.*.value' => 'required|string',
+      'contacts.*.type' => [
+        'required',
+        Rule::in(Arr::pluck(Merchant::contactTypes, 'value')),
+      ]
+
     ];
   }
 

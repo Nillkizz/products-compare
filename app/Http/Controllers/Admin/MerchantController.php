@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\UpdateMerchantFormRequest;
+use App\Models\ContactType;
 use App\Models\Merchant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -25,7 +26,7 @@ class MerchantController extends AdminPageController
   public function edit(Request $request, Merchant $merchant)
   {
     meta()->set('title', 'Edit merchant "' . $merchant->name . '"');
-    $data = ['merchant' => $merchant];
+    $data = compact('merchant');
 
     return view('admin.pages.merchants.edit', $data);
   }
@@ -34,6 +35,8 @@ class MerchantController extends AdminPageController
   {
     $merchant->update($request->validated());
     if ($request->hasFile('logo')) $merchant->addMediaFromRequest('logo')->toMediaCollection('logo');
+
+    // dd($request->validated());
 
     return redirect()->route('admin.merchants.edit', compact('merchant'))->with(['notify' => [
       'type' => 'success',

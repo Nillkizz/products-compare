@@ -38,14 +38,14 @@ mix
 
   /* SASS */
   .sass(path.rsc + 'sass/app.sass', path.psc + 'css/')
-  .sass(path.rsc + 'sass/dashmix/themes/xeco.scss', path.psc + 'css/themes/')
-  .sass(path.rsc + 'sass/dashmix/themes/xinspire.scss', path.psc + 'css/themes/')
-  .sass(path.rsc + 'sass/dashmix/themes/xmodern.scss', path.psc + 'css/themes/')
-  .sass(path.rsc + 'sass/dashmix/themes/xsmooth.scss', path.psc + 'css/themes/')
-  .sass(path.rsc + 'sass/dashmix/themes/xwork.scss', path.psc + 'css/themes/')
-  .sass(path.rsc + 'sass/dashmix/themes/xdream.scss', path.psc + 'css/themes/')
-  .sass(path.rsc + 'sass/dashmix/themes/xpro.scss', path.psc + 'css/themes/')
-  .sass(path.rsc + 'sass/dashmix/themes/xplay.scss', path.psc + 'css/themes/')
+  // .sass(path.rsc + 'sass/dashmix/themes/xeco.scss', path.psc + 'css/themes/')
+  // .sass(path.rsc + 'sass/dashmix/themes/xinspire.scss', path.psc + 'css/themes/')
+  // .sass(path.rsc + 'sass/dashmix/themes/xmodern.scss', path.psc + 'css/themes/')
+  // .sass(path.rsc + 'sass/dashmix/themes/xsmooth.scss', path.psc + 'css/themes/')
+  // .sass(path.rsc + 'sass/dashmix/themes/xwork.scss', path.psc + 'css/themes/')
+  // .sass(path.rsc + 'sass/dashmix/themes/xdream.scss', path.psc + 'css/themes/')
+  // .sass(path.rsc + 'sass/dashmix/themes/xpro.scss', path.psc + 'css/themes/')
+  // .sass(path.rsc + 'sass/dashmix/themes/xplay.scss', path.psc + 'css/themes/')
 
 
   /* JavaScript */

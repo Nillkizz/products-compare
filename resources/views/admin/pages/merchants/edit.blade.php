@@ -151,29 +151,6 @@
     </div>
     <!-- END Info -->
 
-    <!-- Meta Data -->
-    <div class="block-rounded block">
-      <div class="block-header block-header-default">
-        <h3 class="block-title">Meta Data</h3>
-      </div>
-      <div class="block-content">
-        <div class="row justify-content-center">
-
-          <div class="col-md-10 col-lg-8">
-            <form action="be_pages_ecom_product_edit.php" method="POST" onsubmit="return false;">
-
-              <div class="d-flex justify-content-between mb-4">
-                <div></div>
-                <button type="submit" class="btn btn-alt-primary mt-auto">Update</button>
-              </div>
-
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- END Meta Data -->
-
   </div>
   <!-- END Page Content -->
 

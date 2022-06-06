@@ -17,8 +17,10 @@ Route::prefix('admin')->group(function () {
 
   Route::name('admin.')->middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
-    Route::resource('/merchants', MerchantController::class)->only(['index', 'edit', 'update', 'destroy']);
+
+    Route::resource('/merchants', MerchantController::class)->except('show');
     Route::get('/merchants/{merchant}/do_xml_import_products', [MerchantController::class, 'do_xml_import_products'])->name('merchant.do_xml_import_products');
+
     Route::get('/products', [ProductController::class, 'list'])->name('products');
 
     Route::prefix('settings')->group(function () {

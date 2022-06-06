@@ -54,6 +54,6 @@ class SearchController extends PublicPageController
       ->allowedFilters([
         AllowedFilter::scope('price_limit')
       ])
-      ->paginate();
+      ->paginate(16);
   }
 }

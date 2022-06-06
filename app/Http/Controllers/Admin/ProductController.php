@@ -35,7 +35,7 @@ class ProductController extends AdminPageController
           AllowedFilter::exact('used'),
           AllowedFilter::exact('over_the_counter_medicine'),
         ]
-      )->paginate();
+      )->paginate(16);
   }
 
   public function get_filters($query)

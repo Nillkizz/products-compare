@@ -14,7 +14,7 @@ class MerchantController extends AdminPageController
     meta()->set('title', 'Store Merchants');
 
     $data = [
-      'merchants' => Merchant::search(request('s'))->paginate(),
+      'merchants' => Merchant::search(request('s'))->paginate(16),
       'allMerchantsCount' => Merchant::count()
     ];
 

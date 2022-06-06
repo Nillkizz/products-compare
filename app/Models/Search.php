@@ -23,21 +23,12 @@ class Search extends Model
     return $product;
   }
 
-  public function hasPreview()
-  {
-    $hasPreview = false;
-    $product = $this->getFirstProduct();
-    if ($product != null) $hasPreview = $product->getFirstMedia('preview')->hasGeneratedConversion('small_thumb');
-
-    return $hasPreview;
-  }
-
-  public function getPreview($conversion = 'small_thumb')
+  public function getPreview($conversion = '80x80')
   {
     return $this->getPreviewByQs($this->query_string, $conversion);
   }
 
-  static function getPreviewByQs($queryString = null, $conversion = 'small_thumb')
+  static function getPreviewByQs($queryString = null, $conversion = '80x80')
   {
     $product = Product::search($queryString);
     $preview = ($product->count() > 0) ? $product->first()->previewUrl($conversion) : null;

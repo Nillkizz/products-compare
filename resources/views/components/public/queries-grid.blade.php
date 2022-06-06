@@ -5,7 +5,7 @@
         <a href="{{ route('search', ['s' => $q['value']]) }}">
           <div class="card overflow-hidden">
             <div class="d-flex">
-              <img src="{{ $q['preview'] }}" width="80" height="80" alt="{{ $q['value'] }}">
+              <img class="rounded-4 m-2" src="{{ $q['preview'] }}" width="60" height="60" alt="{{ $q['value'] }}">
               <span class="ms-3 text w-100 my-auto">
                 {{ $q['value'] }}
               </span>

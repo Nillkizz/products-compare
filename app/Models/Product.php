@@ -42,8 +42,8 @@ class Product extends Model implements HasMedia
     $this->addMediaConversion('210x210')
       ->fit(Manipulations::FIT_FILL, 210, 210)
       ->performOnCollections('preview');
-    $this->addMediaConversion('80x80')
-      ->fit(Manipulations::FIT_FILL, 80, 80)
+    $this->addMediaConversion('60x60')
+      ->fit(Manipulations::FIT_FILL, 60, 60)
       ->performOnCollections('preview');
   }
 

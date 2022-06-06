@@ -23,12 +23,12 @@ class Search extends Model
     return $product;
   }
 
-  public function getPreview($conversion = '80x80')
+  public function getPreview($conversion = '60x60')
   {
     return $this->getPreviewByQs($this->query_string, $conversion);
   }
 
-  static function getPreviewByQs($queryString = null, $conversion = '80x80')
+  static function getPreviewByQs($queryString = null, $conversion = '60x60')
   {
     $product = Product::search($queryString);
     $preview = ($product->count() > 0) ? $product->first()->previewUrl($conversion) : null;

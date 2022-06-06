@@ -29,7 +29,6 @@ class ProductController extends AdminPageController
       ->allowedSorts('id', 'price', 'name', 'created_at')
       ->allowedFilters(
         [
-          AllowedFilter::exact('is_active'),
           AllowedFilter::exact('adult'),
           AllowedFilter::exact('used'),
           AllowedFilter::exact('over_the_counter_medicine'),
@@ -46,14 +45,6 @@ class ProductController extends AdminPageController
       [
         'name' => 'All',
         'link' => '?'
-      ],
-      [
-        'name' => 'Active',
-        'link' => $get_link('is_active', 1)
-      ],
-      [
-        'name' => 'Not Active',
-        'link' => $get_link('is_active', 0)
       ],
       [
         'name' => 'Used',

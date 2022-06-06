@@ -34,7 +34,6 @@ return new class extends Migration
       $table->boolean('used')->default(false);
       $table->boolean('adult')->default(false);
       $table->boolean('over_the_counter_medicine')->default(false);
-      $table->boolean('is_active')->default(true);
 
       $table->foreignIdFor(Merchant::class)->constrained()->cascadeOnDelete();
       $table->timestamps();

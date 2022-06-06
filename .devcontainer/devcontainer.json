@@ -16,7 +16,7 @@
     "syler.sass-indented",
     "bradlc.vscode-tailwindcss",
     "Gruntfuggly.todo-tree",
-    "HansUXdev.bootstrap5-snippets"
+    "onecentlin.laravel-blade"
   ],
   "remoteUser": "sail"
   // "forwardPorts": [],

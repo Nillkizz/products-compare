@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\ContactType;
 use App\Models\SiteOption;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;

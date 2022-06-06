@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\UpdateMerchantFormRequest;
-use App\Models\ContactType;
 use App\Models\Merchant;
+use App\Services\XmlProducts;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 
 class MerchantController extends AdminPageController
 {
@@ -16,7 +14,7 @@ class MerchantController extends AdminPageController
     meta()->set('title', 'Store Merchants');
 
     $data = [
-      'merchants' => $this->get_products(),
+      'merchants' => Merchant::search(request('s'))->paginate(),
       'allMerchantsCount' => Merchant::count()
     ];
 
@@ -36,8 +34,6 @@ class MerchantController extends AdminPageController
     $merchant->update($request->validated());
     if ($request->hasFile('logo')) $merchant->addMediaFromRequest('logo')->toMediaCollection('logo');
 
-    // dd($request->validated());
-
     return redirect()->route('admin.merchants.edit', compact('merchant'))->with(['notify' => [
       'type' => 'success',
       'icon' => '',
@@ -50,8 +46,16 @@ class MerchantController extends AdminPageController
     return $merchant->delete();
   }
 
-  private function get_products()
+
+  public function do_xml_import_products(Request $request, Merchant $merchant)
   {
-    return Merchant::search(request('s'))->paginate();
+    $xmlProducts = new XmlProducts($merchant->xml_url);
+    $products = $xmlProducts->importFor($merchant);
+
+    return redirect()->route('admin.merchants.edit', compact('merchant'))->with(['notify' => [
+      'type' => 'success',
+      'icon' => '',
+      'text' => 'Import has been succesfull'
+    ]]);
   }
 }

@@ -23,6 +23,7 @@ return new class extends Migration
 
       $table->string('category_full', 200)->nullable();
       $table->string('category_link', 500)->nullable();
+      $table->string('image_url', 500)->nullable();
       $table->integer('in_stock')->nullable();
       $table->string('brand')->nullable();
       $table->string('model')->nullable();

@@ -83,10 +83,14 @@
                   value="{{ old('site', $merchant->site) }}">
               </div>
               <div class="mb-4">
-                {{-- TODO: Add button for manual import --}}
                 <label class="form-label" for="merchant-xml_url">XML Url</label>
-                <input type="text" class="form-control" id="merchant-xml_url" name="xml_url"
-                  value="{{ old('xml_url', $merchant->xml_url) }}">
+                <div class="input-group" x-data="{ changed: false }">
+                  <input type="text" class="form-control" id="merchant-xml_url" name="xml_url"
+                    value="{{ old('xml_url', $merchant->xml_url) }}" @@change="changed=true">
+                  <a class="btn btn-outline-primary" :disabled="changed"
+                    @@click="e=>{ if (changed) {swal.fire('First save changes!'); e.preventDefault() } }"
+                    href="{{ route('admin.merchant.do_xml_import_products', compact('merchant')) }}">Import now</a>
+                </div>
               </div>
 
               <div class="row mx-0 mb-4 px-0">

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Models\ContactType;
 use App\Models\Merchant;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Arr;

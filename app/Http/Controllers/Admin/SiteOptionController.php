@@ -22,7 +22,7 @@ class SiteOptionController extends AdminPageController
     $option->update(['json' => $request->json]);
 
     // notification
-    return redirect()->route('admin.settings.siteoptions')->with(['notify' => [
+    return redirect()->route('admin.settings.options.index')->with(['notify' => [
       'type' => 'success',
       'icon' => '',
       'text' => 'Changes saved'

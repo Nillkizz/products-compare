@@ -36,6 +36,12 @@ return [
       'throw' => false,
     ],
 
+    'assets' => [
+      'driver' => 'local',
+      'root' => storage_path('assets'),
+      'throw' => false,
+    ],
+
     'media' => [
       'driver' => 'local',
       'root' => storage_path('app/public/media'),
@@ -43,6 +49,7 @@ return [
       'visibility' => 'public',
       'throw' => false,
     ],
+
     'public' => [
       'driver' => 'local',
       'root' => storage_path('app/public'),

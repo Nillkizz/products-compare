@@ -9,10 +9,11 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class XmlProducts
 {
-  function __construct(string $source)
+  function __construct(string $source, $isXmlString = false)
   {
-    $xmlString = file_get_contents($source);
-    $this->products = Arr::get(Xml2Array($xmlString), 'item', []);
+    $xmlString = $isXmlString ? $source : file_get_contents($source);
+
+    $this->products = self::prepareProducts(Arr::get(Xml2Array($xmlString), 'item', []));
   }
 
   /** Imports products for provided merchant */
@@ -30,7 +31,10 @@ class XmlProducts
     Media::destroy($media_ids);
 
     $products = $merchant->fresh()->products;
-    $products->each(fn ($product) => $product->addMediaFromUrl($product->image_url)->toMediaCollection('preview'));
+    $products->each(function ($product) {
+      if (empty($product->image_url)) return;
+      $product->addMediaFromUrl($product->image_url)->toMediaCollection('preview');
+    });
 
     return $products;
   }
@@ -44,8 +48,9 @@ class XmlProducts
   static function validator(array $products)
   {
     array_walk($products, function (&$product) {
+      if (!Arr::has($product, 'image')) return;
       $product['image_url'] = $product['image'];
-      unset($product['image']);
+      Arr::forget($product, 'image');
     });
 
 
@@ -55,7 +60,7 @@ class XmlProducts
       '*.price' => 'required|numeric',
       '*.category_full' => 'string|max:500',
       '*.category_link' => 'url|max:500',
-      '*.image_url' => 'url|max:500',
+      '*.image_url' => 'nullable|url|max:500',
       '*.in_stock' => 'numeric',
       '*.brand' => 'string|max:64',
       '*.model' => 'string|max:64',
@@ -67,5 +72,18 @@ class XmlProducts
       '*.over_the_counter_medicine' => 'boolean'
     ]);
     return $validator;
+  }
+
+  static function prepareProducts(array $products)
+  {
+    return array_map(function ($product) {
+      // if (Arr::has($product, $field = 'image')) $product[$field] = is_string($product[$field]) ? $product[$field] : null;
+
+      $product = array_filter($product, fn ($val) => !empty($val));
+
+
+
+      return $product;
+    }, $products);
   }
 }

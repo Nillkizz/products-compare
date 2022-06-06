@@ -7,7 +7,7 @@
           Subtitle
         </h3> --}}
       </div>
-      <x-public.queries-grid :queries="$featuredCategories" />
+      <x-public.queries-grid :queries="$featuredQueries" />
     </div>
   </div>
 

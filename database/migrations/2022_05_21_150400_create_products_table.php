@@ -19,7 +19,7 @@ return new class extends Migration
 
       $table->string('name', 200);
       $table->decimal('price')->indexed();
-      $table->string('link', 500)->unique();
+      $table->string('link', 500);
 
       $table->string('category_full', 200)->nullable();
       $table->string('category_link', 500)->nullable();

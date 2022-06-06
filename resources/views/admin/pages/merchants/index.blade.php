@@ -119,12 +119,12 @@
                     </td>
                     <td class="fs-sm text-center">
                       <a class="btn btn-sm btn-alt-secondary"
-                        href="{{ route('admin.merchants.edit', ['merchant' => $merchant]) }}" {!! BS::tooltip('Edit') !!}>
+                        href="{{ route('admin.merchants.edit', ['merchant' => $merchant]) }}" {!! BS::tooltip('Edit', 0) !!}>
                         <i class="fa fa-fw fa-pencil"></i>
                       </a>
                       {{-- TODO: --}}
                       <button class="btn btn-sm btn-alt-secondary" data-clipboard-text="{{ $merchant->site }}"
-                        {!! BS::tooltip('Copy site') !!}>
+                        {!! BS::tooltip('Copy site', 0) !!}>
                         <i class="fa fa-fw fa-link"></i>
                       </button>
                       <button type="button" class="btn btn-sm btn-alt-secondary" data-swal-type="delete"

@@ -6,6 +6,7 @@ use App\Http\Requests\Admin\CreateMerchantFormRequest;
 use App\Http\Requests\Admin\UpdateMerchantFormRequest;
 use App\Models\Merchant;
 use App\Services\XmlProducts;
+use ErrorException;
 use Illuminate\Http\Request;
 
 class MerchantController extends AdminPageController
@@ -38,7 +39,7 @@ class MerchantController extends AdminPageController
     if ($request->hasFile('logo')) $merchant->addMediaFromRequest('logo')->toMediaCollection('logo');
 
     return redirect()->route('admin.merchants.edit', compact('merchant'))->with(['notify' => [
-      'type' => 'success',
+      'status' => 'success',
       'icon' => '',
       'text' => 'Changes saved'
     ]]);
@@ -58,7 +59,7 @@ class MerchantController extends AdminPageController
     if ($request->hasFile('logo')) $merchant->addMediaFromRequest('logo')->toMediaCollection('logo');
 
     return redirect()->route('admin.merchants.edit', compact('merchant'))->with(['notify' => [
-      'type' => 'success',
+      'status' => 'success',
       'icon' => '',
       'text' => 'Changes saved'
     ]]);
@@ -72,13 +73,23 @@ class MerchantController extends AdminPageController
 
   public function do_xml_import_products(Request $request, Merchant $merchant)
   {
-    $xmlProducts = new XmlProducts($merchant->xml_url);
-    $products = $xmlProducts->importFor($merchant);
-
-    return redirect()->route('admin.merchants.edit', compact('merchant'))->with(['notify' => [
-      'type' => 'success',
+    $notify = [
+      'status' => 'success',
       'icon' => '',
       'text' => 'Import has been succesfull'
-    ]]);
+    ];
+
+    try {
+      $xmlProducts = new XmlProducts($merchant->xml_url);
+      $products = $xmlProducts->importFor($merchant);
+    } catch (ErrorException $e) {
+      $notify = [
+        'status' => 'danger',
+        'icon' => '',
+        'text' => "Can't reach the file"
+      ];
+    }
+
+    return redirect()->route('admin.merchants.edit', compact('merchant'))->with(compact('notify'));
   }
 }

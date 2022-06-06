@@ -23,7 +23,7 @@ class SiteOptionController extends AdminPageController
 
     // notification
     return redirect()->route('admin.settings.options.index')->with(['notify' => [
-      'type' => 'success',
+      'status' => 'success',
       'icon' => '',
       'text' => 'Changes saved'
     ]]);

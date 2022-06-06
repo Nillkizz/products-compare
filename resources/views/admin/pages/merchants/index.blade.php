@@ -99,6 +99,7 @@
                   <th class="d-none d-sm-table-cell text-center" style="width: 120px">Added</th>
                   <th class="d-none d-sm-table-cell text-center" style="width: 200px">Rating</th>
                   <th>Merchant</th>
+                  <th class="d-none d-sm-table-cell text-center" style="width: 100px">Products</th>
                   <th class="text-center" style="width: 150px">Actions</th>
                 </tr>
               </thead>
@@ -117,12 +118,14 @@
                     <td>
                       <a class="fw-semibold" href="{{ $merchant->link }}">{{ $merchant->name }}</a>
                     </td>
+                    <td class="fw-semibold d-none d-sm-table-cell text-center">
+                      {{ $merchant->products->count() }}
+                    </td>
                     <td class="fs-sm text-center">
                       <a class="btn btn-sm btn-alt-secondary"
                         href="{{ route('admin.merchants.edit', ['merchant' => $merchant]) }}" {!! BS::tooltip('Edit', 0) !!}>
                         <i class="fa fa-fw fa-pencil"></i>
                       </a>
-                      {{-- TODO: --}}
                       <button class="btn btn-sm btn-alt-secondary" data-clipboard-text="{{ $merchant->site }}"
                         {!! BS::tooltip('Copy site', 0) !!}>
                         <i class="fa fa-fw fa-link"></i>

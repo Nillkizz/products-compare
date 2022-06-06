@@ -112,7 +112,7 @@
                     </td>
                     <td class="d-none d-sm-table-cell fs-sm text-center">
                       {{ datetime($merchant->created_at, 'd-m-Y') }}</td>
-                    <td class="d-none d-md-table-cell">
+                    <td class="d-none d-sm-table-cell">
                       <x-stars class="justify-content-center" :count="$merchant->reviews_count" :rate="$merchant->rate" />
                     </td>
                     <td>

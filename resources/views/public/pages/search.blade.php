@@ -9,7 +9,7 @@
         @endif
       </div>
       @if ($hasProducts)
-        <x-public.products-filters />
+        <x-public.products-filters :foundCount="$products->total()" />
         <x-public.products-grid :products="$products" />
       @else
         @if ($hasSearch)

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Helpers\Images;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -66,7 +66,17 @@ class Merchant extends Model implements HasMedia
 
   public function registerMediaConversions(Media $media = null): void
   {
-    $this->addMediaConversion('small')->fit(Manipulations::FIT_FILL, 80, 50);
-    $this->addMediaConversion('medium')->fit(Manipulations::FIT_FILL, 100, 70);
+    $this->addMediaConversion('h35')
+      ->height(35)
+      ->performOnCollections('logo');
+
+    $this->addMediaConversion('h70')
+      ->height(70)
+      ->performOnCollections('logo');
+  }
+
+  public function logoUrl($conversion = null, $withFallback = false)
+  {
+    return Images::modelImageHandler($this, 'logo', $withFallback, $conversion);
   }
 }

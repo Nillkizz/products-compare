@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Helpers\Images;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -23,12 +24,9 @@ class Product extends Model implements HasMedia
     return $this->belongsTo(Merchant::class);
   }
 
-  public function previewUrl($conversion = null)
+  public function previewUrl($conversion = null, $withFallback = true)
   {
-    $media = $this->getFirstMedia('preview');
-    if ($media == null) return env('FALLBACK_IMAGE_URL');
-    if ($conversion == null) return $media->getUrl();
-    if ($media->hasGeneratedConversion($conversion)) return $media->getUrl($conversion);
+    return Images::modelImageHandler($this, 'preview', $withFallback, $conversion);
   }
 
   public function registerMediaCollections(): void
@@ -38,10 +36,15 @@ class Product extends Model implements HasMedia
 
   public function registerMediaConversions(Media $media = null): void
   {
-    $this->addMediaConversion('thumb')
-      ->fit(Manipulations::FIT_FILL, 180, 180);
-    $this->addMediaConversion('small_thumb')
-      ->fit(Manipulations::FIT_FILL, 80, 80);
+    $this->addMediaConversion('450x450')
+      ->fit(Manipulations::FIT_FILL, 450, 450)
+      ->performOnCollections('preview');
+    $this->addMediaConversion('210x210')
+      ->fit(Manipulations::FIT_FILL, 210, 210)
+      ->performOnCollections('preview');
+    $this->addMediaConversion('80x80')
+      ->fit(Manipulations::FIT_FILL, 80, 80)
+      ->performOnCollections('preview');
   }
 
   static function search($s)

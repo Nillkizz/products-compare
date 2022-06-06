@@ -94,8 +94,8 @@
               </div>
 
               <div class="row mx-0 mb-4 px-0">
-                <div class="col-2">
-                  <img src="{{ $merchant->getFirstMediaUrl('logo', 'medium') }}" alt="Logo">
+                <div class="col-2 d-flex justify-content-center">
+                  <img src="{{ $merchant->logoUrl('h70') }}" alt="Logo" height="70">
                 </div>
                 <div class="col-10">
                   <label class="form-label" for="merchant-logo">Choose a new logo</label>

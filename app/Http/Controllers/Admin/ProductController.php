@@ -30,7 +30,6 @@ class ProductController extends AdminPageController
       ->allowedFilters(
         [
           AllowedFilter::exact('is_active'),
-          AllowedFilter::exact('featured'),
           AllowedFilter::exact('adult'),
           AllowedFilter::exact('used'),
           AllowedFilter::exact('over_the_counter_medicine'),
@@ -55,10 +54,6 @@ class ProductController extends AdminPageController
       [
         'name' => 'Not Active',
         'link' => $get_link('is_active', 0)
-      ],
-      [
-        'name' => 'Featured',
-        'link' => $get_link('featured', 1)
       ],
       [
         'name' => 'Used',

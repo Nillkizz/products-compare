@@ -20,7 +20,7 @@ class MerchantFactory extends Factory
   public function definition()
   {
     return [
-      'name' => $name = Str::ucfirst($this->faker->unique()->word()),
+      'name' => $name = Str::ucfirst($this->faker->unique()->domainWord()),
       'slug' => Str::slug($name),
       'site' => $this->faker->unique()->domainName(),
       'xml_url' => $this->faker->unique()->url(),

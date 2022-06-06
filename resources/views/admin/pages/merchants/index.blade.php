@@ -96,8 +96,8 @@
               <thead>
                 <tr>
                   <th class="text-center" style="width: 70px;">ID</th>
-                  <th class="d-none d-sm-table-cell text-center" style="width: 120px">Added</th>
-                  <th class="d-none d-sm-table-cell text-center" style="width: 200px">Rating</th>
+                  <th class="d-none d-md-table-cell text-center" style="width: 120px">Added</th>
+                  <th class="d-none d-md-table-cell text-center" style="width: 200px">Rating</th>
                   <th>Merchant</th>
                   <th class="d-none d-sm-table-cell text-center" style="width: 100px">Products</th>
                   <th class="text-center" style="width: 150px">Actions</th>
@@ -110,9 +110,9 @@
                     <td class="fs-sm text-center">
                       <strong>{{ $merchant->id }}</strong>
                     </td>
-                    <td class="d-none d-sm-table-cell fs-sm text-center">
+                    <td class="d-none d-md-table-cell fs-sm text-center">
                       {{ datetime($merchant->created_at, 'd-m-Y') }}</td>
-                    <td class="d-none d-sm-table-cell">
+                    <td class="d-none d-md-table-cell">
                       <x-stars class="justify-content-center" :count="$merchant->reviews_count" :rate="$merchant->rate" />
                     </td>
                     <td>

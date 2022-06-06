@@ -13,9 +13,13 @@ class SearchController extends PublicPageController
 {
   public function show(Request $request)
   {
+    $show_erotic_items = session('show_erotic_items', false);
     $data = [
-      'hasProducts' => false
+      'hasProducts' => false,
+      'show_erotic_items' => $show_erotic_items,
+      'has_erotic_items' => false
     ];
+
     $search = request('s');
     $data['hasSearch'] = $hasSearch = !empty($search);
 
@@ -27,8 +31,21 @@ class SearchController extends PublicPageController
         session()->push('search_history', $search);
         Search::incrementByQS($search);
       }
-      $data['products'] = $products = $this->get_products();
-      $data['hasProducts'] = $products->count() > 0;
+      $data['products'] = $products = Product::search(request('s'));
+      $data['hasProducts'] = $products->exists();
+
+      if (!$show_erotic_items) {
+        $without_adults = (clone $products)->where('adult', false);
+        $data['has_erotic_items'] = $products->count() > $without_adults->count();
+        $products = $without_adults;
+      }
+
+      $data['products'] = QueryBuilder::for($products)
+        ->defaultSort('name')
+        ->allowedSorts('price', 'name')
+        ->allowedFilters([
+          AllowedFilter::scope('price_limit')
+        ])->paginate(16);
     } else {
       $title = 'Catalog';
     }
@@ -39,21 +56,15 @@ class SearchController extends PublicPageController
       $data['popular_queries'] = $queries;
     }
 
+
     meta()->set('title', $title);
+
     return view('public.pages.search', $data);
   }
 
-
-  private function get_products()
+  public function show_erotic_items(Request $request)
   {
-    $products = Product::search(request('s'));
-
-    return QueryBuilder::for($products)
-      ->defaultSort('name')
-      ->allowedSorts('price', 'name')
-      ->allowedFilters([
-        AllowedFilter::scope('price_limit')
-      ])
-      ->paginate(16);
+    if ($request->has('show_erotic_items')) session()->push('show_erotic_items', true);
+    return $this->show($request);
   }
 }

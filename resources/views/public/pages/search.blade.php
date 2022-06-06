@@ -10,6 +10,16 @@
       </div>
       @if ($hasProducts)
         <x-public.products-filters :foundCount="$products->total()" />
+        @if (!$show_erotic_items && $has_erotic_items)
+          <div class="alert alert-warning mb-4 py-2" role="alert">
+            <form method="POST">
+              @csrf
+              <input type="hidden" name="show_erotic_items" value="1">
+              <p class="mb-0">Are you already 18 years old? <button
+                  class="btn btn-outline-warning ms-3 py-0 px-2" type="submit">Yes</button></p>
+            </form>
+          </div>
+        @endif
         <x-public.products-grid :products="$products" />
       @else
         @if ($hasSearch)

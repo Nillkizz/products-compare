@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'show'])->name('home');
 Route::get('/search', [SearchController::class, 'show'])->name('search');
+Route::post('/search', [SearchController::class, 'show_erotic_items'])->name('show_erotic_items');
 
 
 

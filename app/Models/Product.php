@@ -39,9 +39,9 @@ class Product extends Model implements HasMedia
   public function registerMediaConversions(Media $media = null): void
   {
     $this->addMediaConversion('thumb')
-      ->fit(Manipulations::FIT_CROP, 350, 300);
+      ->fit(Manipulations::FIT_FILL, 180, 180);
     $this->addMediaConversion('small_thumb')
-      ->fit(Manipulations::FIT_CROP, 80, 80);
+      ->fit(Manipulations::FIT_FILL, 80, 80);
   }
 
   static function search($s)

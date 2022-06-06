@@ -12,5 +12,7 @@
     "/static/images/photo16@2x.jpg": "/static/images/photo16@2x.jpg",
     "/static/images/photo19@2x.jpg": "/static/images/photo19@2x.jpg",
     "/static/images/placeholder.png": "/static/images/placeholder.png",
+    "/static/core/libs/ckeditor-5/ckeditor.js": "/static/core/libs/ckeditor-5/ckeditor.js",
+    "/static/core/libs/ckeditor-5/styles.css": "/static/core/libs/ckeditor-5/styles.css",
     "/static/public/fonts/.gitkeep": "/static/public/fonts/.gitkeep"
 }

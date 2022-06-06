@@ -48,6 +48,10 @@ mix
   // .sass(path.rsc + 'sass/dashmix/themes/xplay.scss', path.psc + 'css/themes/')
 
 
+  /* Libs */
+  .copy(path.rsc + 'libs/ckeditor-5/build/ckeditor.js', path.psc + 'libs/ckeditor-5/ckeditor.js')
+  .copy(path.rsc + 'libs/ckeditor-5/styles.css', path.psc + 'libs/ckeditor-5/styles.css')
+
   /* JavaScript */
   .js(path.rsc + 'js/app.js', path.psc + 'js/core.js')
   .js(path.rsc + 'js/alpine.js', path.psc + 'js/alpine.js')

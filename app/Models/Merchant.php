@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -38,16 +37,6 @@ class Merchant extends Model implements HasMedia
   public function registerMediaCollections(): void
   {
     $this->addMediaCollection('logo')->singleFile();
-  }
-
-  public function getContacts()
-  {
-    return $this->contacts->map(fn (MerchantContact $contact) => [
-      'id' => $contact->id,
-      'value' => $contact->value,
-      'type' => $contact->type->slug,
-      'verbose_type' => $contact->type->name
-    ]);
   }
 
   static function search($s)

@@ -12,7 +12,9 @@
                 <x-stars class="fs-7 me-auto" :count="$product->merchant->reviews_count" :rate="$product->merchant->rate" />
               </div>
               <div class="logo text-end col-6">
-                <img src="{{ $product->merchant->logoUrl('h35') }}" alt="{{ $product->merchant->name }}">
+                @unless(empty($product->merchant->logoUrl('h35')))
+                  <img src="{{ $product->merchant->logoUrl('h35') }}" alt="{{ $product->merchant->name }}">
+                @endunless
               </div>
             </div>
           </a>

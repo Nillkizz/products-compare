@@ -72,17 +72,28 @@
                 <input type="text" class="form-control" id="merchant-name" name="name"
                   value="{{ old('name', $merchant->name) }}">
               </div>
-              <div class="mb-4">
+              <div class="col-sm-6 mb-4">
                 <label class="form-label" for="merchant-slug">Slug</label>
                 <input type="text" class="form-control" id="merchant-slug" name="slug" data-type="slug"
                   value="{{ old('slug', $merchant->slug) }}">
               </div>
-              <div class="mb-4">
+              <div class="col-sm-6 mb-4">
                 <label class="form-label" for="merchant-site">Site</label>
                 <input type="text" class="form-control" id="merchant-site" name="site"
                   value="{{ old('site', $merchant->site) }}">
               </div>
-              <div class="mb-4">
+
+              <div class="col-xl-6 row mx-0 mb-4 px-0">
+                <div class="col-2 col-xl-4 d-flex justify-content-center">
+                  <img src="{{ $merchant->logoUrl('h70') }}" alt="Logo" height="70">
+                </div>
+                <div class="col-10 col-xl-8">
+                  <label class="form-label" for="merchant-logo">Choose a new logo</label>
+                  <input class="form-control" type="file" id="merchant-logo" name="logo">
+                </div>
+              </div>
+
+              <div class="col-xl-6 mb-4">
                 <label class="form-label" for="merchant-xml_url">XML Url</label>
                 <div class="input-group" x-data="{ changed: false }">
                   <input type="text" class="form-control" id="merchant-xml_url" name="xml_url"
@@ -92,17 +103,6 @@
                     href="{{ route('admin.merchant.do_xml_import_products', compact('merchant')) }}">Import now</a>
                 </div>
               </div>
-
-              <div class="row mx-0 mb-4 px-0">
-                <div class="col-2 d-flex justify-content-center">
-                  <img src="{{ $merchant->logoUrl('h70') }}" alt="Logo" height="70">
-                </div>
-                <div class="col-10">
-                  <label class="form-label" for="merchant-logo">Choose a new logo</label>
-                  <input class="form-control" type="file" id="merchant-logo" name="logo">
-                </div>
-              </div>
-
 
               <div class="row contacts mx-0 mb-4 px-0" x-data="Laravel.editMerchant">
                 <script>

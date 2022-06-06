@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\AbstractPageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 
-class PasswordResetLinkController extends PageController
+class PasswordResetLinkController extends AbstractPageController
 {
   /**
    * Display the password reset link request view.

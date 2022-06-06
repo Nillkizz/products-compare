@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\AbstractPageController;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 
-class EmailVerificationPromptController extends PageController
+class EmailVerificationPromptController extends AbstractPageController
 {
   /**
    * Display the email verification prompt.

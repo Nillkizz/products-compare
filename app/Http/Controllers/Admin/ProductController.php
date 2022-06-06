@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class ProductController extends AdminPageController
+class ProductController extends AbstractAdminPageController
 {
   public function list(Request $request)
   {

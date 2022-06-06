@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Public;
 
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\AbstractPageController;
 use Illuminate\Http\Request;
 
-class PublicPageController extends PageController
+class AbstractPublicPageController extends AbstractPageController
 {
   public function __construct()
   {

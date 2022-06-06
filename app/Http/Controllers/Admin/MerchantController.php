@@ -9,7 +9,7 @@ use App\Services\XmlProducts;
 use ErrorException;
 use Illuminate\Http\Request;
 
-class MerchantController extends AdminPageController
+class MerchantController extends AbstractAdminPageController
 {
   public function index(Request $request)
   {

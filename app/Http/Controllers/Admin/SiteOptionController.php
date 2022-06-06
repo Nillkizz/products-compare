@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\SiteOption;
 use Illuminate\Http\Request;
 
-class SiteOptionController extends AdminPageController
+class SiteOptionController extends AbstractAdminPageController
 {
   public function index(Request $request)
   {

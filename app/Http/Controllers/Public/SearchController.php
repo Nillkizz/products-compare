@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class SearchController extends PublicPageController
+class SearchController extends AbstractPublicPageController
 {
   public function show(Request $request)
   {

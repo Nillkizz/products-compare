@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Public;
 use App\Models\SiteOption;
 use Illuminate\Http\Request;
 
-class HomeController extends PublicPageController
+class HomeController extends AbstractPublicPageController
 {
   public function show()
   {

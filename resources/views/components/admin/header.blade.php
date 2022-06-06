@@ -32,11 +32,11 @@
           <i class="fa fa-fw fa-angle-down ms-1 d-none d-sm-inline-block opacity-50"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="page-header-user-dropdown">
-          <div class="bg-primary-dark rounded-top fw-semibold p-3 text-center text-white">
+          {{-- <div class="bg-primary-dark rounded-top fw-semibold p-3 text-center text-white">
             User Options
-          </div>
+          </div> --}}
           <div class="p-2">
-            <a class="dropdown-item" href="javascript:void(0)">
+            {{-- <a class="dropdown-item" href="javascript:void(0)">
               <i class="far fa-fw fa-user me-1"></i> Profile
             </a>
             <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
@@ -53,9 +53,9 @@
             <a class="dropdown-item" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
               <i class="far fa-fw fa-building me-1"></i> Settings
             </a>
-            <!-- END Side Overlay -->
+            <!-- END Side Overlay --> --}}
 
-            <div role="separator" class="dropdown-divider"></div>
+            {{-- <div role="separator" class="dropdown-divider"></div> --}}
             <form method="POST" action="{{ route('logout') }}">
               @csrf
               <button type="submit" class="dropdown-item">

@@ -15,7 +15,7 @@ class ProductController extends AdminPageController
 
     $data = [
       'products' => $this->get_products(),
-      'filters' => $this->get_filters($request->getQueryString()),
+      'filters' => $this->get_filters(),
       'allProductsCount' => Product::count()
     ];
 
@@ -36,10 +36,8 @@ class ProductController extends AdminPageController
       )->paginate(16);
   }
 
-  public function get_filters($query)
+  public function get_filters()
   {
-    // $query = empty($query) ? '' : '&' . $query;
-    // $get_link = fn ($q, $v) => "?filter[$q]=$v" . $query;
     $get_link = fn ($q, $v) => "?filter[$q]=$v";
     return [
       [

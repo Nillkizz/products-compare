@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Admin\CreateMerchantFormRequest;
-use App\Http\Requests\Admin\UpdateMerchantFormRequest;
+use App\Http\Requests\Admin\Merchants\CreateMerchantFormRequest;
+use App\Http\Requests\Admin\Merchants\UpdateMerchantFormRequest;
 use App\Models\Merchant;
 use App\Services\XmlProducts;
 use ErrorException;

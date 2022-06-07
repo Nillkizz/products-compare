@@ -7,4 +7,11 @@
       <x-public.queries-grid :queries="$featuredQueries" />
     </div>
   </div>
+  <div class="bg-body-light">
+    <div class="content content-full">
+      <p>
+        {!! $page->content !!}
+      </p>
+    </div>
+  </div>
 </x-public.layouts.main>

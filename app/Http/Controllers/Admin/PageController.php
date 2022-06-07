@@ -34,7 +34,7 @@ class PageController extends AbstractAdminPageController
     return redirect()->route('admin.pages.edit', compact('page'))->with(['notify' => [
       'status' => 'success',
       'icon' => '',
-      'text' => 'Changes saved'
+      'text' => 'Page created!'
     ]]);
   }
 
@@ -49,12 +49,11 @@ class PageController extends AbstractAdminPageController
   public function update(PageFormRequest $request, Page $page)
   {
     $page->update($request->validated());
-    if ($request->hasFile('logo')) $page->addMediaFromRequest('logo')->toMediaCollection('logo');
 
     return redirect()->route('admin.pages.edit', compact('page'))->with(['notify' => [
       'status' => 'success',
       'icon' => '',
-      'text' => 'Page created!'
+      'text' => 'Changes saved!'
     ]]);
   }
 

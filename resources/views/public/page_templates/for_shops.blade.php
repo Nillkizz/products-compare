@@ -1,7 +1,7 @@
 <x-public.layouts.main>
   <style>
     .xml_tag {
-      color: red;
+      color: #777700;
     }
   </style>
   <div class="content content-full">

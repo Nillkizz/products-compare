@@ -1,3 +1,17 @@
+@php
+$allItemsCount = $allMerchantsCount;
+$items = $merchants;
+$name = 'Merchant';
+$itemName = 'merchant';
+
+$routes = [
+    'create' => 'admin.merchants.create',
+    'edit' => 'admin.merchants.edit',
+    'show' => 'merchant',
+    'destroy' => 'admin.merchants.destroy',
+];
+
+@endphp
 <x-admin.layouts.admin>
   <!-- Page Content -->
   <div class="content">
@@ -26,16 +40,13 @@
       <div class="col-6 col-lg-3">
         <div class="block-rounded block-link-shadow h-100 mb-0 block text-center">
           <div class="block-content py-5">
-            <div class="fs-3 fw-semibold text-dark mb-1">{{ $allMerchantsCount }}</div>
-            <p class="fw-semibold fs-sm text-muted text-uppercase mb-0">
-              Merchants
-            </p>
+            <div class="fs-3 fw-semibold text-dark mb-1">{{ $allItemsCount }}</div>
+            <p class="fw-semibold fs-sm text-muted text-uppercase mb-0">{{ $name . 's' }}</p>
           </div>
         </div>
       </div>
       <div class="col-6 col-lg-3">
-        <a class="block-rounded block-link-shadow h-100 mb-0 block text-center"
-          href="{{ route('admin.merchants.create') }}">
+        <a class="block-rounded block-link-shadow h-100 mb-0 block text-center" href="{{ route($routes['create']) }}">
           <div class="block-content py-5">
             <div class="fs-3 fw-semibold text-success mb-1">
               <i class="fa fa-plus"></i>
@@ -79,7 +90,7 @@
           <div class="mb-4">
             <div class="input-group">
               <input type="text" class="form-control form-control-alt" id="dm-ecom-products-search" name="s"
-                placeholder="Search all Merchants.." value="{{ request('s') }}">
+                placeholder="Search all {{ $name . 's' }}..." value="{{ request('s') }}">
               <button type="submit" class="btn btn-alt-info">
                 <i class="fa fa-fw fa-search opacity-50"></i> <span class="ms-1 d-none d-sm-inline-block">Search</span>
               </button>
@@ -91,7 +102,7 @@
       <div>
         <!-- All Products Table -->
 
-        @if ($merchants->count() > 0)
+        @if ($items->count() > 0)
           <div class="table-responsive">
             <table class="table-borderless table-striped table-vcenter table">
               <thead>
@@ -106,33 +117,33 @@
               </thead>
               <tbody>
 
-                @foreach ($merchants as $merchant)
+                @foreach ($items as $item)
                   <tr>
                     <td class="fs-sm text-center">
-                      <strong>{{ $merchant->id }}</strong>
+                      <strong>{{ $item->id }}</strong>
                     </td>
                     <td class="d-none d-md-table-cell fs-sm text-center">
-                      {{ datetime($merchant->created_at, 'd-m-Y') }}</td>
+                      {{ datetime($item->created_at, 'd-m-Y') }}</td>
                     <td class="d-none d-md-table-cell">
-                      <x-stars class="justify-content-center" :count="$merchant->reviews_count" :rate="$merchant->rate" />
+                      <x-stars class="justify-content-center" :count="$item->reviews_count" :rate="$item->rate" />
                     </td>
                     <td>
-                      <a class="fw-semibold" href="{{ $merchant->link }}">{{ $merchant->name }}</a>
+                      <a class="fw-semibold" href="{{ $item->link }}">{{ $item->name }}</a>
                     </td>
                     <td class="fw-semibold d-none d-sm-table-cell text-center">
-                      {{ $merchant->products->count() }}
+                      {{ $item->products->count() }}
                     </td>
                     <td class="fs-sm text-center">
                       <a class="btn btn-sm btn-alt-secondary"
-                        href="{{ route('admin.merchants.edit', ['merchant' => $merchant]) }}" {!! BS::tooltip('Edit', 0) !!}>
+                        href="{{ route($routes['edit'], [$itemName => $item]) }}" {!! BS::tooltip('Edit', 0) !!}>
                         <i class="fa fa-fw fa-pencil"></i>
                       </a>
-                      <button class="btn btn-sm btn-alt-secondary" data-clipboard-text="{{ $merchant->site }}"
+                      <button class="btn btn-sm btn-alt-secondary" data-clipboard-text="{{ $item->site }}"
                         {!! BS::tooltip('Copy site', 0) !!}>
                         <i class="fa fa-fw fa-link"></i>
                       </button>
                       <button type="button" class="btn btn-sm btn-alt-secondary" data-swal-type="delete"
-                        data-swal-delete-url="{{ route('admin.merchants.destroy', compact('merchant')) }}">
+                        data-swal-delete-url="{{ route($routes['destroy'], [$itemName => $item]) }}">
                         <i class="fa fa-fw fa-trash text-danger"></i>
                       </button>
                     </td>
@@ -144,10 +155,10 @@
             </table>
           </div>
         @else
-          <p>No products. <a href="?">Reset filters</a></p>
+          <p>No {{ $name . 's' }}. <a href="?">Reset filters</a></p>
         @endif
         <!-- END All Products Table -->
-        {{ $merchants->onEachSide(1)->links() }}
+        {{ $items->onEachSide(1)->links() }}
       </div>
     </div>
     <!-- END All Products -->

@@ -29,7 +29,7 @@ class PageFormRequest extends FormRequest
     return [
       'name' => 'required|string|max:128',
       'title' => 'string|max:128',
-      'path' => 'required|string',
+      'path' => 'string|unique:pages',
       'template' => [
         'required', 'string',
         Rule::in(Page::getTemplates())
@@ -42,9 +42,10 @@ class PageFormRequest extends FormRequest
   protected function prepareForValidation()
   {
     $this->merge([
-      'title' => $this->get('data', $this->name),
-      'status' => $this->get('status', 'draft'),
-      'content' => $this->get('content', '')
+      'title' => $this->get('data') ?? $this->get('name'),
+      'path' => $this->get('path') ?? '',
+      'status' => $this->get('status') ?? 'draft',
+      'content' => $this->get('content') ?? '',
     ]);
   }
 }

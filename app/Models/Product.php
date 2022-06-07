@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Searchable;
 use Helpers\Images;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +14,9 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Product extends Model implements HasMedia
 {
-  use HasFactory, InteractsWithMedia;
+  use HasFactory, InteractsWithMedia, Searchable;
+
+  const SEARCH_COLUMN = 'search_string';
 
   protected $guarded = [
     'id', 'created_at', 'updated_at', 'search_string'
@@ -45,11 +48,6 @@ class Product extends Model implements HasMedia
     $this->addMediaConversion('60x60')
       ->fit(Manipulations::FIT_FILL, 60, 60)
       ->performOnCollections('preview');
-  }
-
-  static function search($s)
-  {
-    return static::query()->where('search_string', 'LIKE', "%$s%");
   }
 
   public function scopePriceLimit(Builder $query, $price): Builder

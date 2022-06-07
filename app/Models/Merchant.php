@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Searchable;
 use Helpers\Images;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,10 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Merchant extends Model implements HasMedia
 {
-  use HasFactory, InteractsWithMedia;
+  use HasFactory, InteractsWithMedia, Searchable;
+
+  const SEARCH_COLUMN = 'name';
+
   const contactTypes = [
     ['value' => 'phone', 'verbose' => 'Phone'],
     ['value' => 'email', 'verbose' => 'Email'],
@@ -38,12 +42,6 @@ class Merchant extends Model implements HasMedia
   {
     $this->addMediaCollection('logo')->singleFile();
   }
-
-  static function search($s)
-  {
-    return static::query()->where('name', 'LIKE', "%$s%");
-  }
-
 
   public function recalculate_rate()
   {

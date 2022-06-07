@@ -63,34 +63,16 @@
               method="POST" enctype="multipart/form-data">
               @method('PUT')
               @csrf
-              <div class="col-3 mb-4">
-                <label class="form-label" for="merchant-id">ID</label>
-                <input type="text" class="form-control" id="merchant-id" value="{{ $merchant->id }}" readonly>
-              </div>
-              <div class="col-9 mb-4">
-                <label class="form-label" for="merchant-name">Name</label>
-                <input type="text" class="form-control" id="merchant-name" name="name"
-                  value="{{ old('name', $merchant->name) }}">
-              </div>
-              <div class="col-sm-6 mb-4">
-                <label class="form-label" for="merchant-slug">Slug</label>
-                <input type="text" class="form-control" id="merchant-slug" name="slug" data-type="slug"
-                  value="{{ old('slug', $merchant->slug) }}">
-              </div>
-              <div class="col-sm-6 mb-4">
-                <label class="form-label" for="merchant-site">Site</label>
-                <input type="text" class="form-control" id="merchant-site" name="site"
-                  value="{{ old('site', $merchant->site) }}">
-              </div>
+              <x-form.input class="col-3" label="ID" :value="$merchant->id" readonly />
+              <x-form.input class="col-9" name="name" label="Name" :value="$merchant->name" />
+              <x-form.input class="col-sm-6" name="slug" label="Slug" data-type="slug" :value="$merchant->slug" />
+              <x-form.input class="col-sm-6" name="site" label="Site" :value="$merchant->site" />
 
               <div class="col-xl-6 row mx-0 mb-4 px-0">
                 <div class="col-2 col-xl-4 d-flex justify-content-center">
                   <img src="{{ $merchant->logoUrl('h70') }}" alt="Logo" height="70">
                 </div>
-                <div class="col-10 col-xl-8">
-                  <label class="form-label" for="merchant-logo">Choose a new logo</label>
-                  <input class="form-control" type="file" id="merchant-logo" name="logo">
-                </div>
+                <x-form.input class="col-10 col-xl-8" name="logo" label="Choose a new logo" type="file" />
               </div>
 
               <div class="col-xl-6 mb-4">

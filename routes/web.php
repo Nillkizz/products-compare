@@ -23,4 +23,4 @@ Route::post('/search', [SearchController::class, 'show_erotic_items'])->name('sh
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
 
-Route::get('/{path}', [FrontPageController::class, 'show'])->where(['path' => '.*'])->name('page');
+Route::get('/{path?}', [FrontPageController::class, 'show'])->where(['path' => '.*'])->name('page');

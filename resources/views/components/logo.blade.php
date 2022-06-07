@@ -8,6 +8,9 @@ switch ($type) {
 }
 @endphp
 
-<div {{ $attributes->class(['brand']) }}>
+<div {{ $attributes->class(['brand', 'smini-hidden']) }}>
   <span @class($class1)>PCM</span><span @class($class2)>pare</span>
 </div>
+<span {{ $attributes->class(['brand', 'smini-visible']) }}>
+  <span @class($class1)>P</span><span @class($class2)>p</span>
+</span>

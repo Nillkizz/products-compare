@@ -20,10 +20,7 @@ Route::get('/', [HomeController::class, 'show'])->name('home');
 Route::get('/search', [SearchController::class, 'show'])->name('search');
 Route::post('/search', [SearchController::class, 'show_erotic_items'])->name('show_erotic_items');
 
-Route::fallback([FrontPageController::class, 'show'])->name('page');
-
-
-
-
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
+
+Route::get('/{path}', [FrontPageController::class, 'show'])->where(['path' => '.*'])->name('page');

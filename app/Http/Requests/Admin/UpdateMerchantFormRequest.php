@@ -5,6 +5,7 @@ namespace App\Http\Requests\Admin;
 use App\Models\Merchant;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class UpdateMerchantFormRequest extends FormRequest
@@ -39,6 +40,10 @@ class UpdateMerchantFormRequest extends FormRequest
       'site' => [
         'required', 'max:255',
         Rule::unique('merchants')->ignore($merchant_id),
+        function ($attribute, $value, $fail) {
+          $ip = gethostbyname($value);
+          if (!filter_var($ip, FILTER_VALIDATE_IP)) $fail(Str::ucfirst($attribute) . " domain is not regitered.");
+        }
       ],
       'xml_url' => [
         'required', 'URL',

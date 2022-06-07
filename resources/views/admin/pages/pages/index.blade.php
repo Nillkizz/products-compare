@@ -146,8 +146,7 @@ $columns = [['name' => 'ID', 'value' => 'id']];
                         <i class="fa fa-fw fa-pencil"></i>
                       </a>
                       <a class="btn btn-sm btn-alt-secondary"
-                        href="{{ route($routes['show'], ['fallbackPlaceholder' => $item->path]) }}"
-                        {!! BS::tooltip('View', 0) !!}>
+                        href="{{ route($routes['show'], ['path' => $item->path]) }}" {!! BS::tooltip('View', 0) !!}>
                         <i class="fa fa-fw fa-eye"></i>
                       </a>
 

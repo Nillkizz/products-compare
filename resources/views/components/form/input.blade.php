@@ -1,4 +1,4 @@
-@props(['label', 'name', 'type' => 'text', 'idPrefix' => '', 'class' => ''])
+@props(['label', 'name' => '', 'type' => 'text', 'idPrefix' => '', 'class' => '', 'value' => ''])
 @php
 $id = $idPrefix . $name;
 @endphp
@@ -8,5 +8,5 @@ $id = $idPrefix . $name;
     <label class="form-label" for="{{ $id }}">{{ $label }}</label>
   @endisset
   <input type="{{ $type }}" class="form-control" id="{{ $id }}" name="{{ $name }}"
-    value="{{ old($name) }}" {{ $attributes->merge() }}>
+    value="{{ old($name, $value) }}" {{ $attributes->merge() }}>
 </div>

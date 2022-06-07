@@ -63,23 +63,10 @@
               enctype="multipart/form-data">
               {{-- @method('') --}}
               @csrf
-              <div class="col-sm-6 mb-4">
-                <label class="form-label" for="merchant-name">Name</label>
-                <input type="text" class="form-control" id="merchant-name" name="name" value="{{ old('name') }}">
-              </div>
-              <div class="col-sm-6 mb-4">
-                <label class="form-label" for="merchant-slug">Slug</label>
-                <input type="text" class="form-control" id="merchant-slug" name="slug" data-type="slug"
-                  value="{{ old('slug') }}">
-              </div>
-              <div class="col-sm-6 mb-4">
-                <label class="form-label" for="merchant-site">Site</label>
-                <input type="text" class="form-control" id="merchant-site" name="site" value="{{ old('site') }}">
-              </div>
-              <div class="col-sm-6 mb-4">
-                <label class="form-label" for="merchant-logo">Choose a logo</label>
-                <input class="form-control" type="file" id="merchant-logo" name="logo">
-              </div>
+              <x-form.input name="name" label="Name" />
+              <x-form.input class="col-sm-6" name="slug" label="Slug" data-type="slug" />
+              <x-form.input class="col-sm-6" name="site" label="Site" />
+              <x-form.input name="logo" label="Choose a new logo" type="file" />
 
               <div class="mb-4">
                 <label class="form-label" for="merchant-xml_url">XML Url</label>

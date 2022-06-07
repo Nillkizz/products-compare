@@ -1,4 +1,4 @@
-@props(['label', 'name' => '', 'type' => 'text', 'idPrefix' => '', 'class' => '', 'value' => ''])
+@props(['label', 'name' => '', 'type' => 'text', 'idPrefix' => '', 'class' => '', 'value' => '', 'iclass' => ''])
 @php
 $id = $idPrefix . $name;
 @endphp
@@ -7,6 +7,10 @@ $id = $idPrefix . $name;
   @isset($label)
     <label class="form-label" for="{{ $id }}">{{ $label }}</label>
   @endisset
-  <input type="{{ $type }}" class="form-control" id="{{ $id }}" name="{{ $name }}"
-    value="{{ old($name, $value) }}" {{ $attributes->merge() }}>
+  <div class="d-flex">
+    {!! $before_input ?? '' !!}
+    <input type="{{ $type }}" @class('form-control ' . $iclass) id="{{ $id }}" name="{{ $name }}"
+      value="{{ old($name, $value) }}" {{ $attributes->merge() }}>
+    {!! $after_input ?? '' !!}
+  </div>
 </div>

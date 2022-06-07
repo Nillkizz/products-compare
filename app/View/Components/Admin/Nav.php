@@ -24,6 +24,10 @@ class Nav extends Component
         ],
       ]
     ],
+    'admin.pages.index' => [
+      'title' => 'Pages',
+      'icon' => 'fa fa-file-lines'
+    ],
     [
       'title' => 'Settings',
       'icon' => 'fa fa-screwdriver-wrench',

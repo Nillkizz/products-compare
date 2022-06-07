@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
 
 class Page extends Model implements HasStatus
 {
@@ -22,8 +21,8 @@ class Page extends Model implements HasStatus
   {
     $files = File::files(resource_path('views/public/page_templates'));
     $fileNames = array_map(fn ($f) => $f->getFilename(), $files);
-    $template_names = array_map(fn ($fn) => (string) Str::of($fn)->rtrim('.php')->rtrim('.blade'), $fileNames);
-    $templates = array_map(fn ($fn) => self::TEMPLATE_PREFIX . (string) Str::of($fn)->rtrim('.php')->rtrim('.blade'), $template_names);
+    $template_names = array_map(fn ($filename) => preg_replace('/(\.blade)?\.php$/', '', $filename), $fileNames);
+    $templates = array_map(fn ($template_name) => self::TEMPLATE_PREFIX . $template_name, $template_names);
     return array_combine($template_names, $templates);
   }
 

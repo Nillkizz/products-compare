@@ -164,7 +164,7 @@ $columns = [['name' => 'ID', 'value' => 'id']];
             </table>
           </div>
         @else
-          <p>No {{ $name . s }}. <a href="?">Reset filters</a></p>
+          <p class="p-3">No {{ $name . 's' }}. <a href="?">Reset filters</a></p>
         @endif
         <!-- END All Products Table -->
         {{ $items->onEachSide(1)->links() }}

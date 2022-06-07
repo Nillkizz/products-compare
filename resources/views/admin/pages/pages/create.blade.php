@@ -68,6 +68,14 @@
                     style="width: 0; margin-right: -10px; padding-left: 10px; z-index: 100;">/</span></x-slot>
               </x-form.input>
 
+              <div class="input-group with_btn mb-3">
+                <select class="form-select" id="example-select" name="template">
+                  @foreach (App\Models\Page::getTemplates() as $tn => $t)
+                    <option value="{{ $t }}" @selected($t == old('template'))>{{ $tn }}</option>
+                  @endforeach
+                </select>
+              </div>
+
               <div>
                 <label class="form-label">Description</label>
                 <textarea class="form-control mb-3" name="description" cols="30" rows="5">{{ old('description') }}</textarea>

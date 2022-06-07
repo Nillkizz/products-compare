@@ -17,6 +17,6 @@ class PageController extends AbstractPublicPageController
       'page' => $page->instance
     ];
 
-    return view('public.page', $data);
+    return view($page->getView(), $data);
   }
 }

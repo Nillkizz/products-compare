@@ -22,6 +22,11 @@ class PageService
     return Page::where($where)->firstOrFail();
   }
 
+  public function getView()
+  {
+    return $this->instance->template;
+  }
+
   public function setMeta()
   {
     meta()

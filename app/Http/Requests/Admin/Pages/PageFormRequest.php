@@ -30,6 +30,10 @@ class PageFormRequest extends FormRequest
       'name' => 'required|string|max:128',
       'title' => 'string|max:128',
       'path' => 'required|string',
+      'template' => [
+        'required', 'string',
+        Rule::in(Page::getTemplates())
+      ],
       'description' => 'string|max:500',
       'content' => 'string',
       'status' => Rule::in(Page::STATUSES)

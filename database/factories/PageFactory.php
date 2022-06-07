@@ -20,9 +20,9 @@ class PageFactory extends Factory
   {
     return [
       'name' => $name = $this->faker->sentence(),
-      'prefix_url' => $this->faker->word(),
-      'slug' => $this->faker->unique()->slug(),
+      'path' => $this->faker->unique()->word(),
       'title' => $name,
+      'template' => $this->faker->randomElement(Page::getTemplates()),
       'description' => $this->faker->paragraphs(3, true),
       'content' => $this->faker->realText(),
       'status' => $this->faker->randomElement(Page::STATUSES)

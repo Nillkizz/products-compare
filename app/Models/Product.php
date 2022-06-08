@@ -27,6 +27,11 @@ class Product extends Model implements HasMedia
     return $this->belongsTo(Merchant::class);
   }
 
+  public function search_conversions()
+  {
+    return $this->hasMany(SearchConversion::class);
+  }
+
   public function previewUrl($conversion = null, $withFallback = true)
   {
     return Images::modelImageHandler($this, 'preview', $withFallback, $conversion);

@@ -14,6 +14,11 @@ class Search extends Model
     return Product::search($this->query_string);
   }
 
+  public function search_conversions()
+  {
+    return $this->hasMany(SearchConversion::class);
+  }
+
   public function getFirstProduct()
   {
     $product = null;

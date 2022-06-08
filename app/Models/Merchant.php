@@ -7,6 +7,7 @@ use App\Models\Traits\Slugable;
 use Helpers\Images;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -42,6 +43,11 @@ class Merchant extends Model implements HasMedia
   public function reviews()
   {
     return $this->hasMany(MerchantReview::class);
+  }
+
+  public function search_conversions()
+  {
+    return $this->hasMany(SearchConversion::class);
   }
 
   public function getReviewsReport()
@@ -86,6 +92,16 @@ class Merchant extends Model implements HasMedia
   public function logoUrl($conversion = null, $withFallback = false)
   {
     return Images::modelImageHandler($this, 'logo', $withFallback, $conversion);
+  }
+
+  public function popularSearches(int|null $limit = null)
+  {
+    $seraches = Search::leftJoin('search_conversions', 'searches.id', '=', 'search_conversions.search_id')
+      ->selectRaw('searches.query_string as query_string, count(search_conversions.id) as conversions')
+      ->groupBy('searches.id')
+      ->orderBy('conversions');
+    if ($limit !== null) $seraches->limit($limit);
+    return $seraches;
   }
 
   public function registerMediaCollections(): void

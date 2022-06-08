@@ -49,14 +49,15 @@
         </div>
       </section>
 
-      {{-- <div class="popular-categories">
+      <section class="popular-categories mb-5">
         <h2 class="fs-5 mb-2">Popular categories</h2>
         <div class="d-flex ms-2 flex-wrap gap-4">
-          @foreach ($contacts as $contact)
-            <a class="contact__name fs-6">Category</a>
+          @foreach ($popularSearches as $search)
+            <a class="contact__name fs-6"
+              href="{{ route('search', ['s' => $search->query_string]) }}">{{ $search->query_string }}</a>
           @endforeach
         </div>
-      </div> --}}
+      </section>
 
       {{-- <div class="popular-products">
         <h2 class="fs-5 mb-2">Popular categories</h2>

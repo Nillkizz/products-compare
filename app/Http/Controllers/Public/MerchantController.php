@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Public;
 
 use App\Models\Merchant;
+use App\Models\Search;
 use Illuminate\Http\Request;
 
 class MerchantController extends AbstractPublicPageController
@@ -17,7 +18,8 @@ class MerchantController extends AbstractPublicPageController
       'logo' => $merchant_logo,
       'merchant' => $merchant,
       'contacts' => $merchant->contacts,
-      'reviews' => $merchant->reviews()->paginate(20)
+      'reviews' => $merchant->reviews()->paginate(20),
+      'popularSearches' => $merchant->popularSearches(8)->get()
     ];
 
     meta()->set('title', 'Merchant ' . $merchant->site);

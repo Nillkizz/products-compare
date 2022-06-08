@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\Searchable;
+use App\Models\Traits\Slugable;
 use Helpers\Images;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,14 +13,14 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Merchant extends Model implements HasMedia
 {
-  use HasFactory, InteractsWithMedia, Searchable;
+  use HasFactory, InteractsWithMedia, Searchable, Slugable;
 
   const SEARCH_COLUMN = 'name';
 
   const contactTypes = [
-    ['value' => 'phone', 'verbose' => 'Phone'],
-    ['value' => 'email', 'verbose' => 'Email'],
-    ['value' => 'address', 'verbose' => 'Address']
+    'phone' => ['value' => 'phone', 'verbose' => 'Phone'],
+    'email' => ['value' => 'email', 'verbose' => 'Email'],
+    'address' => ['value' => 'address', 'verbose' => 'Address']
   ];
 
   protected $fillable = ['name', 'slug', 'site', 'xml_url', 'published', 'contacts'];
@@ -27,6 +28,11 @@ class Merchant extends Model implements HasMedia
     'contacts' => 'array',
     'published' => 'boolean',
   ];
+
+  static function getVerboseContactType($contact)
+  {
+    return static::contactTypes[$contact['type']]['verbose'];
+  }
 
   public function products()
   {
@@ -38,9 +44,19 @@ class Merchant extends Model implements HasMedia
     return $this->hasMany(MerchantReview::class);
   }
 
-  public function registerMediaCollections(): void
+  public function getReviewsReport()
   {
-    $this->addMediaCollection('logo')->singleFile();
+    $total_count = $this->reviews->count();
+    $report = [];
+
+    for ($i = 1; $i <= 5; $i++) {
+      $report[$i] = [
+        'count' => $count = $this->reviews->where('stars', $i)->count(),
+        'percent' => $percent = (int) round($count / ($total_count / 100)),
+        'text' => "$i star, $count reviews ($percent%)"
+      ];
+    }
+    return $report;
   }
 
   public function recalculate_rate()
@@ -62,6 +78,20 @@ class Merchant extends Model implements HasMedia
     return $this->reviews_count;
   }
 
+  public function removeLogo()
+  {
+    $this->clearMediaCollection('logo');
+  }
+
+  public function logoUrl($conversion = null, $withFallback = false)
+  {
+    return Images::modelImageHandler($this, 'logo', $withFallback, $conversion);
+  }
+
+  public function registerMediaCollections(): void
+  {
+    $this->addMediaCollection('logo')->singleFile();
+  }
   public function registerMediaConversions(Media $media = null): void
   {
     $this->addMediaConversion('h35')
@@ -71,10 +101,5 @@ class Merchant extends Model implements HasMedia
     $this->addMediaConversion('h70')
       ->height(70)
       ->performOnCollections('logo');
-  }
-
-  public function logoUrl($conversion = null, $withFallback = false)
-  {
-    return Images::modelImageHandler($this, 'logo', $withFallback, $conversion);
   }
 }

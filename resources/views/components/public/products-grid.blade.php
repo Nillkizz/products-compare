@@ -5,7 +5,7 @@
     @foreach ($products as $product)
       <div class="col-12 col-sm-6 col-lg-3">
         <div class="position-relative product card h-100 rounded-1 p-3 pb-2">
-          <a href="javascript:void(0)" data-hl="{{ base64_encode($product->link) }}">
+          <a href="{{ route('merchant', ['slug' => $product->merchant->slug]) }}">
             <div class="merchant row">
               <div class="left col-6">
                 <div class="site fs-8 mb-1">{{ $product->merchant->site }}</div>

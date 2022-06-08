@@ -111,6 +111,7 @@ $routes = [
                   <th class="d-none d-md-table-cell text-center" style="width: 120px">Added</th>
                   <th class="d-none d-md-table-cell text-center" style="width: 200px">Rating</th>
                   <th>Merchant</th>
+                  <th class="d-none d-sm-table-cell text-center" style="width: 160px">Site</th>
                   <th class="d-none d-sm-table-cell text-center" style="width: 100px">Products</th>
                   <th class="text-center" style="width: 150px">Actions</th>
                 </tr>
@@ -129,6 +130,9 @@ $routes = [
                     </td>
                     <td>
                       <a class="fw-semibold" href="{{ $item->link }}">{{ $item->name }}</a>
+                    </td>
+                    <td class="fw-semibold d-none d-sm-table-cell">
+                      {{ $item->site }}
                     </td>
                     <td class="fw-semibold d-none d-sm-table-cell text-center">
                       {{ $item->products->count() }}

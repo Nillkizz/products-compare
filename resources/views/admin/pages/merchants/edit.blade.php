@@ -69,8 +69,12 @@
               <x-form.input class="col-sm-6" name="site" label="Site" :value="$merchant->site" />
 
               <div class="col-xl-6 row mx-0 mb-4 px-0">
-                <div class="col-2 col-xl-4 d-flex justify-content-center">
+                <div class="col-2 col-xl-4 d-flex justify-content-center position-relative">
                   <img src="{{ $merchant->logoUrl('h70') }}" alt="Logo" height="70">
+                  @unless(empty($merchant->logoUrl('h70')))
+                    <button class="btn btn-outline-danger position-absolute end-0 top-0 p-1 px-2" type="submit"
+                      name="action" value="removeLogo"><i class="d-block fa fa-close"></i></button>
+                  @endunless
                 </div>
                 <x-form.input class="col-10 col-xl-8" name="logo" label="Choose a new logo" type="file" />
               </div>

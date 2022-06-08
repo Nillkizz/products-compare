@@ -55,8 +55,14 @@ class MerchantController extends AbstractAdminPageController
 
   public function update(UpdateMerchantFormRequest $request, Merchant $merchant)
   {
-    $merchant->update($request->validated());
-    if ($request->hasFile('logo')) $merchant->addMediaFromRequest('logo')->toMediaCollection('logo');
+    switch ($request->get('action')) {
+      case 'removeLogo':
+        $merchant->removeLogo();
+        break;
+      default:
+        $merchant->update($request->validated());
+        if ($request->hasFile('logo')) $merchant->addMediaFromRequest('logo')->toMediaCollection('logo');
+    }
 
     return redirect()->route('admin.merchants.edit', compact('merchant'))->with(['notify' => [
       'status' => 'success',

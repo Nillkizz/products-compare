@@ -8,6 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class MerchantReview extends Model
 {
   use HasFactory;
+  protected $casts = ['questions' => 'array'];
+  const QUESTIONS = [
+    [
+      'question' => 'Goods match the description?',
+      'answer' => 'Corresponds to the description'
+    ],
+    [
+      'question' => 'Are you satisfied with the service?',
+      'answer' => 'Satisfied with the service'
+    ],
+    [
+      'question' => 'Are you satisfied with the delivery?',
+      'answer' => 'Satisfied with the delivery'
+    ]
+  ];
 
   public function merchant()
   {

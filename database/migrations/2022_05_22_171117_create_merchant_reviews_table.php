@@ -19,9 +19,7 @@ return new class extends Migration
       $table->timestamps();
       $table->foreignIdFor(Merchant::class);
       $table->smallInteger('stars');
-      $table->boolean('is_good_service');
-      $table->boolean('is_good_delivery');
-      $table->boolean('is_correspond_description');
+      $table->json('questions');
       $table->text('text');
     });
   }

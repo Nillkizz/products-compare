@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\MerchantReview;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,11 +17,13 @@ class MerchantReviewFactory extends Factory
    */
   public function definition()
   {
+    $questions = array_map(function ($q) {
+      return ['question' => $q['question'], 'answer' => $this->faker->boolean(), 'text' => $q['answer']];
+    }, $this->faker->randomElements(MerchantReview::QUESTIONS, rand(0, count(MerchantReview::QUESTIONS))));
+
     return [
       'stars' => $this->faker->numberBetween(1, 5),
-      'is_good_service' => $this->faker->boolean(),
-      'is_good_delivery' => $this->faker->boolean(),
-      'is_correspond_description' => $this->faker->boolean(),
+      'questions' => $questions,
       'text' => $this->faker->paragraph()
     ];
   }

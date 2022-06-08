@@ -103,8 +103,17 @@
                 </div>
                 <div class="d-inline-block date text-muted">{{ $review->created_at->format('Y-m-d') }}</div>
               </div>
-              <div class="text">
+              <div class="text mb-2">
                 {{ $review->text }}
+              </div>
+              <div class="questions">
+                @foreach ($review->questions as $question)
+                  <div @class([
+                      'question',
+                      'text-success' => $question['answer'],
+                      'text-danger' => !$question['answer'],
+                  ])>{{ $question['text'] }}</div>
+                @endforeach
               </div>
             </div>
             <hr>

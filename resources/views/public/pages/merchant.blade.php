@@ -85,7 +85,8 @@
           <div class="bar">
             @foreach ($merchant->getReviewsReport() as $stars => $rr)
               @if ($rr['count'] > 0)
-                <div class="d-flex reviews-col stars{{ $stars }} gap-1" style="width:{{ $rr['percent'] }}%"
+                <a class="d-flex reviews-col stars{{ $stars }} gap-1" style="width:{{ $rr['percent'] }}%"
+                  href="{{ route('merchant', ['slug' => $merchant->slug, 'stars' => $stars]) }}"
                   title="{{ $rr['text'] }}">
                   @if ($rr['percent'] > 10)
                     <span class="ms-1 fw-bold">{{ $stars }}</span>
@@ -96,12 +97,17 @@
                   @if ($rr['percent'] > 30)
                     <span class="fs-7">{{ $rr['percent'] }}%</span>
                   @endif
-                </div>
+                </a>
               @endif
             @endforeach
           </div>
+          @unless(empty($reviewsStars))
+            <div>Showed reviews with {{ $reviewsStars }} stars.<br> You can <a
+                href="{{ route('merchant', ['slug' => $merchant->slug]) }}">reset filter</a> for show all
+              reviews.</div>
+          @endunless
+          <hr>
         </div>
-
         <div class="reviews-list">
           @foreach ($reviews as $review)
             <div class="review-item">

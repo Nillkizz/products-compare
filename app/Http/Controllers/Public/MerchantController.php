@@ -18,7 +18,8 @@ class MerchantController extends AbstractPublicPageController
       'logo' => $merchant_logo,
       'merchant' => $merchant,
       'contacts' => $merchant->contacts,
-      'reviews' => $merchant->reviews()->paginate(20),
+      'reviews' => $merchant->getReviewsByStars($request->input('stars'))->paginate(20),
+      'reviewsStars' => $request->input('stars'),
       'popularSearches' => $merchant->popularSearches(8)->get(),
       'popularProducts' => $merchant->popularProducts(8)->get()
     ];

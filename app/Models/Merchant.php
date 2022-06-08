@@ -84,6 +84,13 @@ class Merchant extends Model implements HasMedia
     return $this->reviews_count;
   }
 
+  public function getReviewsByStars(int|null $stars = null)
+  {
+    $reviews = $this->reviews();
+    if ($stars !== null) $reviews->where('stars', $stars);
+    return $reviews;
+  }
+
   public function removeLogo()
   {
     $this->clearMediaCollection('logo');

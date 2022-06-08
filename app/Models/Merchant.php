@@ -104,6 +104,16 @@ class Merchant extends Model implements HasMedia
     return $seraches;
   }
 
+  public function popularProducts(int|null $limit = null)
+  {
+    $seraches = Product::leftJoin('search_conversions', 'products.id', '=', 'search_conversions.product_id')
+      ->selectRaw('products.id as id, products.name as name, count(search_conversions.id) as conversions')
+      ->groupBy('products.id')
+      ->orderBy('conversions');
+    if ($limit !== null) $seraches->limit($limit);
+    return $seraches;
+  }
+
   public function registerMediaCollections(): void
   {
     $this->addMediaCollection('logo')->singleFile();

@@ -59,15 +59,22 @@
         </div>
       </section>
 
-      {{-- <div class="popular-products">
-        <h2 class="fs-5 mb-2">Popular categories</h2>
-        <div class="d-flex ms-2 flex-wrap gap-4">
-          @foreach ($contacts as $contact)
-            <a class="contact__name fs-6">Category</a>
+      <section class="popular-categories mb-5">
+        <h2 class="fs-5 mb-2">Popular products</h2>
+        <div class="d-flex ms-2 flex-wrap gap-2">
+          @foreach ($popularProducts as $product)
+            <a class="contact__name fs-6 card w-100" href="{{ route('search', ['s' => $product->name]) }}"
+              style="max-width: 100px;">
+              <div class="card-body p-2">
+                <div class="img mb-2">
+                  <img src="{{ $product->previewUrl('85x85') }}" class="w-100">
+                </div>
+                <h3 class="fs-7 m-0 overflow-hidden" style="height: 2rem;">{{ $product->name }}</h3>
+              </div>
+            </a>
           @endforeach
         </div>
-      </div> --}}
-
+      </section>
 
       <section class="reviews card card-body">
         <div class="heading">

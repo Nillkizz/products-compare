@@ -19,7 +19,8 @@ class MerchantController extends AbstractPublicPageController
       'merchant' => $merchant,
       'contacts' => $merchant->contacts,
       'reviews' => $merchant->reviews()->paginate(20),
-      'popularSearches' => $merchant->popularSearches(8)->get()
+      'popularSearches' => $merchant->popularSearches(8)->get(),
+      'popularProducts' => $merchant->popularProducts(8)->get()
     ];
 
     meta()->set('title', 'Merchant ' . $merchant->site);

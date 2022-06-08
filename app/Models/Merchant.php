@@ -58,7 +58,7 @@ class Merchant extends Model implements HasMedia
     for ($i = 1; $i <= 5; $i++) {
       $report[$i] = [
         'count' => $count = $this->reviews->where('stars', $i)->count(),
-        'percent' => $percent = (int) round($count / ($total_count / 100)),
+        'percent' => $percent = $total_count > 0 ? (int) round($count / ($total_count / 100)) : 0,
         'text' => "$i star, $count reviews ($percent%)"
       ];
     }

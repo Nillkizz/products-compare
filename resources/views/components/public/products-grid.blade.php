@@ -18,7 +18,7 @@
               </div>
             </div>
           </a>
-          <a href="javascript:void(0)" data-hl="{{ base64_encode($product->link) }}">
+          <a href="{{ route('goto_product', compact('product')) }}">
             <div @class('card-body pb-0')>
               <div class="photo mt-2 mb-4">
                 <img class="w-100 rounded-3 h-auto" src="{{ $product->previewUrl('210x210') }}" width="205"

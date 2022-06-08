@@ -18,7 +18,7 @@
               </div>
             </div>
           </a>
-          <a href="{{ route('goto_product', compact('product')) }}">
+          <a href="{{ route('goto_product', ['product' => $product, 'search' => request()->input('s')]) }}">
             <div @class('card-body pb-0')>
               <div class="photo mt-2 mb-4">
                 <img class="w-100 rounded-3 h-auto" src="{{ $product->previewUrl('210x210') }}" width="205"

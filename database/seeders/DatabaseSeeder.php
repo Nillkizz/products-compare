@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
 
       MerchantSeeder::class,
       ProductSeeder::class,
+      SearchSeeder::class,
+      SearchConversionSeeder::class,
       SiteOptionSeeder::class,
     ]);
   }

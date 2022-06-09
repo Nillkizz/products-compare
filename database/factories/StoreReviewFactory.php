@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\MerchantReview;
+use App\Models\StoreReview;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\MerchantReview>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\StoreReview>
  */
-class MerchantReviewFactory extends Factory
+class StoreReviewFactory extends Factory
 {
   /**
    * Define the model's default state.
@@ -19,7 +19,7 @@ class MerchantReviewFactory extends Factory
   {
     $questions = array_map(function ($q) {
       return ['question' => $q['question'], 'answer' => $this->faker->boolean(), 'text' => $q['answer']];
-    }, $this->faker->randomElements(MerchantReview::QUESTIONS, rand(0, count(MerchantReview::QUESTIONS))));
+    }, $this->faker->randomElements(StoreReview::QUESTIONS, rand(0, count(StoreReview::QUESTIONS))));
 
     return [
       'stars' => $this->faker->numberBetween(1, 5),

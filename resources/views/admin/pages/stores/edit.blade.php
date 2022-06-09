@@ -59,19 +59,19 @@
         @endif
         <div class="row justify-content-center">
           <div class="col-md-10 col-lg-8">
-            <form class="row" action="{{ route('admin.merchants.update', compact('merchant')) }}"
-              method="POST" enctype="multipart/form-data">
+            <form class="row" action="{{ route('admin.stores.update', compact('store')) }}" method="POST"
+              enctype="multipart/form-data">
               @method('PUT')
               @csrf
-              <x-form.input class="col-3" label="ID" :value="$merchant->id" readonly />
-              <x-form.input class="col-9" name="name" label="Name" :value="$merchant->name" />
-              <x-form.input class="col-sm-6" name="slug" label="Slug" data-type="slug" :value="$merchant->slug" />
-              <x-form.input class="col-sm-6" name="site" label="Site" :value="$merchant->site" />
+              <x-form.input class="col-3" label="ID" :value="$store->id" readonly />
+              <x-form.input class="col-9" name="name" label="Name" :value="$store->name" />
+              <x-form.input class="col-sm-6" name="slug" label="Slug" data-type="slug" :value="$store->slug" />
+              <x-form.input class="col-sm-6" name="site" label="Site" :value="$store->site" />
 
               <div class="col-xl-6 row mx-0 mb-4 px-0">
                 <div class="col-2 col-xl-4 d-flex justify-content-center position-relative">
-                  <img src="{{ $merchant->logoUrl('h70') }}" alt="Logo" height="70">
-                  @unless(empty($merchant->logoUrl('h70')))
+                  <img src="{{ $store->logoUrl('h70') }}" alt="Logo" height="70">
+                  @unless(empty($store->logoUrl('h70')))
                     <button class="btn btn-outline-danger position-absolute end-0 top-0 p-1 px-2" type="submit"
                       name="action" value="removeLogo"><i class="d-block fa fa-close"></i></button>
                   @endunless
@@ -80,20 +80,20 @@
               </div>
 
               <div class="col-xl-6 mb-4">
-                <label class="form-label" for="merchant-xml_url">XML Url</label>
+                <label class="form-label" for="store-xml_url">XML Url</label>
                 <div class="input-group" x-data="{ changed: false }">
-                  <input type="text" class="form-control" id="merchant-xml_url" name="xml_url"
-                    value="{{ old('xml_url', $merchant->xml_url) }}" @@change="changed=true">
+                  <input type="text" class="form-control" id="store-xml_url" name="xml_url"
+                    value="{{ old('xml_url', $store->xml_url) }}" @@change="changed=true">
                   <a class="btn btn-outline-primary" :disabled="changed"
                     @@click="e=>{ if (changed) {swal.fire('First save changes!'); e.preventDefault() } }"
-                    href="{{ route('admin.merchant.do_xml_import_products', compact('merchant')) }}">Import now</a>
+                    href="{{ route('admin.store.do_xml_import_products', compact('store')) }}">Import now</a>
                 </div>
               </div>
 
-              <div class="row contacts mx-0 mb-4 px-0" x-data="Laravel.editMerchant">
+              <div class="row contacts mx-0 mb-4 px-0" x-data="Laravel.editStore">
                 <script>
-                  Laravel.editMerchant = {
-                    contacts: {{ Js::from($merchant->contacts) }}
+                  Laravel.editStore = {
+                    contacts: {{ Js::from($store->contacts) }}
                   };
                 </script>
                 <div class="form-label">Contacts</div>
@@ -103,7 +103,7 @@
 
                     <select class="form-select" id="example-select" :name="`contacts[${idx}][type]`"
                       x-model="c.type">
-                      @foreach ($merchant::contactTypes as $ct)
+                      @foreach ($store::contactTypes as $ct)
                         <option value="{{ $ct['value'] }}" :selected="'{{ $ct['value'] }}' == c.type">
                           {{ $ct['verbose'] }}
                         </option>
@@ -125,9 +125,9 @@
                 <div>
                   <label class="form-label">Published?</label>
                   <div class="form-check form-switch">
-                    <label class="form-check-label" for="merchant-published"></label>
-                    <input class="form-check-input" type="checkbox" value="1" id="merchant-published" name="published"
-                      @checked($merchant->published)>
+                    <label class="form-check-label" for="store-published"></label>
+                    <input class="form-check-input" type="checkbox" value="1" id="store-published" name="published"
+                      @checked($store->published)>
                   </div>
                 </div>
 
@@ -147,7 +147,7 @@
   <x-slot name="js_after">
     <script src="{{ asset('static/core/js/plugins/select2/js/select2.full.min.js') }}"></script>
 
-    <script src="{{ mix('static/admin/js/pages/merchants/edit.js') }}"></script>
+    <script src="{{ mix('static/admin/js/pages/stores/edit.js') }}"></script>
   </x-slot>
 
 </x-admin.layouts.admin>

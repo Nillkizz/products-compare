@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MerchantReview extends Model
+class StoreReview extends Model
 {
   use HasFactory;
   protected $casts = ['questions' => 'array'];
@@ -24,8 +24,8 @@ class MerchantReview extends Model
     ]
   ];
 
-  public function merchant()
+  public function store()
   {
-    return $this->belongsTo(Merchant::class);
+    return $this->belongsTo(Store::class);
   }
 }

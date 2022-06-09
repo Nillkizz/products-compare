@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Merchant;
+use App\Models\Store;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -35,7 +35,7 @@ return new class extends Migration
       $table->boolean('adult')->default(false);
       $table->boolean('over_the_counter_medicine')->default(false);
 
-      $table->foreignIdFor(Merchant::class)->constrained()->cascadeOnDelete();
+      $table->foreignIdFor(Store::class)->constrained()->cascadeOnDelete();
       $table->timestamps();
 
       $table->longText('search_string')->storedAs(

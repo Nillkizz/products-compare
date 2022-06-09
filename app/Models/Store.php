@@ -12,7 +12,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Merchant extends Model implements HasMedia
+class Store extends Model implements HasMedia
 {
   use HasFactory, InteractsWithMedia, Searchable, Slugable;
 
@@ -42,7 +42,7 @@ class Merchant extends Model implements HasMedia
 
   public function reviews()
   {
-    return $this->hasMany(MerchantReview::class);
+    return $this->hasMany(StoreReview::class);
   }
 
   public function search_conversions()

@@ -5,8 +5,8 @@
 
         <section class="d-flex mb-3 flex-wrap gap-5">
           <div>
-            <a href="http://{{ $merchant->site }}" class="text-dark">
-              <h1 class="fs-2 mb-2">{{ $merchant->site }}</h1>
+            <a href="http://{{ $store->site }}" class="text-dark">
+              <h1 class="fs-2 mb-2">{{ $store->site }}</h1>
             </a>
             <div class="logo">
               @if ($hasLogo)
@@ -16,9 +16,9 @@
         </div>
 
         <div class="text-center">
-          <div class="rating fs-2 fw-bold">{{ sprintf('%0.1f', $merchant->rate) }}</div>
-          <x-stars class="fs-3" :rate="$merchant->rate" :hideCount="true" />
-          <div class="reviewCount">Reviews: {{ $merchant->reviews_count }}</div>
+          <div class="rating fs-2 fw-bold">{{ sprintf('%0.1f', $store->rate) }}</div>
+          <x-stars class="fs-3" :rate="$store->rate" :hideCount="true" />
+          <div class="reviewCount">Reviews: {{ $store->reviews_count }}</div>
         </div>
       </section>
 
@@ -30,7 +30,7 @@
               $v = $contact['value'];
             @endphp
             <div class="contact" style="min-width: 150px">
-              <h3 class="contact__name fw-bold fs-6 m-0">{{ $merchant->getVerboseContactType($contact) }}</h3>
+              <h3 class="contact__name fw-bold fs-6 m-0">{{ $store->getVerboseContactType($contact) }}</h3>
               @switch($contact['type'])
                 @case('email')
                   <div class="contact__value"><a href="tel:{{ preg_replace('/\W/', '', $v) }}">{{ $v }}</a>
@@ -79,14 +79,14 @@
       <section class="reviews card card-body">
         <div class="heading">
           <h2 class="d-inline-block fs-5">Reviews</h2> <span
-            class="count">{{ $merchant->reviews_count }}</span>
+            class="count">{{ $store->reviews_count }}</span>
         </div>
         <div class="reviews_statistics">
           <div class="bar">
-            @foreach ($merchant->getReviewsReport() as $stars => $rr)
+            @foreach ($store->getReviewsReport() as $stars => $rr)
               @if ($rr['count'] > 0)
                 <a class="d-flex reviews-col stars{{ $stars }} gap-1" style="width:{{ $rr['percent'] }}%"
-                  href="{{ route('merchant', ['slug' => $merchant->slug, 'stars' => $stars]) }}"
+                  href="{{ route('store', ['slug' => $store->slug, 'stars' => $stars]) }}"
                   title="{{ $rr['text'] }}">
                   @if ($rr['percent'] > 10)
                     <span class="ms-1 fw-bold">{{ $stars }}</span>
@@ -103,7 +103,7 @@
           </div>
           @unless(empty($reviewsStars))
             <div>Showed reviews with {{ $reviewsStars }} stars.<br> You can <a
-                href="{{ route('merchant', ['slug' => $merchant->slug]) }}">reset filter</a> for show all
+                href="{{ route('store', ['slug' => $store->slug]) }}">reset filter</a> for show all
               reviews.</div>
           @endunless
           <hr>

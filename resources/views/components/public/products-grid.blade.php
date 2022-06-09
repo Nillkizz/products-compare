@@ -5,15 +5,15 @@
     @foreach ($products as $product)
       <div class="col-12 col-sm-6 col-lg-3">
         <div class="position-relative product card h-100 rounded-1 p-3 pb-2">
-          <a href="{{ route('merchant', ['slug' => $product->merchant->slug]) }}">
-            <div class="merchant row">
+          <a href="{{ route('store', ['slug' => $product->store->slug]) }}">
+            <div class="store row">
               <div class="left col-6">
-                <div class="site fs-8 mb-1">{{ $product->merchant->site }}</div>
-                <x-stars class="fs-7 me-auto" :count="$product->merchant->reviews_count" :rate="$product->merchant->rate" />
+                <div class="site fs-8 mb-1">{{ $product->store->site }}</div>
+                <x-stars class="fs-7 me-auto" :count="$product->store->reviews_count" :rate="$product->store->rate" />
               </div>
               <div class="logo text-end col-6">
-                @unless(empty($product->merchant->logoUrl('h35')))
-                  <img src="{{ $product->merchant->logoUrl('h35') }}" alt="{{ $product->merchant->name }}">
+                @unless(empty($product->store->logoUrl('h35')))
+                  <img src="{{ $product->store->logoUrl('h35') }}" alt="{{ $product->store->name }}">
                 @endunless
               </div>
             </div>

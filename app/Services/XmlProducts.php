@@ -16,21 +16,21 @@ class XmlProducts
     $this->products = self::prepareProducts(Arr::get(Xml2Array($xmlString), 'item', []));
   }
 
-  /** Imports products for provided merchant */
-  public function importFor($merchant)
+  /** Imports products for provided store */
+  public function importFor($store)
   {
     $validated = $this->validate();
 
-    $media = $merchant->products->map(fn ($p) => $p->media);
+    $media = $store->products->map(fn ($p) => $p->media);
     $media_ids = Arr::flatten($media->pluck('*.id'));
 
-    DB::transaction(function () use ($merchant, $validated) {
-      $merchant->products()->delete();
-      $merchant->products()->createMany($validated);
+    DB::transaction(function () use ($store, $validated) {
+      $store->products()->delete();
+      $store->products()->createMany($validated);
     }, 2);
     Media::destroy($media_ids);
 
-    $products = $merchant->fresh()->products;
+    $products = $store->fresh()->products;
     $products->each(function ($product) {
       if (empty($product->image_url)) return;
       $product->addMediaFromUrl($product->image_url)->toMediaCollection('preview');

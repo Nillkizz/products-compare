@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\GoToProductController;
 use App\Http\Controllers\Public\HomeController;
-use App\Http\Controllers\Public\MerchantController;
+use App\Http\Controllers\Public\StoreController;
 use App\Http\Controllers\Public\PageController as FrontPageController;
 use App\Http\Controllers\Public\SearchController;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [HomeController::class, 'show'])->name('home');
-Route::get('/store/{slug}', [MerchantController::class, 'show'])->name('merchant');
+Route::get('/store/{slug}', [StoreController::class, 'show'])->name('store');
 Route::get('/click.php', [GoToProductController::class, 'reloadToShop'])->name('goto_product');
 
 Route::get('/search', [SearchController::class, 'show'])->name('search');

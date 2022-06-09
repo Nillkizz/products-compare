@@ -9,24 +9,24 @@ class SearchConversion extends Model
 {
   use HasFactory;
 
-  protected $fillable = ['search_id', 'merchant_id', 'product_id'];
+  protected $fillable = ['search_id', 'store_id', 'product_id'];
 
   public function search()
   {
     $this->hasOne(search::class);
   }
 
-  public function merchant()
+  public function store()
   {
-    $this->hasOne(Merchant::class);
+    $this->hasOne(Store::class);
   }
   public function product()
   {
     $this->hasOne(Product::class);
   }
 
-  static function newConversion(Search $search, Merchant $merchant, Product $product)
+  static function newConversion(Search $search, Store $store, Product $product)
   {
-    return static::create(['search_id' => $search->id, 'merchant_id' => $merchant->id, 'product_id' => $product->id]);
+    return static::create(['search_id' => $search->id, 'store_id' => $store->id, 'product_id' => $product->id]);
   }
 }

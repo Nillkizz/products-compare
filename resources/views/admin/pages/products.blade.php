@@ -98,7 +98,7 @@
                   <th class="text-center" style="width: 70px;">ID</th>
                   <th class="d-none d-sm-table-cell text-center">Added</th>
                   <th>Product</th>
-                  <th class="d-none d-md-table-cell">Merchant</th>
+                  <th class="d-none d-md-table-cell">Store</th>
                   <th class="d-none d-sm-table-cell text-end">Price</th>
                   <th class="text-center">Actions</th>
                 </tr>
@@ -116,8 +116,8 @@
                       <a class="fw-semibold" href="{{ $product->link }}">{{ $product->name }}</a>
                     </td>
                     <td class="d-none d-md-table-cell">
-                      {{-- TODO: Change url to front merchant --}}
-                      <a href="{{ $product->link }}">{{ $product->merchant->name }}</a>
+                      {{-- TODO: Change url to front store --}}
+                      <a href="{{ $product->link }}">{{ $product->store->name }}</a>
                     </td>
                     <td class="text-end d-none d-sm-table-cell fs-sm">
                       <strong>€{{ $product->price }}</strong>

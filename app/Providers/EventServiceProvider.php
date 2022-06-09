@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\MerchantReview;
+use App\Models\StoreReview;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -28,9 +28,9 @@ class EventServiceProvider extends ServiceProvider
    */
   public function boot()
   {
-    MerchantReview::created(fn (MerchantReview $review) => $review->merchant->incr_rate());
-    MerchantReview::saved(fn (MerchantReview $review) => $review->merchant->recalculate_rate());
-    MerchantReview::deleted(fn (MerchantReview $review) => $review->merchant->decr_rate());
+    StoreReview::created(fn (StoreReview $review) => $review->store->incr_rate());
+    StoreReview::saved(fn (StoreReview $review) => $review->store->recalculate_rate());
+    StoreReview::deleted(fn (StoreReview $review) => $review->store->decr_rate());
   }
 
   /**

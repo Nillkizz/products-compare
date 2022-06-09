@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Merchant;
+use App\Models\Store;
 use App\Models\Product;
 use App\Models\Search;
 use Illuminate\Database\Migrations\Migration;
@@ -21,7 +21,7 @@ return new class extends Migration
 
       $table->foreignIdFor(Search::class);
 
-      $table->foreignIdFor(Merchant::class);
+      $table->foreignIdFor(Store::class);
       $table->foreignIdFor(Product::class);
 
       $table->timestamps();

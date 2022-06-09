@@ -18,7 +18,7 @@ class ProductFactory extends Factory
   public function definition()
   {
     return [
-      'merchant_id' => 1,
+      'store_id' => 1,
       'name' => $this->faker->words(2, true),
       'price' => $this->faker->randomNumber(4),
       'link' => $this->faker->unique()->url(),

@@ -22,9 +22,9 @@ class Product extends Model implements HasMedia
     'id', 'created_at', 'updated_at', 'search_string'
   ];
 
-  public function merchant()
+  public function store()
   {
-    return $this->belongsTo(Merchant::class);
+    return $this->belongsTo(Store::class);
   }
 
   public function search_conversions()

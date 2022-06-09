@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\MerchantController;
+use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SiteOptionController;
@@ -21,8 +21,8 @@ Route::prefix('admin')->group(function () {
 
     Route::resource('/pages', PageController::class)->except('show');
 
-    Route::resource('/merchants', MerchantController::class)->except('show');
-    Route::get('/merchants/{merchant}/do_xml_import_products', [MerchantController::class, 'do_xml_import_products'])->name('merchant.do_xml_import_products');
+    Route::resource('/stores', StoreController::class)->except('show');
+    Route::get('/stores/{store}/do_xml_import_products', [StoreController::class, 'do_xml_import_products'])->name('store.do_xml_import_products');
 
     Route::get('/products', [ProductController::class, 'list'])->name('products');
 

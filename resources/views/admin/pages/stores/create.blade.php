@@ -59,7 +59,7 @@
         @endif
         <div class="row justify-content-center">
           <div class="col-md-10 col-lg-8">
-            <form class="row" action="{{ route('admin.merchants.store') }}" method="POST"
+            <form class="row" action="{{ route('admin.stores.store') }}" method="POST"
               enctype="multipart/form-data">
               {{-- @method('') --}}
               @csrf
@@ -69,15 +69,15 @@
               <x-form.input name="logo" label="Choose a new logo" type="file" />
 
               <div class="mb-4">
-                <label class="form-label" for="merchant-xml_url">XML Url</label>
-                <input type="text" class="form-control" id="merchant-xml_url" name="xml_url"
+                <label class="form-label" for="store-xml_url">XML Url</label>
+                <input type="text" class="form-control" id="store-xml_url" name="xml_url"
                   value="{{ old('xml_url') }}">
               </div>
 
 
-              <div class="row contacts mx-0 mb-4 px-0" x-data="Laravel.editMerchant">
+              <div class="row contacts mx-0 mb-4 px-0" x-data="Laravel.editStore">
                 <script>
-                  Laravel.editMerchant = {
+                  Laravel.editStore = {
                     contacts: []
                   };
                 </script>
@@ -110,8 +110,8 @@
                 <div>
                   <label class="form-label">Published?</label>
                   <div class="form-check form-switch">
-                    <label class="form-check-label" for="merchant-published"></label>
-                    <input class="form-check-input" type="checkbox" value="1" id="merchant-published" name="published"
+                    <label class="form-check-label" for="store-published"></label>
+                    <input class="form-check-input" type="checkbox" value="1" id="store-published" name="published"
                       @checked(old('published'))>
                   </div>
                 </div>
@@ -132,7 +132,7 @@
   <x-slot name="js_after">
     <script src="{{ asset('static/core/js/plugins/select2/js/select2.full.min.js') }}"></script>
 
-    <script src="{{ mix('static/admin/js/pages/merchants/edit.js') }}"></script>
+    <script src="{{ mix('static/admin/js/pages/stores/edit.js') }}"></script>
   </x-slot>
 
 </x-admin.layouts.admin>

@@ -1,14 +1,14 @@
 @php
-$allItemsCount = $allMerchantsCount;
-$items = $merchants;
-$name = 'Merchant';
-$itemName = 'merchant';
+$allItemsCount = $allStoresCount;
+$items = $stores;
+$name = 'Store';
+$itemName = 'store';
 
 $routes = [
-    'create' => 'admin.merchants.create',
-    'edit' => 'admin.merchants.edit',
-    'show' => 'merchant',
-    'destroy' => 'admin.merchants.destroy',
+    'create' => 'admin.stores.create',
+    'edit' => 'admin.stores.edit',
+    'show' => 'store',
+    'destroy' => 'admin.stores.destroy',
 ];
 
 @endphp
@@ -110,7 +110,7 @@ $routes = [
                   <th class="text-center" style="width: 70px;">ID</th>
                   <th class="d-none d-md-table-cell text-center" style="width: 120px">Added</th>
                   <th class="d-none d-md-table-cell text-center" style="width: 200px">Rating</th>
-                  <th>Merchant</th>
+                  <th>Store</th>
                   <th class="d-none d-sm-table-cell text-center" style="width: 160px">Site</th>
                   <th class="d-none d-sm-table-cell text-center" style="width: 100px">Products</th>
                   <th class="text-center" style="width: 150px">Actions</th>

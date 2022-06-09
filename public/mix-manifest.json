@@ -3,7 +3,7 @@
     "/static/core/js/alpine.js": "/static/core/js/alpine.js",
     "/static/admin/js/app.js": "/static/admin/js/app.js",
     "/static/admin/js/pages/site_options.js": "/static/admin/js/pages/site_options.js",
-    "/static/admin/js/pages/merchants/edit.js": "/static/admin/js/pages/merchants/edit.js",
+    "/static/admin/js/pages/stores/edit.js": "/static/admin/js/pages/stores/edit.js",
     "/static/public/js/app.js": "/static/public/js/app.js",
     "/static/public/css/app.css": "/static/public/css/app.css",
     "/static/admin/css/app.css": "/static/admin/css/app.css",

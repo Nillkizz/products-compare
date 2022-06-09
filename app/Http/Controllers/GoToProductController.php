@@ -14,10 +14,10 @@ class GoToProductController extends Controller
     $search = Search::firstOrCreate(['query_string' => $request->input('search')]);
     $product = Product::where(['id' => $request->get('product')])->firstOrFail();
 
-    SearchConversion::newConversion($search, $product->merchant, $product);
+    SearchConversion::newConversion($search, $product->store, $product);
 
     $data = [
-      'site' => $product->merchant->site,
+      'site' => $product->store->site,
       'target_url' => $product->link,
     ];
     return view('reload-to-shop', $data);

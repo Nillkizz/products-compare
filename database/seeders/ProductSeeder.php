@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Merchant;
+use App\Models\Store;
 use App\Services\XmlProducts;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,14 +21,14 @@ class ProductSeeder extends Seeder
     $products_xmls = $storage->files('products');
 
 
-    foreach (Merchant::all() as $idx => $merchant) {
+    foreach (Store::all() as $idx => $store) {
       if (count($products_xmls) <= $idx) continue;
 
       $file = $products_xmls[$idx];
       echo $file;
 
       $xmlProducts = new XmlProducts($storage->get($file), true);
-      $xmlProducts->importFor($merchant);
+      $xmlProducts->importFor($store);
 
       echo " Done!\n";
     };

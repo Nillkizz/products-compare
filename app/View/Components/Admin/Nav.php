@@ -16,8 +16,8 @@ class Nav extends Component
       'title' => 'Store',
       'icon' => 'fa fa-store',
       'submenu' => [
-        'admin.merchants.index' => [
-          'title' => 'Merchants',
+        'admin.stores.index' => [
+          'title' => 'Stores',
         ],
         'admin.products' => [
           'title' => 'Products',

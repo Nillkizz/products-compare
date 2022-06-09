@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Merchant;
+use App\Models\Store;
 use App\Models\Product;
 use App\Models\Search;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -21,7 +21,7 @@ class SearchConversionFactory extends Factory
   {
     return [
       'search_id' => Search::all()->random()->id,
-      'merchant_id' => Merchant::all()->random()->id,
+      'store_id' => Store::all()->random()->id,
       'product_id' => Product::all()->random()->id,
     ];
   }

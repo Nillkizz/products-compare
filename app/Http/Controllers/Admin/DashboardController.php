@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Merchant;
+use App\Models\Store;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -24,12 +24,12 @@ class DashboardController extends AbstractAdminPageController
           'url' => route('admin.products')
         ],
         [
-          'title' => 'Merchants',
+          'title' => 'Stores',
           'class' => 'col-6 col-sm-3',
           'icon' => 'fa-store',
-          'value' => Merchant::count(),
-          'link' => 'Go to merchants',
-          'url' => route('admin.merchants.index')
+          'value' => Store::count(),
+          'link' => 'Go to stores',
+          'url' => route('admin.stores.index')
         ]
       ]
     ];

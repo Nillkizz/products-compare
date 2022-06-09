@@ -9,6 +9,8 @@ class Search extends Model
 {
   use HasFactory;
 
+  protected $fillable = ['query_string'];
+
   public function getProducts()
   {
     return Product::search($this->query_string);

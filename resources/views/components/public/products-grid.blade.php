@@ -5,7 +5,7 @@
     @foreach ($products as $product)
       <div class="col-12 col-sm-6 col-lg-3">
         <div class="position-relative product card h-100 rounded-1 p-3 pb-2">
-          <a href="{{ route('store', ['slug' => $product->store->slug]) }}">
+          <a href="{{ route('store', ['store' => $product->store]) }}">
             <div class="store row">
               <div class="left col-6">
                 <div class="site fs-8 mb-1">{{ $product->store->site }}</div>

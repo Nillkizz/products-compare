@@ -86,8 +86,7 @@
             @foreach ($store->getReviewsReport() as $stars => $rr)
               @if ($rr['count'] > 0)
                 <a class="d-flex reviews-col stars{{ $stars }} gap-1" style="width:{{ $rr['percent'] }}%"
-                  href="{{ route('store', ['slug' => $store->slug, 'stars' => $stars]) }}"
-                  title="{{ $rr['text'] }}">
+                  href="{{ route('store', compact('store', 'stars')) }}" title="{{ $rr['text'] }}">
                   @if ($rr['percent'] > 10)
                     <span class="ms-1 fw-bold">{{ $stars }}</span>
                   @endif
@@ -103,7 +102,7 @@
           </div>
           @unless(empty($reviewsStars))
             <div>Showed reviews with {{ $reviewsStars }} stars.<br> You can <a
-                href="{{ route('store', ['slug' => $store->slug]) }}">reset filter</a> for show all
+                href="{{ route('store', compact('store')) }}">reset filter</a> for show all
               reviews.</div>
           @endunless
           <hr>

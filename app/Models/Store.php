@@ -3,18 +3,16 @@
 namespace App\Models;
 
 use App\Models\Traits\Searchable;
-use App\Models\Traits\Slugable;
 use Helpers\Images;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Store extends Model implements HasMedia
 {
-  use HasFactory, InteractsWithMedia, Searchable, Slugable;
+  use HasFactory, InteractsWithMedia, Searchable;
 
   const SEARCH_COLUMN = 'name';
 

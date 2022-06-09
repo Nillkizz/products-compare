@@ -8,9 +8,8 @@ use Illuminate\Http\Request;
 
 class StoreController extends AbstractPublicPageController
 {
-  public function show(Request $request, string $slug)
+  public function show(Request $request, Store $store)
   {
-    $store = Store::getBySlugOrFail($slug);
     $store_logo = $store->logoUrl('h70');
 
     $data = [

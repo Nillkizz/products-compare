@@ -81,7 +81,7 @@ admin_mix
 
   /* Pages */
   .js(path.rsa + 'js/pages/*.js', path.psa + 'js/pages')
-  .js(path.rsa + 'js/pages/merchants/*.js', path.psa + 'js/pages/merchants')
+  .js(path.rsa + 'js/pages/stores/*.js', path.psa + 'js/pages/stores')
 
   /* Options */
   .options({

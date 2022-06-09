@@ -4,6 +4,7 @@
       <section class="review d-flex justify-content-center">
         <div class="card" style="width: 600px">
           <div class="card-body d-flex flex-column gap-4">
+            <x-auth.validation-errors :errors="$errors" />
 
             <div class="d-flex align-items-center gap-4">
               @unless(empty($store->logoUrl('h70')))
@@ -18,7 +19,7 @@
               <div class="js-rating fs-2" style="cursor: pointer;" @@mouseout="state.hoverStar = 0">
                 <template x-for="i in 5">
                   <i class="fa fa-fw fa-star"
-                    :class="{ 'text-muted': !isActiveStar(i), 'text-warning': isActiveStar(i) }"
+                    :class="{ 'text-muted': !starIsActive(i), 'text-warning': starIsActive(i) }"
                     @@mouseover="state.hoverStar = i" @@click="fields.stars = i"></i>
                 </template>
               </div>
@@ -26,18 +27,24 @@
 
             <div class="questions" x-show="fields.stars > 0">
               @foreach ($questions as $item)
+                @php
+                  $question = $item['question'];
+                  $answer = $item['answer'];
+                @endphp
                 <div class="d-flex align-items justify-content-between mb-2" data-question="{{ $item['question'] }}"
                   data-answer="{{ $item['answer'] }}">
                   <span>
-                    {{ $item['question'] }}
+                    {{ $question }}
                   </span>
                   <div class="answer">
                     <button class="btn btn-outline-secondary"
-                      @@click="answer('{{ $item['question'] }}', '{{ $item['answer'] }}', true)"
-                      :class="{ 'btn-outline-success': true == fields.questions['{{ $item['question'] }}'].answer }">Yes</button>
+                      @@click="answer('{{ $question }}', 1)"
+                      :class="{ 'btn-outline-success': 1 == getAnswer('{{ $question }}') }">Yes</button>
                     <button class="btn btn-outline-secondary"
-                      @@click="answer('{{ $item['question'] }}', '{{ $item['answer'] }}', false)"
-                      :class="{ 'btn-outline-danger': false == fields.questions['{{ $item['question'] }}'].answer }">No</button>
+                      @@click="answer('{{ $question }}', 0)"
+                      :class="{
+                          'btn-outline-danger': 0 == getAnswer('{{ $question }}')
+                      }">No</button>
                   </div>
                 </div>
               @endforeach
@@ -61,16 +68,13 @@
       <form class="d-none" action="{{ route('store.reviews.store', compact('store')) }}" method="POST"
         x-ref="form">
         @csrf
-        @method('POST')
         <input type="number" name="stars" :value="fields.stars">
-        <template x-for="question, i in Object.entries(fields.questions)">
-          <template x-if="question[1].answer !== null">
-            <div>
-              <input type="text" :name="`questions[${i}][question]`" :value="question[0]">
-              <input type="text" :name="`questions[${i}][text]`" :value="question[1].text">
-              <input type="text" :name="`questions[${i}][answer]`" :value="question[1].answer">
-            </div>
-          </template>
+        <template x-for="q, i in questions">
+          <div>
+            <input type="text" :name="`questions[${i}][question]`" :value="q.question">
+            <input type="text" :name="`questions[${i}][text]`" :value="q.text">
+            <input type="text" :name="`questions[${i}][answer]`" :value="getAnswer(q.question)">
+          </div>
         </template>
         <textarea name="text" :value="fields.text"></textarea>
       </form>

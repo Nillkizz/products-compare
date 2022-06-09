@@ -1,32 +1,45 @@
 document.addEventListener('alpine:init', () => {
   Alpine.data('app', () => ({
     init() {
-      Array.from(document.querySelectorAll('[data-question]')).forEach($e => {
-        this.fields.questions[$e.dataset.question] = { answer: null, text: $e.dataset.answer };
-      });
+      const questions = this._questions = Array.from(document.querySelectorAll('[data-question]'))
+        .map($e => ({ question: $e.dataset.question, text: $e.dataset.answer, answer: null }));
+
+      questions.forEach(q => this.state.questions[q.question] = null);
     },
+
+    _questions: [],
 
     state: {
       hoverStar: 0,
+      questions: {}
     },
+
     fields: {
       stars: 0,
-      questions: {},
       text: ''
+    },
+
+    getAnswer(question) {
+      return this.state.questions[question];
+    },
+
+    get questions() {
+      const questions = this._questions
+        .filter(q => this.state.questions[q.question] !== null);
+      return questions;
     },
 
     submit() {
       this.$refs.form.submit();
     },
 
-    answer(question, text, val) {
-      const oldVal = this.fields.questions[question].answer;
-      console.log(oldVal, val);
+    answer(question, val) {
+      const oldVal = this.state.questions[question] ?? null;
       if (oldVal == val) val = null;
-      this.fields.questions[question] = { answer: val, text: text };
+      this.state.questions[question] = val;
     },
 
-    isActiveStar(idx) {
+    starIsActive(idx) {
       return idx <= Math.max(this.state.hoverStar, this.fields.stars)
     }
 

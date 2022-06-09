@@ -13,7 +13,8 @@ class StoreStoreReviewRequest extends FormRequest
    */
   public function authorize()
   {
-    return !in_array($this->store->id, session('reviewed-stores', []));
+    // return !in_array($this->store->id, session('reviewed-stores', []));
+    return true;
   }
 
   /**
@@ -28,15 +29,15 @@ class StoreStoreReviewRequest extends FormRequest
       'questions' => 'array',
       'questions.*.text' => "string",
       'questions.*.question' => "string",
-      'questions.*.answer' => "string",
+      'questions.*.answer' => "boolean",
       'text' => 'string'
     ];
   }
   protected function prepareForValidation()
   {
     $this->merge([
-      'questions' => $this->input('questions', []),
-      'text' => $this->input('text', '')
+      'questions' => $this->input('questions') ?? [],
+      'text' => $this->input('text') ?? ''
     ]);
   }
 }

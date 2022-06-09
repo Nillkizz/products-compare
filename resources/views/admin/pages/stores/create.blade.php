@@ -61,7 +61,6 @@
           <div class="col-md-10 col-lg-8">
             <form class="row" action="{{ route('admin.stores.store') }}" method="POST"
               enctype="multipart/form-data">
-              {{-- @method('') --}}
               @csrf
               <x-form.input name="name" label="Name" />
               <x-form.input class="col-sm-6" name="slug" label="Slug" data-type="slug" />

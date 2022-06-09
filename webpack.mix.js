@@ -104,6 +104,8 @@ public_mix
   .js(path.rsp + 'js/app.js', path.psp + 'js')
 
   /* Page JS */
+  .js(path.rsp + 'js/pages/search.js', path.psp + 'js/pages')
+  .js(path.rsp + 'js/pages/store-review_create.js', path.psp + 'js/pages')
 
   /* Tools */
   .disableNotifications()

@@ -22,6 +22,12 @@
         </div>
       </section>
 
+      @unless($review_leaved)
+        <a class="btn btn-success m-4 py-2" style="min-width: 300px;"
+          href="{{ route('store.reviews.create', compact('store')) }}">Leave review</a>
+      @else
+        <p>You've already left a review, thanks!</p>
+      @endunless
       <section class="contacts mb-5">
         <h2 class="fs-3 mb-2">Contacts</h2>
         <div class="d-flex ms-2 flex-wrap gap-3">

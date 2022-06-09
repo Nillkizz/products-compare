@@ -16,11 +16,14 @@ return new class extends Migration
   {
     Schema::create('store_reviews', function (Blueprint $table) {
       $table->id();
-      $table->timestamps();
+
       $table->foreignIdFor(Store::class);
+
       $table->smallInteger('stars');
       $table->json('questions');
-      $table->text('text');
+      $table->string('text')->default('');
+
+      $table->timestamps();
     });
   }
 

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class StoreReview extends Model
 {
   use HasFactory;
+  protected $fillable = ['stars', 'questions', 'text'];
   protected $casts = ['questions' => 'array'];
   const QUESTIONS = [
     [

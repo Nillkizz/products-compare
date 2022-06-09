@@ -65,7 +65,15 @@ class Store extends Model implements HasMedia
 
   public function recalculate_rate()
   {
-    return $this->update(['rate' => $this->reviews->avg('stars')]);
+    $has_reviews = $this->reviews->count() > 0;
+    if ($has_reviews) {
+      $avg_rate = $this->reviews->avg('stars');
+      $this->rate = $avg_rate;
+    } else {
+      $this->rate = 0;
+    }
+    $this->save();
+    return $avg_rate;
   }
 
   public function incr_rate()

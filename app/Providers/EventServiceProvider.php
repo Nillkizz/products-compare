@@ -29,8 +29,11 @@ class EventServiceProvider extends ServiceProvider
   public function boot()
   {
     StoreReview::created(fn (StoreReview $review) => $review->store->incr_rate());
-    StoreReview::saved(fn (StoreReview $review) => $review->store->recalculate_rate());
     StoreReview::deleted(fn (StoreReview $review) => $review->store->decr_rate());
+
+    StoreReview::deleted(fn (StoreReview $review) => $review->store->recalculate_rate());
+    StoreReview::created(fn (StoreReview $review) => $review->store->recalculate_rate());
+    StoreReview::saved(fn (StoreReview $review) => $review->store->recalculate_rate());
   }
 
   /**

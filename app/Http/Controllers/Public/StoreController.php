@@ -20,7 +20,8 @@ class StoreController extends AbstractPublicPageController
       'reviews' => $store->getReviewsByStars($request->input('stars'))->paginate(20),
       'reviewsStars' => $request->input('stars'),
       'popularSearches' => $store->popularSearches(8)->get(),
-      'popularProducts' => $store->popularProducts(8)->get()
+      'popularProducts' => $store->popularProducts(8)->get(),
+      'review_leaved' => in_array($store->id, session('reviewed-stores', []))
     ];
 
     meta()->set('title', 'Store ' . $store->site);

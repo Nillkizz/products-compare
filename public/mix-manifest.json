@@ -5,6 +5,8 @@
     "/static/admin/js/pages/site_options.js": "/static/admin/js/pages/site_options.js",
     "/static/admin/js/pages/stores/edit.js": "/static/admin/js/pages/stores/edit.js",
     "/static/public/js/app.js": "/static/public/js/app.js",
+    "/static/public/js/pages/search.js": "/static/public/js/pages/search.js",
+    "/static/public/js/pages/store-review_create.js": "/static/public/js/pages/store-review_create.js",
     "/static/public/css/app.css": "/static/public/css/app.css",
     "/static/admin/css/app.css": "/static/admin/css/app.css",
     "/static/core/css/app.css": "/static/core/css/app.css",

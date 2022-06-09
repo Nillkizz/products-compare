@@ -5,6 +5,7 @@ use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\StoreController;
 use App\Http\Controllers\Public\PageController as FrontPageController;
 use App\Http\Controllers\Public\SearchController;
+use App\Http\Controllers\Public\StoreReviewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'show'])->name('home');
 Route::get('/store/{store:slug}', [StoreController::class, 'show'])->name('store');
+Route::resource('store.reviews', StoreReviewController::class)->only(['create', 'store'])->scoped(['store' => 'slug']);
 Route::get('/click.php', [GoToProductController::class, 'reloadToShop'])->name('goto_product');
 
 Route::get('/search', [SearchController::class, 'show'])->name('search');

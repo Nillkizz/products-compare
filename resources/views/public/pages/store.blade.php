@@ -16,7 +16,7 @@
         </div>
 
         <div class="text-center">
-          <div class="rating fs-2 fw-bold">{{ sprintf('%0.1f', $store->rate) }}</div>
+          <div class="rating fs-2 fw-bold">{{ $rate }}</div>
           <x-stars class="fs-3" :rate="$store->rate" :hideCount="true" />
           <div class="reviewCount">Reviews: {{ $store->reviews_count }}</div>
         </div>

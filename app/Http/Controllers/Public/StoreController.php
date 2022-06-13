@@ -13,6 +13,7 @@ class StoreController extends AbstractPublicPageController
     $store_logo = $store->logoUrl('h70');
 
     $data = [
+      'rate' => $store->getFormattedRate(),
       'hasLogo' => !empty($store_logo),
       'logo' => $store_logo,
       'store' => $store,
@@ -25,7 +26,7 @@ class StoreController extends AbstractPublicPageController
     ];
 
     meta()->set('title', 'Store ' . $store->site);
-    meta()->set('description', 'Store ' . $store->site . 'reviews and description. Rating ' . sprintf('%0.1f', $store->rate) . ' out of 5');
+    meta()->set('description', 'Store ' . $store->site . 'reviews and description. Rating ' . $data['rate'] . ' out of 5');
     return view('public.pages.store', $data);
   }
 }

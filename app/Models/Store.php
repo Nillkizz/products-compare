@@ -187,4 +187,8 @@ class Store extends Model implements HasMedia
       ->height(70)
       ->performOnCollections('logo');
   }
+  public function getFormattedRate()
+  {
+    return sprintf('%0.1f', $this->rate);
+  }
 }

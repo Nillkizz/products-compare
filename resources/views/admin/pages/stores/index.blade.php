@@ -129,7 +129,8 @@ $routes = [
                       <x-stars class="justify-content-center" :count="$item->reviews_count" :rate="$item->rate" />
                     </td>
                     <td>
-                      <a class="fw-semibold d-flex align-items-center gap-2" href="{{ $item->link }}">
+                      <a class="fw-semibold d-flex align-items-center gap-2"
+                        href="{{ route('store', ['store' => $item]) }}">
                         <div class="badge bg-{{ $item->getStatusValue('color') }} p-1"
                           title="{{ $item->getStatusValue('verbose') }}">
                           <i @class([

@@ -116,8 +116,7 @@
                       <a class="fw-semibold" href="{{ $product->link }}">{{ $product->name }}</a>
                     </td>
                     <td class="d-none d-md-table-cell">
-                      {{-- TODO: Change url to front store --}}
-                      <a href="{{ $product->link }}">{{ $product->store->name }}</a>
+                      <a href="{{ route('store', ['store' => $product->store]) }}">{{ $product->store->name }}</a>
                     </td>
                     <td class="text-end d-none d-sm-table-cell fs-sm">
                       <strong>€{{ $product->price }}</strong>

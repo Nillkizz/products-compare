@@ -24,7 +24,8 @@ class StoreReviewFactory extends Factory
     return [
       'stars' => $this->faker->numberBetween(1, 5),
       'questions' => $questions,
-      'text' => $this->faker->paragraph()
+      'text' => $this->faker->paragraph(),
+      'status' => rand(0, 100) > 15 ? StoreReview::STATUS['published']['value'] : StoreReview::STATUS['moderation']['value']
     ];
   }
 }

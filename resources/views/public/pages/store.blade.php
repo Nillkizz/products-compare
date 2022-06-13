@@ -84,8 +84,7 @@
 
       <section class="reviews card card-body">
         <div class="heading">
-          <h2 class="d-inline-block fs-5">Reviews</h2> <span
-            class="count">{{ $store->reviews_count }}</span>
+          <h2 class="d-inline-block fs-5">Reviews</h2> <span class="count">{{ $reviews_count }}</span>
         </div>
         <div class="reviews_statistics">
           <div class="bar">
@@ -116,7 +115,7 @@
         <div class="reviews-list">
           @foreach ($reviews as $review)
             <div class="review-item">
-              <div class="flex flex-wrap gap-3">
+              <div class="d-flex align-items-baseline flex-wrap gap-2">
                 <div class="d-inline-block stars-wrapper">
                   <x-stars class="" :rate="$review->stars" :hideCount="true" />
                 </div>

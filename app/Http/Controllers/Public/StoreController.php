@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Public;
 
 use App\Models\Store;
-use App\Models\Search;
+use App\Models\StoreReview;
 use Illuminate\Http\Request;
 
 class StoreController extends AbstractPublicPageController
@@ -11,6 +11,9 @@ class StoreController extends AbstractPublicPageController
   public function show(Request $request, Store $store)
   {
     $store_logo = $store->logoUrl('h70');
+    $reviews = $store->getReviewsByStars($request->input('stars'))
+      ->where('status', StoreReview::STATUS['published']['value']);
+    $reviews_count = $reviews->count();
 
     $data = [
       'rate' => $store->getFormattedRate(),
@@ -18,7 +21,8 @@ class StoreController extends AbstractPublicPageController
       'logo' => $store_logo,
       'store' => $store,
       'contacts' => $store->contacts,
-      'reviews' => $store->getReviewsByStars($request->input('stars'))->paginate(20),
+      'reviews' => $reviews->paginate(20),
+      'reviews_count' => $reviews_count,
       'reviewsStars' => $request->input('stars'),
       'popularSearches' => $store->popularSearches(8)->get(),
       'popularProducts' => $store->popularProducts(8)->get(),

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\Stores\CreateStoreFormRequest;
 use App\Http\Requests\Admin\Stores\UpdateStoreFormRequest;
 use App\Models\Store;
+use App\Models\StoreReview;
 use App\Services\XmlProducts;
 use ErrorException;
 use Illuminate\Http\Request;
@@ -47,9 +48,21 @@ class StoreController extends AbstractAdminPageController
 
   public function edit(Request $request, Store $store)
   {
-    meta()->set('title', 'Edit store "' . $store->name . '"');
-    $data = compact('store');
+    $reviews_stars_filter = $request->input('stars');
+    $moderation = $store->getReviewsByStars($reviews_stars_filter)
+      ->where('status', StoreReview::STATUS['moderation']['value']);
+    $published = $store->getReviewsByStars($reviews_stars_filter)
+      ->where('status', StoreReview::STATUS['published']['value']);
 
+    $reviews = $moderation->union($published);
+    $data = [
+      'store' => $store,
+      'reviews' => $reviews->paginate(20),
+      'reviews_count' => $reviews->count(),
+      'reviews_stars_filter' => $reviews_stars_filter
+    ];
+
+    meta()->set('title', 'Edit store "' . $store->name . '"');
     return view('admin.pages.stores.edit', $data);
   }
 

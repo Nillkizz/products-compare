@@ -4,7 +4,7 @@
   </x-slot>
 
   <!-- Page Content -->
-  <div class="content">
+  <div class="content mb-5">
     <!-- Quick Overview + Actions -->
     {{-- <div class="row items-push">
       <div class="col-6 col-lg-4">
@@ -140,6 +140,87 @@
       </div>
     </div>
     <!-- END Info -->
+
+
+
+
+    <section class="reviews card card-body">
+      <div class="heading">
+        <h2 class="d-inline-block fs-5">Reviews</h2> <span class="count">{{ $reviews_count }}</span>
+      </div>
+      <div class="reviews_statistics">
+        <div class="bar">
+          @foreach ($store->getReviewsReport() as $stars => $rr)
+            @if ($rr['count'] > 0)
+              <a class="d-flex reviews-col stars{{ $stars }} gap-1" style="width:{{ $rr['percent'] }}%"
+                href="{{ route('admin.stores.edit', compact('store', 'stars')) }}" title="{{ $rr['text'] }}">
+                @if ($rr['percent'] > 10)
+                  <span class="ms-1 fw-bold">{{ $stars }}</span>
+                @endif
+                @if ($rr['percent'] > 20)
+                  <i class="fa fa-star fs-8"></i>
+                @endif
+                @if ($rr['percent'] > 30)
+                  <span class="fs-7">{{ $rr['percent'] }}%</span>
+                @endif
+              </a>
+            @endif
+          @endforeach
+        </div>
+        @unless(empty($reviews_stars_filter))
+          <div>Showed reviews with {{ $reviews_stars_filter }} stars.<br> You can <a
+              href="{{ route('admin.stores.edit', compact('store')) }}">reset filter</a> for show all
+            reviews.</div>
+        @endunless
+        <hr>
+      </div>
+      <div class="reviews-list">
+        @foreach ($reviews as $review)
+          <div @class([
+              'alert alert-warning' => $review->isModeration(),
+              'review-item',
+          ])>
+            <div class="d-flex align-items-baseline flex-wrap gap-2">
+              <div class="d-inline-block stars-wrapper">
+                <x-stars class="" :rate="$review->stars" :hideCount="true" />
+              </div>
+              <div class="d-inline-block date text-muted">{{ $review->created_at->format('Y-m-d') }}</div>
+              <div class="controls d-flex ms-1 gap-2" data-review-id="{{ $review->id }}">
+                @switch($review->status)
+                  @case($review::STATUS['moderation']['value'])
+                    <button type="button" class="btn btn-sm btn-outline-success" data-action="publish">Publish</button>
+                    <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete">Delete</button>
+                  @break
+
+                  @case($review::STATUS['published']['value'])
+                    <button type="button" class="btn btn-sm btn-outline-warning" data-action="moderate">Moderate</button>
+                  @break
+                @endswitch
+              </div>
+            </div>
+            <div class="text mb-2">
+              {{ $review->text }}
+            </div>
+            <div class="questions">
+              @foreach ($review->questions as $question)
+                <div @class([
+                    'question',
+                    'text-success' => $question['answer'],
+                    'text-danger' => !$question['answer'],
+                ])>{{ $question['text'] }}</div>
+              @endforeach
+            </div>
+          </div>
+          <hr>
+        @endforeach
+        <div id="pagination" class="d-flex d-sm-block justify-content-center">
+          {{ $reviews->withQueryString()->onEachSide(2)->links() }}
+        </div>
+      </div>
+    </section>
+
+
+
 
   </div>
   <!-- END Page Content -->

@@ -19,6 +19,6 @@ class StoreSeeder extends Seeder
     Store::factory()
       ->count(8)
       ->create()
-      ->each(fn ($store) => StoreReview::factory()->for($store)->count(rand(0, 10))->create());
+      ->each(fn ($store) => StoreReview::factory()->for($store)->count(rand(0, 25))->create());
   }
 }

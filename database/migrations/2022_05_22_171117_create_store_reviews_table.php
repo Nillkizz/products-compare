@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Store;
+use App\Models\StoreReview;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -22,6 +23,8 @@ return new class extends Migration
       $table->smallInteger('stars');
       $table->json('questions');
       $table->text('text')->nullable();
+
+      $table->string('status')->default(StoreReview::STATUS['moderation']['value']);
 
       $table->timestamps();
     });

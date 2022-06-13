@@ -49,12 +49,12 @@ class StoreController extends AbstractAdminPageController
   public function edit(Request $request, Store $store)
   {
     $reviews_stars_filter = $request->input('stars');
-    $moderation = $store->getReviewsByStars($reviews_stars_filter)
-      ->where('status', StoreReview::STATUS['moderation']['value']);
-    $published = $store->getReviewsByStars($reviews_stars_filter)
-      ->where('status', StoreReview::STATUS['published']['value']);
+    $reviews = $store->getReviewsByStars($reviews_stars_filter)
+      ->orderByRaw("
+      CASE WHEN status = 'moderation' THEN 1 ELSE 0 END DESC,
+      created_at DESC
+      ");
 
-    $reviews = $moderation->union($published);
     $data = [
       'store' => $store,
       'reviews' => $reviews->paginate(20),

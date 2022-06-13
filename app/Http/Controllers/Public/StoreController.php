@@ -12,7 +12,8 @@ class StoreController extends AbstractPublicPageController
   {
     $store_logo = $store->logoUrl('h70');
     $reviews = $store->getReviewsByStars($request->input('stars'))
-      ->where('status', StoreReview::STATUS['published']['value']);
+      ->where('status', StoreReview::STATUS['published']['value'])
+      ->orderByDesc('created_at');
     $reviews_count = $reviews->count();
 
     $data = [

@@ -2,9 +2,12 @@
 
 namespace App\Services;
 
+use App\Models\Product;
+use App\Models\ProductPreview;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\UnreachableUrl;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class XmlProducts
@@ -21,19 +24,28 @@ class XmlProducts
   {
     $validated = $this->validate();
 
-    $media = $store->products->map(fn ($p) => $p->media);
-    $media_ids = Arr::flatten($media->pluck('*.id'));
-
-    DB::transaction(function () use ($store, $validated) {
-      $store->products()->delete();
-      $store->products()->createMany($validated);
-    }, 2);
-    Media::destroy($media_ids);
+    $store->products()->delete();
+    $store->products()->createMany($validated);
 
     $products = $store->fresh()->products;
-    $products->each(function ($product) {
-      if (empty($product->image_url)) return;
-      $product->addMediaFromUrl($product->image_url)->toMediaCollection('preview');
+
+    $products->each(function (Product $product) {
+      $preview_url = $product->image_url;
+      if (empty($preview_url)) return;
+
+      $preview = $product->preview()->where(['url' => $preview_url]);
+      if (!$preview->exists()) {
+        $preview = ProductPreview::create(['url' => $preview_url]);
+        try {
+          $preview->addMediaFromUrl($preview_url)->toMediaCollection('preview');
+        } catch (UnreachableUrl $e) {
+          $preview->delete();
+          return;
+        }
+      }
+
+      $product->preview()->associate($preview);
+      $product->save();
     });
 
     return $products;

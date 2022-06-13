@@ -15,4 +15,5 @@ yarn-error.log
 /db_dump.sql
 /.idea
 /.vscode
+/storage/media-library
 pcmpare.zip

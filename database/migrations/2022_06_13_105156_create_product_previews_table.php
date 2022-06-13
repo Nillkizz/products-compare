@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Store;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,15 +13,9 @@ return new class extends Migration
    */
   public function up()
   {
-    Schema::create('store_reviews', function (Blueprint $table) {
+    Schema::create('product_previews', function (Blueprint $table) {
       $table->id();
-
-      $table->foreignIdFor(Store::class);
-
-      $table->smallInteger('stars');
-      $table->json('questions');
-      $table->text('text')->nullable();
-
+      $table->string('url')->unique();
       $table->timestamps();
     });
   }
@@ -34,6 +27,6 @@ return new class extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('store_reviews');
+    Schema::dropIfExists('product_previews');
   }
 };

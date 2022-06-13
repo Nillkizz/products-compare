@@ -12,15 +12,20 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Product extends Model implements HasMedia
+class Product extends Model
 {
-  use HasFactory, InteractsWithMedia, Searchable;
+  use HasFactory, Searchable;
 
   const SEARCH_COLUMN = 'search_string';
 
   protected $guarded = [
     'id', 'created_at', 'updated_at', 'search_string'
   ];
+
+  public function preview()
+  {
+    return $this->belongsTo(ProductPreview::class, 'product_preview_id');
+  }
 
   public function store()
   {
@@ -34,28 +39,8 @@ class Product extends Model implements HasMedia
 
   public function previewUrl($conversion = null, $withFallback = true)
   {
-    return Images::modelImageHandler($this, 'preview', $withFallback, $conversion);
-  }
-
-  public function registerMediaCollections(): void
-  {
-    $this->addMediaCollection('preview')->singleFile();
-  }
-
-  public function registerMediaConversions(Media $media = null): void
-  {
-    $this->addMediaConversion('450x450')
-      ->fit(Manipulations::FIT_FILL, 450, 450)
-      ->performOnCollections('preview');
-    $this->addMediaConversion('210x210')
-      ->fit(Manipulations::FIT_FILL, 210, 210)
-      ->performOnCollections('preview');
-    $this->addMediaConversion('85x85')
-      ->fit(Manipulations::FIT_FILL, 85, 85)
-      ->performOnCollections('preview');
-    $this->addMediaConversion('60x60')
-      ->fit(Manipulations::FIT_FILL, 60, 60)
-      ->performOnCollections('preview');
+    if (!$this->preview()->exists()) return null;
+    return Images::modelImageHandler($this->preview, 'preview', $withFallback, $conversion);
   }
 
   public function scopePriceLimit(Builder $query, $price): Builder

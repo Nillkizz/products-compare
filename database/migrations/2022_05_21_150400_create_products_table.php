@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\ProductPreview;
 use App\Models\Store;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -23,7 +24,7 @@ return new class extends Migration
 
       $table->string('category_full', 200)->nullable();
       $table->string('category_link', 500)->nullable();
-      $table->string('image_url', 500)->nullable();
+      $table->string('image_url')->nullable();
       $table->integer('in_stock')->nullable();
       $table->string('brand')->nullable();
       $table->string('model')->nullable();
@@ -35,6 +36,7 @@ return new class extends Migration
       $table->boolean('adult')->default(false);
       $table->boolean('over_the_counter_medicine')->default(false);
 
+      $table->foreignIdFor(ProductPreview::class)->nullable();
       $table->foreignIdFor(Store::class)->constrained()->cascadeOnDelete();
       $table->timestamps();
 

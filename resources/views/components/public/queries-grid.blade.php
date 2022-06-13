@@ -6,7 +6,7 @@
           <div class="card overflow-hidden">
             <div class="d-flex">
               <img class="rounded-4 m-2" src="{{ $q['preview'] }}" width="60" height="60" alt="{{ $q['value'] }}">
-              <span class="ms-3 text w-100 my-auto">
+              <span class="ms-3 text w-100 my-auto" style="max-height: 4.8rem;">
                 {{ $q['value'] }}
               </span>
             </div>

@@ -25,6 +25,7 @@ class StoreController extends AbstractPublicPageController
     ];
 
     meta()->set('title', 'Store ' . $store->site);
+    meta()->set('description', 'Store ' . $store->site . 'reviews and description. Rating ' . sprintf('%0.1f', $store->rate) . ' out of 5');
     return view('public.pages.store', $data);
   }
 }

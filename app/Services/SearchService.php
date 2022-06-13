@@ -101,7 +101,16 @@ class SearchService
 
   public function getDescription()
   {
-    return "";
+    if (!$this->hasSearch) return "Catalog of popular queries";
+
+    $search_string = $this->search_string;
+
+    if ($this->hasProducts) {
+      $lowestPrice = $this->all_products->min('price');
+      $countOfProducts = $this->all_products->count();
+    } else if ($this->hasSearch) $lowestPrice = $countOfProducts = 0;
+
+    return "$search_string price from $lowestPrice $, $countOfProducts products found with the name: $search_string";
   }
 
   static function searchFirstForSession(string|null $search)

@@ -1,5 +1,5 @@
 <x-public.layouts.main>
-  <div class="bg-body-extra-light" x-data="app">
+  <div class="bg-body-extra-light" x-data="app" x-cloak>
     <div class="content content-full">
       <section class="review d-flex justify-content-center">
         <div class="card" style="width: 600px">
@@ -25,7 +25,7 @@
               </div>
             </div>
 
-            <div class="questions" x-show="fields.stars > 0">
+            <div class="questions" x-show="fields.stars > 0" x-transition>
               @foreach ($questions as $item)
                 @php
                   $question = $item['question'];
@@ -50,7 +50,7 @@
               @endforeach
             </div>
 
-            <div class="review" x-show="fields.stars > 0">
+            <div class="review" x-show="fields.stars > 0" x-transition>
               <textarea class="form-control" style="resize: none; height: 120px;"
                 placeholder="(Optional) Here you can describe your shopping process and your views on it without rudeness. Be polite, honest, helpful and constructive."
                 x-model="fields.text"></textarea>

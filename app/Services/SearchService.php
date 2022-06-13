@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Product;
 use App\Models\Search;
 use App\Models\SiteOption;
+use App\Models\Store;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -66,7 +67,9 @@ class SearchService
   }
   public function getAllProducts()
   {
-    return $this->hasSearch ? Product::search($this->search_string) : null;
+    return $this->hasSearch
+      ? Product::search($this->search_string)->whereHas('store', fn ($q) => $q->where('published', true))
+      : null;
   }
   public function getProductsWithoutErotic($products)
   {

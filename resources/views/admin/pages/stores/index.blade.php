@@ -129,13 +129,27 @@ $routes = [
                       <x-stars class="justify-content-center" :count="$item->reviews_count" :rate="$item->rate" />
                     </td>
                     <td>
-                      <a class="fw-semibold" href="{{ $item->link }}">{{ $item->name }}</a>
+                      <a class="fw-semibold d-flex align-items-center gap-2" href="{{ $item->link }}">
+                        <div class="badge bg-{{ $item->getStatusValue('color') }} p-1"
+                          title="{{ $item->getStatusValue('verbose') }}">
+                          <i @class([
+                              'd-block',
+                              $item->getStatusValue('icon'),
+                              'fa-spin' => $item->getStatusValue('value') == 'updating',
+                          ]) style="height:10px; width:10px; font-size: 10px"></i>
+                        </div>
+                        <span>{{ $item->name }}</span>
+                      </a>
                     </td>
                     <td class="fw-semibold d-none d-sm-table-cell">
                       {{ $item->site }}
                     </td>
                     <td class="fw-semibold d-none d-sm-table-cell text-center">
-                      {{ $item->products->count() }}
+                      @if ($item->status == 'updating')
+                        {{ $item->update_progress }}
+                      @else
+                        {{ $item->products->count() }}
+                      @endif
                     </td>
                     <td class="fs-sm text-center">
                       <a class="btn btn-sm btn-alt-secondary"

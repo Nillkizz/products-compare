@@ -4,18 +4,33 @@ namespace App\Models;
 
 use App\Models\Traits\Searchable;
 use Helpers\Images;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
+
 class Store extends Model implements HasMedia
 {
   use HasFactory, InteractsWithMedia, Searchable;
 
   const SEARCH_COLUMN = 'name';
-
+  const STATUS = [
+    'updated' => [
+      'value' => 'updated',
+      'verbose' => 'Updated',
+      'icon' => 'fa fa-check',
+      'color' => 'success',
+    ],
+    'updating' => [
+      'value' => 'updating',
+      'verbose' => 'Updating',
+      'icon' => 'fa fa-rotate',
+      'color' => 'warning',
+    ]
+  ];
   const contactTypes = [
     'phone' => ['value' => 'phone', 'verbose' => 'Phone'],
     'email' => ['value' => 'email', 'verbose' => 'Email'],
@@ -28,9 +43,13 @@ class Store extends Model implements HasMedia
     'published' => 'boolean',
   ];
 
-  static function getVerboseContactType($contact)
+  static function getVerboseContactType(array $contact)
   {
     return static::contactTypes[$contact['type']]['verbose'];
+  }
+  static function getStatusBySlug(string $status_slug)
+  {
+    return static::STATUS[$status_slug];
   }
 
   public function products()
@@ -41,6 +60,33 @@ class Store extends Model implements HasMedia
   public function reviews()
   {
     return $this->hasMany(StoreReview::class);
+  }
+
+  public function getStatus(): array
+  {
+    return self::STATUS[$this->status];
+  }
+  public function getStatusValue($key)
+  {
+    return $this->getStatus()[$key];
+  }
+  public function setStatus(string $status_slug)
+  {
+    $this->status = $status_slug;
+    $this->save();
+  }
+
+  public function setUpdateProgress(string|null $progress)
+  {
+    $this->update_progress = $progress;
+    $this->save();
+  }
+
+  public function resetUpdateStatus()
+  {
+    $this->status = self::STATUS['updated']['value'];
+    $this->update_progress = null;
+    $this->save();
   }
 
   public function search_conversions()

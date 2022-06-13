@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Product;
 use App\Models\ProductPreview;
+use App\Models\Store;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -20,16 +21,19 @@ class XmlProducts
   }
 
   /** Imports products for provided store */
-  public function importFor($store)
+  public function importFor(Store $store)
   {
     $validated = $this->validate();
+    $store->setStatus(Store::getStatusBySlug('updating')['value']);
 
     $store->products()->delete();
     $store->products()->createMany($validated);
 
     $products = $store->fresh()->products;
+    $products_count = count($products);
 
-    $products->each(function (Product $product) {
+    $products->each(function (Product $product, $i) use ($store, $products_count) {
+      $store->setUpdateProgress("$i/$products_count");
       $preview_url = $product->image_url;
       if (empty($preview_url)) return;
 
@@ -48,6 +52,7 @@ class XmlProducts
       $product->save();
     });
 
+    $store->resetUpdateStatus();
     return $products;
   }
 

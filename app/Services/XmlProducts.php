@@ -32,12 +32,38 @@ class XmlProducts
     $products = $store->fresh()->products;
     $products_count = count($products);
 
+
+    // Игнорируем отмену загрузки страницы пользователем
+    ignore_user_abort();
+
+    // Говорим что время на выполнение скрипта не ограничено
+    set_time_limit(0);
+
+    // Говорим что соединение надо закрыть
+    header('Connection: close');
+
+    // Перенаправляем если нужно
+    //header('Location: http://site.com');
+
+    // Отчищаем все буферы вывода 
+    @ob_end_flush();
+    @ob_flush();
+    @flush();
+
+    // Заканчиваем сессию пользователя (именно сессия и не давала 
+    // запускать выполнение ещё одного скрипта для этого пользователя 
+    // т.к. запуск скриптов лочится на файл сессий)
+    if (session_id()) session_write_close();
+
+    // Тут выполняем свой очень долгий скрипт
+
+
     $products->each(function (Product $product, $i) use ($store, $products_count) {
       $store->setUpdateProgress("$i/$products_count");
       $preview_url = $product->image_url;
       if (empty($preview_url)) return;
 
-      $preview = $product->preview()->where(['url' => $preview_url]);
+      $preview = ProductPreview::where(['url' => $preview_url]);
       if (!$preview->exists()) {
         $preview = ProductPreview::create(['url' => $preview_url]);
         try {
@@ -46,7 +72,8 @@ class XmlProducts
           $preview->delete();
           return;
         }
-      }
+      } else $preview = $preview->first();
+
 
       $product->preview()->associate($preview);
       $product->save();
@@ -93,14 +120,30 @@ class XmlProducts
 
   static function prepareProducts(array $products)
   {
-    return array_map(function ($product) {
-      // if (Arr::has($product, $field = 'image')) $product[$field] = is_string($product[$field]) ? $product[$field] : null;
+    $products =  array_map(function ($product) {
+      $product = array_filter($product, fn ($val) => $val != []);
 
-      $product = array_filter($product, fn ($val) => !empty($val));
+      array_walk($product, function (&$v, $k) {
+        switch ($k) {
+          case "used":
+          case "adult":
+          case "over_the_counter_medicine":
+            $v = filter_var($v, FILTER_VALIDATE_BOOLEAN);
+            break;
 
+          case 'price':
+            $v = filter_var($v, FILTER_VALIDATE_FLOAT);
+            break;
 
+          case 'in_stock':
+            $v = filter_var($v, FILTER_VALIDATE_INT);
+            break;
+        }
+      });
 
       return $product;
     }, $products);
+
+    return $products;
   }
 }

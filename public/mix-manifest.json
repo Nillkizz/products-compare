@@ -7,6 +7,7 @@
     "/static/public/js/app.js": "/static/public/js/app.js",
     "/static/public/js/pages/search.js": "/static/public/js/pages/search.js",
     "/static/public/js/pages/store-review_create.js": "/static/public/js/pages/store-review_create.js",
+    "/static/public/css/app.css": "/static/public/css/app.css",
     "/static/admin/css/app.css": "/static/admin/css/app.css",
     "/static/core/css/app.css": "/static/core/css/app.css",
     "/static/images/avatar.jpg": "/static/images/avatar.jpg",
@@ -15,6 +16,5 @@
     "/static/images/placeholder.png": "/static/images/placeholder.png",
     "/static/core/libs/ckeditor-5/ckeditor.js": "/static/core/libs/ckeditor-5/ckeditor.js",
     "/static/core/libs/ckeditor-5/styles.css": "/static/core/libs/ckeditor-5/styles.css",
-    "/static/public/fonts/.gitkeep": "/static/public/fonts/.gitkeep",
-    "/static/public/css/app.css": "/static/public/css/app.css"
+    "/static/public/fonts/.gitkeep": "/static/public/fonts/.gitkeep"
 }

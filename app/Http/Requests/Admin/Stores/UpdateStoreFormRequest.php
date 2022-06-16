@@ -42,7 +42,7 @@ class UpdateStoreFormRequest extends FormRequest
         Rule::unique('stores')->ignore($store_id),
         function ($attribute, $value, $fail) {
           $ip = gethostbyname($value);
-          if (!filter_var($ip, FILTER_VALIDATE_IP)) $fail(Str::ucfirst($attribute) . " domain is not regitered.");
+          if (!filter_var($ip, FILTER_VALIDATE_IP)) $fail(Str::ucfirst($attribute) . " domain is not registered.");
         }
       ],
       'xml_url' => [
